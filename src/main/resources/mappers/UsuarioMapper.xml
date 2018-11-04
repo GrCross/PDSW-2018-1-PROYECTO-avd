@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.pdsw.persistence.mybatisimpl.mappers.UserMapper">
+
+    <resultMap type='Usuario' id='UserioResult'>
+        <id property='documento' column='documento'/>        
+        <result property='nombre' column='nombre'/>
+        <result property='area' column='area'/>
+        <result property='telefono' column='telefono'/>
+        <result property='correo' column='correo'/>
+        <result property='rol' column ='rol'/>        
+        <collection property="intereses" ofType="Interes" resultMap="InteresResult"></collection>
+		<collection property="iniciativas" ofType="Iniciativa" resultMap="IniciativaResult"></collection>
+		<collection property="comentarios" ofType="Comentario" resultMap="InteresResult"></collection>
+    </resultMap>
+    
+    <resultMap type='Iniciativa' id='IniciativaResult'>
+        <id property='id' column='id'/>        
+        <result property='estado' column='estado'/>
+        <result property='usuario_documento' column='Usuarios_documento'/>
+        <result property='nombre' column='nombre'/>
+        <result property='descripcion' column='descripcion'/>
+        <result property='fechaCreacion' column='fechaCreacion'/>
+        <collection property="palabrasClave" ofType="java.lang.String"></collection>
+        <collection property="interesados" ofType="Interes" resultMap="InteresResult"></collection>
+        <collection property="comentarios" ofType="Comentario" resultMap="ComentarioResult"></collection>
+    </resultMap>
+    
+    <resultMap type='Comentario' id='ComentarioResult'>
+        <id property='contenido' column='contenido'/>          
+        <id property='Usuario_documento' column='Usuarios_docume'/>
+        <id property='iniciativa_id' column='Iniciativas_id'/>
+        <result property='fechaDeCreacion' column='fechaCreacion'/>
+    </resultMap>
+    
+    <resultMap type='Interes' id='tablaIntereses'>
+        <id property='iniciativa_documento' column='Iniciativa_documento'/>          
+        <id property='usuario_id' column='Usuarios_id'/>
+        <id property='afinidad' column='Afinidades_idAfinidad'/>
+        <result property='voto' column='voto'/>
+    </resultMap>    
+    
+    
+    
+    <insert parameterType="map" id="agregarUsuario">
+    	insert into Usuarios values (#{u.doc},#{u.nombre},#{u.area},#{u.telefoo},#{u.correo},#{u.rol});    	
+    </insert>
+    
+    
+    
+        
+    
+    <delete id="deleteAll">
+        delete from BLOG
+    </delete>
+</mapper>

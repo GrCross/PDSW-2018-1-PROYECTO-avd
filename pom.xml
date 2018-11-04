@@ -27,6 +27,12 @@
             <artifactId>mybatis</artifactId>
             <version>3.4.6</version>
         </dependency>
+        <!-- postgresql dependencies -->
+        <dependency>
+        	<groupId>org.postgresql</groupId>
+        	<artifactId>postgresql</artifactId>
+        	<version>42.0.0</version>
+		</dependency>
         
         <!-- TODO Required? -->
         <dependency>
