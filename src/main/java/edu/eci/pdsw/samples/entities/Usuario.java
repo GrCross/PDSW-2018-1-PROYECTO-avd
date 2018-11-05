@@ -18,17 +18,19 @@ public class Usuario implements Serializable{
     private int documento;
     private String nombre;
     private String area;
-    private String telefono;
+    private int telefono;
     private String correo;
     private Rol rol;
     private ArrayList<Interes> intereses; 
-    private ArrayList<Iniciativa> iniciativas;
-    private ArrayList<Comentario> comentarios;
 
     public Usuario() {
     }
+    
+    public Usuario(int newDocumento) {
+        this.documento = newDocumento;
+    }
 
-    public Usuario(String nombre, int documento, String area, String telefono, String correo, String rol, ArrayList<Interes> intereses,ArrayList<Iniciativa> iniciativas,ArrayList<Comentario> comentarios) {   
+    public Usuario(String nombre, int documento, String area, int telefono, String correo, String rol, ArrayList<Interes> intereses) {   
         this.nombre = nombre;
         this.documento = documento;
         this.telefono = telefono;
@@ -36,11 +38,10 @@ public class Usuario implements Serializable{
         this.correo = correo;
         this.rol = Rol.valueOf(rol);
         this.intereses = intereses;
-        this.iniciativas = iniciativas;
-        this.comentarios = comentarios;
+
     }
     
-    public Usuario(String nombre, int documento, String area, String telefono, String correo, String rol) {   
+    public Usuario(String nombre, int documento, String area, int telefono, String correo, String rol) {   
         this.nombre = nombre;
         this.documento = documento;
         this.telefono = telefono;
@@ -48,8 +49,7 @@ public class Usuario implements Serializable{
         this.correo = correo;
         this.rol = Rol.valueOf(rol);
         this.intereses = new ArrayList<Interes>();
-        this.iniciativas = new ArrayList<Iniciativa>();
-        this.comentarios = new ArrayList<Comentario>();
+
     }
 
            
@@ -69,11 +69,11 @@ public class Usuario implements Serializable{
         this.documento = documento;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -110,21 +110,6 @@ public class Usuario implements Serializable{
         this.intereses = intereses;
     }
     
-    public ArrayList<Iniciativa> getIniciativas() {
-        return this.iniciativas;
-    }
-
-    public void setIniciativas(ArrayList<Iniciativa> iniciativas) {
-        this.iniciativas = iniciativas;
-    }
-    
-    public ArrayList<Comentario> getComentarios() {
-        return this.comentarios;
-    }
-
-    public void setcomentarios(ArrayList<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
 
     @Override
     public String toString() {

@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.mysql.fabric.xmlrpc.base.Array;
 
 /**
  *
@@ -17,24 +16,22 @@ import com.mysql.fabric.xmlrpc.base.Array;
 public class Iniciativa implements Serializable{
     private int id;
     private int estado;
-    private int usuario_documento;
     private String nombre;
     private String descripcion;
     private Date fechaCreacion;
     private ArrayList<String> palabrasClave;
-    private ArrayList<Interes> interasados;
+    private Usuario autor;
     private ArrayList<Comentario> comentarios;
 
-    public Iniciativa(int id, int estado, int usuario_documento, String nombre, String descripcion, Date fechaCreacion, ArrayList<Interes> interasados,ArrayList<Comentario>comentarios,ArrayList<String> palabrasClave) {
+    public Iniciativa(int id, int estado, String nombre, String descripcion, ArrayList<Interes> interasados,ArrayList<Comentario>comentarios,ArrayList<String> palabrasClave,Usuario autor) {
         this.id = id;
         this.estado = estado;
-        this.usuario_documento = usuario_documento;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.palabrasClave = palabrasClave;
-        this.interasados = interasados;
         this.comentarios = comentarios;
+        this.autor = autor;
         
     }
 
@@ -59,12 +56,12 @@ public class Iniciativa implements Serializable{
     }
     
 
-    public int getUsuario_documento() {
-        return usuario_documento;
+    public Usuario getUsuario_documento() {
+        return autor;
     }
 
-    public void setUsuario_documento(int usuario_documento) {
-        this.usuario_documento = usuario_documento;
+    public void setUsuario_documento(Usuario autor) {
+        this.autor = autor;
     }
     
     public String getNombre() {
@@ -101,12 +98,6 @@ public class Iniciativa implements Serializable{
         this.palabrasClave = palabrasClave;
     }
     
-    public ArrayList<Interes> getInterasados(){
-    	return interasados;
-    }
-    public void setInterasados(ArrayList<Interes> interasados) {
-    	this.interasados = interasados;
-    }
     
     public ArrayList<Comentario> getComentarios(){
     	return comentarios;
@@ -118,7 +109,7 @@ public class Iniciativa implements Serializable{
 
     @Override
     public String toString() {
-        return "Item{" + "id=" + id + ", estado=" + estado + ", usuario_documento=" + usuario_documento + ", nombre=" + nombre + ",descripcion=" + descripcion + "fechaCreacion=" + descripcion + "descripcion=" + descripcion+"}";
+        return "Item{" + "id=" + id + ", estado=" + estado + ", nombre=" + nombre + ",descripcion=" + descripcion + "fechaCreacion=" + descripcion + "descripcion=" + descripcion+"}";
     }
 
 

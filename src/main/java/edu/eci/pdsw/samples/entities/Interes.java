@@ -12,14 +12,12 @@ import java.io.Serializable;
  * @author 2106913
  */
 public class Interes implements Serializable{
-    private int iniciativa_documento;
-    private int usuario_id;
     private int afinidad;
     private boolean voto;
+    private Iniciativa iniciativa;
 
     public Interes(int iniciativa_documento, int usuario_id, int afinidad, boolean voto ) {
-        this.iniciativa_documento = iniciativa_documento;
-        this.usuario_id =usuario_id;
+
         this.afinidad =afinidad;
         this.voto = voto;
     }
@@ -28,13 +26,7 @@ public class Interes implements Serializable{
     	
     }    
 
-    public int getIniciativa_Documento() {
-        return iniciativa_documento;
-    }
-
-    public void setIniciativa_Documento(int iniciativa_documento) {
-        this.iniciativa_documento = iniciativa_documento;
-    }   
+      
 
     public int getAfinidad() {
         return afinidad;
@@ -42,15 +34,8 @@ public class Interes implements Serializable{
 
     public void setAfinidad(int afinidad) {
         this.afinidad = afinidad;
-    }
+    }   
     
-    public int getUsuario_id() {
-        return usuario_id;
-    }
-
-    public void setUsuario_id(int usuario_id) {
-        this.usuario_id = usuario_id;
-    }
     
     public boolean getVoto() {
         return voto;
@@ -64,7 +49,7 @@ public class Interes implements Serializable{
 
     @Override
     public String toString() {
-        return "Interes{" + "iniciativa_documento=" + iniciativa_documento + ", afinidad=" + afinidad + ", usuario_id=" + usuario_id +", voto=" + voto +'}';
+        return "Interes{" + ", afinidad=" + afinidad + ", voto=" + voto +'}';
     }
     
     

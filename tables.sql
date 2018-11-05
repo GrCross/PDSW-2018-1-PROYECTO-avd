@@ -1,42 +1,49 @@
-CREATE TABLE IF NOT EXISTS `VI_CLIENTES` (
-  `documento` BIGINT(20) NOT NULL,
-  `nombre` VARCHAR(50)  NOT NULL,
-  `telefono` VARCHAR(20)  NOT NULL,
-  `direccion` VARCHAR(150)  NOT NULL,
-  `email` VARCHAR(150)  NOT NULL,
-  `vetado` TINYINT(1) NOT NULL);
+CREATE TABLE Afinidades (
+    idAfinidad int  NOT NULL,
+    tipoAfinidad varchar(20)  NOT NULL,
+    CONSTRAINT Afinidades_pk PRIMARY KEY (idAfinidad)
+);
 
+-- Table: Comentarios
+CREATE TABLE Comentarios (
+    contenido varchar(300)  NOT NULL,
+    fechaCreacion date  NOT NULL,
+    Usuarios_documento int  NOT NULL,
+    Iniciativas_id int  NOT NULL,
+    CONSTRAINT Comentarios_pk PRIMARY KEY (Usuarios_documento,Iniciativas_id)
+);
 
--- -----------------------------------------------------
--- Table `VI_TIPOITEM`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `VI_TIPOITEM` (
-  `id` INT(11) NOT NULL,
-  `descripcion` VARCHAR(50)  NOT NULL);
+CREATE TABLE Iniciativas (
+    id int  NOT NULL,
+    estados_idEstado int  NOT NULL,
+    Usuarios_documento int  NOT NULL,
+    nombre varchar(50)  NOT NULL,
+    descripcion varchar(500)  NOT NULL,
+    fechaCreacion date  NOT NULL,
+    CONSTRAINT Iniciativas_pk PRIMARY KEY (id)
+);
 
+CREATE TABLE Intereses (
+    Iniciativa_documento int  NOT NULL,
+    Usuarios_id int  NOT NULL,
+    Afinidades_idAfinidad int  NOT NULL,
+    voto boolean  NOT NULL,
+    CONSTRAINT Intereses_pk PRIMARY KEY (Iniciativa_documento,Usuarios_id)
+);
 
--- -----------------------------------------------------
--- Table `VI_ITEMS`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `VI_ITEMS` (
-  `id` INT(11) NOT NULL,
-  `nombre` VARCHAR(50)  NOT NULL,
-  `descripcion` VARCHAR(500)  NOT NULL,
-  `fechalanzamiento` DATE NOT NULL,
-  `tarifaxdia` BIGINT(20) NOT NULL,
-  `formatorenta` VARCHAR(20) NOT NULL,
-  `genero` VARCHAR(20)  NOT NULL,
-  `TIPOITEM_id` INT(11) NOT NULL);
+CREATE TABLE Usuarios (
+    documento int  NOT NULL,
+    nombre varchar(50)  NOT NULL,
+    area varchar(50)  NOT NULL,
+    telefono int  NOT NULL,
+    correo varchar(50)  NOT NULL,
+    rol varchar(50)  NOT NULL,
+    CONSTRAINT documento PRIMARY KEY (documento)
+);
 
-
--- -----------------------------------------------------
--- Table `VI_ITEMRENTADO`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `VI_ITEMRENTADO` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `CLIENTES_documento` BIGINT(20) NOT NULL,
-  `ITEMS_id` INT(11) NOT NULL,
-  `fechainiciorenta` DATE NOT NULL,
-  `fechafinrenta` DATE NOT NULL);
-
-
+-- Table: estados
+CREATE TABLE estados (
+    idEstado int  NOT NULL,
+    tipoEstado varchar(20)  NOT NULL,
+    CONSTRAINT estados_pk PRIMARY KEY (idEstado)
+);

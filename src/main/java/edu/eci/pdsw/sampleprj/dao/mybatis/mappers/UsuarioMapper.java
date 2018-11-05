@@ -9,7 +9,6 @@ import org.mybatis.guice.transactional.Transactional;
 public interface UsuarioMapper {
 	
 		@Transactional
-	    public void agregarUsuario(@Param("u") Usuario usu);
-	
+	    public void agregarUsuario(@Param("u") Usuario usu);	
 
 }

@@ -6,9 +6,12 @@ import com.google.inject.Inject;
 
 import edu.eci.pdsw.sampleprj.dao.UsuarioDao;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.UsuarioMapper;
+import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ComentarioMapper;
+import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.IniciativaMapper;
+import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.InteresMapper;
 import edu.eci.pdsw.samples.entities.Usuario;
 
-public class MyBatisUsarioDao implements UsuarioDao {
+public class MyBatisUsuarioDao implements UsuarioDao {
 
 	@Inject
     private UsuarioMapper usuarioMapper;

@@ -3,7 +3,7 @@ package edu.eci.pdsw.samples.services;
 import com.google.inject.Injector;
 import edu.eci.pdsw.sampleprj.dao.UsuarioDao;
 
-import edu.eci.pdsw.sampleprj.dao.mybatis.MyBatisUsarioDao;
+import edu.eci.pdsw.sampleprj.dao.mybatis.MyBatisUsuarioDao;
 import edu.eci.pdsw.samples.services.impl.ServiciosBancoIniciativasIMPL;
 
 import org.apache.ibatis.transaction.TransactionFactory;
@@ -28,7 +28,7 @@ public class ServiciosBancoIniciativasFactory {
            protected void initialize() {
                setEnvironmentId(env);
                setClassPathResource(pathResource);
-               bind(UsuarioDao.class).to(MyBatisUsarioDao.class);
+               bind(UsuarioDao.class).to(MyBatisUsuarioDao.class);
                bind(ServiciosBancoIniciativas.class).to(ServiciosBancoIniciativasIMPL.class);
               
            }
