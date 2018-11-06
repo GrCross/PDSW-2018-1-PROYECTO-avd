@@ -44,8 +44,25 @@
     </resultMap>   
     
     <insert parameterType="map" id="agregarUsuario">
-    	insert into usuarios (documento,nombre,area,telefono,correo,rol) values(#{u.documento},#{u.nombre},#{u.area},#{u.telefono},#{u.correo},#{u.rol});    	
+    	insert into usuarios (documento,nombre,area,telefono,correo,rol) values(#{u.documento},#{u.nombre},#{u.area},#{u.telefono},#{u.correo},#{u.rol},#{u.psw});    	
     </insert>
+    
+    <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult">
+			select u.documento,u.nombre,u.area,u.telefono,u.correo,u.rol FROM usuarios as u 	where u.documento= #{correousr};
+	</select>
+	
+	<select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
+			select u.documento,u.nombre,u.area,u.telefono,u.correo,u.rol FROM usuarios as u;
+	</select>
+	
+	<select parameterType="map" id="compararUsuario" resultMap="UsuarioResult">
+			select count(*) FROM usuarios as u where u.correo= #{correousr};
+	</select>
+	
+	<select parameterType="map" id="getRolUsuario" resultMap="UsuarioResult">
+			select u.Rol FROM usuarios as u where u.correo= #{correousr};
+	</select>
+	
     
     
     

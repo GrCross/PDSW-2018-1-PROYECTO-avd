@@ -8,6 +8,7 @@ import edu.eci.pdsw.sampleprj.dao.IniciativaDAO;
 
 import edu.eci.pdsw.sampleprj.dao.UsuarioDao;
 import edu.eci.pdsw.samples.entities.Iniciativa;
+import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 
@@ -37,10 +38,40 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
      }
 
     @Override
-    public void InsertarIniciativa(Iniciativa iniciativa) throws PersistenceException {
-       
+    public void InsertarIniciativa(Iniciativa iniciativa) throws ExcepcionBancoIniciativas {
+        try {
             iniciativaDAO.save(iniciativa);
-        
+        } catch (PersistenceException e) {
+            throw new ExcepcionBancoIniciativas("Error al registrar la iniciativa ", e);
+        }
     }
+
+	@Override
+	public boolean autorizacionLogin(String user) throws ExcepcionBancoIniciativas {
+		boolean respuesta=false;
+		try{
+			System.out.println("___________________________user____________"+user);
+			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+			System.out.println("tttttttttttttttttttttttttttttttt"+usuarioDao.getRolusuario(user));
+			int y=usuarioDao.compararUsuario(user);
+			System.out.println(y+"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+			if(y==1) {
+				respuesta=true;
+				return respuesta;
+			}
+			else {respuesta=false;
+					return respuesta;}
+		}
+		catch (PersistenceException e) {
+            throw new ExcepcionBancoIniciativas("Error al realizar la comprobacion del login ", e);
+        }
+		
+	}
+	
+	
+	@Override
+	public Rol tipoUsuario(String correo) throws ExcepcionBancoIniciativas{
+		return Rol.valueOf(usuarioDao.getRolusuario(correo));
+	}
 
 }
