@@ -20,11 +20,12 @@ public class Iniciativa implements Serializable{
     private String nombre;
     private String descripcion;
     private Date fechaCreacion;
-    private ArrayList<String> palabrasClave;
+    private String palabrasClave;
     private Usuario autor;
     private ArrayList<Comentario> comentarios;
+    private String area;
 
-    public Iniciativa(int id, int estado, String nombre, String descripcion, Date fechaCreacion,ArrayList<Comentario>comentarios,ArrayList<String> palabrasClave,Usuario autor) {
+    public Iniciativa(int id, int estado, String nombre, String descripcion, Date fechaCreacion,ArrayList<Comentario>comentarios,String palabrasClave,Usuario autor,String area) {
         this.id = id;
         this.estado = estado;
         this.nombre = nombre;
@@ -33,13 +34,14 @@ public class Iniciativa implements Serializable{
         this.palabrasClave = palabrasClave;
         this.comentarios = comentarios;
         this.autor = autor;
+        this.area = area;
         
     }
 
     public Iniciativa() {
     }
     public Iniciativa(int id2, int estado2, String nombre2, String descripcion2, Date now,
-			ArrayList<String> palabrasClave2, Usuario usuario) {
+			String palabrasClave2, Usuario usuario,String area) {
     	this.id = id2;
         this.estado = estado2;
         this.nombre = nombre2;
@@ -47,6 +49,7 @@ public class Iniciativa implements Serializable{
         this.fechaCreacion = now;
         this.palabrasClave = palabrasClave2;
         this.autor = usuario;
+        this.area = area;
 	}
 
 	public int getId() {
@@ -102,11 +105,11 @@ public class Iniciativa implements Serializable{
     }
     
 
-    public ArrayList<String> getPalabrasClave() {
+    public String getPalabrasClave() {
         return palabrasClave;
     }
 
-    public void setpalabrasClave(ArrayList<String> palabrasClave) {
+    public void setpalabrasClave(String palabrasClave) {
         this.palabrasClave = palabrasClave;
     }
     
@@ -117,11 +120,19 @@ public class Iniciativa implements Serializable{
     public void setComentarios(ArrayList<Comentario> comentarios) {
     	this.comentarios = comentarios;
     }
+    
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
 
 
     @Override
     public String toString() {
-        return "Item{" + " id= " + id + ", estado=" + estado + ", nombre=" + nombre + ",descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", palabrasclave=" + palabrasClave+", autor="+autor+"}";
+        return "Item{" + " id= " + id + ", estado=" + estado + ", nombre=" + nombre + ",descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", palabrasclave=" + palabrasClave+", autor="+autor+",area="+area+"}";
     }
 
 

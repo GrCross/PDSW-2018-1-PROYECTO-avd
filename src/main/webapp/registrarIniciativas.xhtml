@@ -23,12 +23,13 @@
 		            <p:inputText id="id" binding="#{id}" required="true" >
 		            </p:inputText>
 		            
-		            <p:message for="id" />
-		            <p:outputLabel for="estado" value="Estado:" />
-		            <p:inputText id="estado" binding="#{estado}" required="true" />
-		            <p:message for="estado" />
+		            <p:message for="area" />
+		            <p:outputLabel for="area" value="Area:" />
+		            <p:inputText id="area" binding="#{area}" required="true" />
+		            <p:message for="area" />
+                            
 		            
-		            <p:outputLabel for="nombre" value="Nombre:" />
+		            <p:outputLabel for="nombre" value="Nombre iniciativa:" />
 		            <p:inputText id="nombre" binding="#{nombre}" required="true" />
 		            <p:message for="nombre" />
 		            
@@ -58,7 +59,7 @@
 					
 				</h:panelGrid>
                 <br></br>
-                <p:commandButton id="registrar" update="IniciativaForm" value="Registrar" actionListener="#{insertIniciativasBean.registrarIniciativa(id.value,estado.value,nombre.value,descripcion.value)}"></p:commandButton>
+                <p:commandButton id="registrar" update="IniciativaForm" value="Registrar" actionListener="#{insertIniciativasBean.registrarIniciativa(id.value,nombre.value,descripcion.value,area.value,autor.value)}"></p:commandButton>
             </p:panel>
             <br></br>            
         </h:form>   

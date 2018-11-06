@@ -12,6 +12,7 @@
         <result property='nombre' column='nombre'/>
         <result property='descripcion' column='descripcion'/>
         <result property='fechaCreacion' column='fechaCreacion'/>
+        <result property='area' column='area'/>
         <association property='autor' javaType="Usuario" resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult'/>
         <collection property="palabrasClave" ofType="java.lang.String"></collection>        
         <collection property="comentarios" ofType="Comentario" resultMap="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ComentarioMapper.ComentarioResult"></collection>
@@ -19,7 +20,7 @@
     
     
     <insert parameterType="map" id="agregarIniciativa">
-    	INSERT INTO iniciativas values(#{i.id},#{i.estado},#{i.autor.documento},#{i.nombre},#{i.descripcion},#{i.fechaDeCreacion}, #{i.palabrasClave});   	
+    	INSERT INTO iniciativas values(#{i.id},#{i.estado},#{i.autor.documento},#{i.nombre},#{i.descripcion},#{i.fechaCreacion}, string_to_array(#{i.palabrasClave},','),#{i.area});   	
     </insert>
     
   </mapper>

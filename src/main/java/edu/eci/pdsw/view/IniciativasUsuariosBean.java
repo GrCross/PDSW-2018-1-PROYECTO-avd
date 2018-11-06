@@ -45,7 +45,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
     private ArrayList<String> palabrasClave;
     private Usuario autor;
     */
-    public void registrarIniciativa (int id,int estado, String nombre, String descripcion ){
+    public void registrarIniciativa (int id,String nombre, String descripcion,String area,int documento) throws Exception{
          
         //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         //Calendar today = Calendar.getInstance();
@@ -54,12 +54,20 @@ public class IniciativasUsuariosBean extends BasePageBean {
         //no se registran las palabras claves, por el problema con postgresql (en los test, creo)
         Usuario usuario = new Usuario(documento);
         System.out.println(usuario);
-        Iniciativa  iniciativa = new Iniciativa(id,estado,nombre,descripcion,date,palabrasClave,usuario); 
-        try {
-			serviciosBancoIniciativa.InsertarIniciativa(iniciativa);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        String pClaves = "";
+        
+        for(String s:palabrasClave){
+            
+            if(palabrasClave.indexOf(s)== palabrasClave.size()-1){
+                pClaves = pClaves +s;
+            }else   pClaves = pClaves +s+",";            
+        }
+        
+        
+        Iniciativa  iniciativa = new Iniciativa(id,1,nombre,descripcion,date,pClaves,usuario,area); 
+        
+	serviciosBancoIniciativa.InsertarIniciativa(iniciativa);
+		
     }
     
     public void agregarPalabrasClave(String nuevaPalabra) {
@@ -71,7 +79,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
 		return this.palabrasClave;
 	}
     
-    public void setpalabrasClave( ArrayList<String> nuevasPalabras){
+    public void setpalabrasClave(ArrayList<String> nuevasPalabras){
 		this.palabrasClave=nuevasPalabras;
 	}
     
