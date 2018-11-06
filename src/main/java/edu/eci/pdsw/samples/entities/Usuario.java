@@ -15,7 +15,7 @@ import java.util.LinkedList;
 public class Usuario implements Serializable{
     
     
-    private int documento;
+    private int documento=1233;
     private String nombre;
     private String area;
     private int telefono;
@@ -27,7 +27,7 @@ public class Usuario implements Serializable{
     }
     
     public Usuario(int newDocumento) {
-        this.documento = newDocumento;
+        this.documento = 1233;
     }
 
     public Usuario(String nombre, int documento, String area, int telefono, String correo, String rol, ArrayList<Interes> intereses) {   

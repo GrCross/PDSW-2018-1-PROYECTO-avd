@@ -19,7 +19,7 @@
     
     
     <insert parameterType="map" id="agregarIniciativa">
-    	INSERT INTO iniciativas values(#{i.id},#{i.estado},#{i.usuario.documento},#{i.nombre},#{i.descripcion},#{i.fechaDeCreacion}, #{i.palabrasClave});   	
+    	INSERT INTO iniciativas values(#{i.id},#{i.estado},#{i.autor.documento},#{i.nombre},#{i.descripcion},#{i.fechaDeCreacion}, #{i.palabrasClave});   	
     </insert>
     
   </mapper>

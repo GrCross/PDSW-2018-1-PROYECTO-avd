@@ -22,7 +22,9 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     
     @Override 
     public void save (Iniciativa ini) throws PersistenceException{
-        iniciativaMapper.agregarIniciativa(ini);
+    	System.out.println(ini);
+    	iniciativaMapper.agregarIniciativa(ini);
+        
     }
     
 }

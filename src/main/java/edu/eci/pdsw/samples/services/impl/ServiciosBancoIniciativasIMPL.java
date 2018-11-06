@@ -37,7 +37,7 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
      }
 
     @Override
-    public void InsertarIniciativa(Iniciativa iniciativa) throws ExcepcionBancoIniciativas {
+    public void InsertarIniciativa(Iniciativa iniciativa) throws Exception {
         try {
             iniciativaDAO.save(iniciativa);
         } catch (PersistenceException e) {

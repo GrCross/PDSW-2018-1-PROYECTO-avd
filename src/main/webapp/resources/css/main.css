@@ -1,0 +1,17 @@
+@charset "ISO-8859-1";
+
+.ui-panel-titlebar{
+	border:red;
+	text-align: center;
+}
+
+.ui-panelGrid-Datos1{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.imagen{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

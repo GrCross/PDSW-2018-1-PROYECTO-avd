@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,7 +24,7 @@ public class Iniciativa implements Serializable{
     private Usuario autor;
     private ArrayList<Comentario> comentarios;
 
-    public Iniciativa(int id, int estado, String nombre, String descripcion, ArrayList<Interes> interasados,ArrayList<Comentario>comentarios,ArrayList<String> palabrasClave,Usuario autor) {
+    public Iniciativa(int id, int estado, String nombre, String descripcion, Date fechaCreacion,ArrayList<Comentario>comentarios,ArrayList<String> palabrasClave,Usuario autor) {
         this.id = id;
         this.estado = estado;
         this.nombre = nombre;
@@ -37,7 +38,18 @@ public class Iniciativa implements Serializable{
 
     public Iniciativa() {
     }
-    public int getId() {
+    public Iniciativa(int id2, int estado2, String nombre2, String descripcion2, Date now,
+			ArrayList<String> palabrasClave2, Usuario usuario) {
+    	this.id = id2;
+        this.estado = estado2;
+        this.nombre = nombre2;
+        this.descripcion = descripcion2;
+        this.fechaCreacion = now;
+        this.palabrasClave = palabrasClave2;
+        this.autor = usuario;
+	}
+
+	public int getId() {
         return id;
     }
 
@@ -109,7 +121,7 @@ public class Iniciativa implements Serializable{
 
     @Override
     public String toString() {
-        return "Item{" + "id=" + id + ", estado=" + estado + ", nombre=" + nombre + ",descripcion=" + descripcion + "fechaCreacion=" + descripcion + "descripcion=" + descripcion+"}";
+        return "Item{" + " id= " + id + ", estado=" + estado + ", nombre=" + nombre + ",descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", palabrasclave=" + palabrasClave+", autor="+autor+"}";
     }
 
 
