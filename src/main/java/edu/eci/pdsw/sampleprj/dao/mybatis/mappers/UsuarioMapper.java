@@ -10,5 +10,11 @@ public interface UsuarioMapper {
 	
 		@Transactional
 	    public void agregarUsuario(@Param("u") Usuario usu);	
+            
+            public Usuario consultarUsuario(@Param("doc") long documento);
+            
+            public void updateUsuario(@Param("doc") long documento, @Param("rol") String rol);
+            
+            public List<Usuario> consultarUsuarios();
 
 }

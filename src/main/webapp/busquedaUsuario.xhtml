@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Busqueda de usuarios</title>
+
+        <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+    </h:head>
+    <h:body>
+        <div class="item">
+            <img src="/resources/images/cabecera.jpg" class="imagen" />
+        </div>
+
+        <h1></h1>
+        <h:form id="busquedaUsuarioForm">
+            
+            <p:growl id="msgs" showDetail="true" /> 
+            <p:panel id="busquedaUsuario" header="Busqueda de Usuarios" visible="true" class="ui-panel-titlebar">
+
+                 <br></br>
+                 
+                <br></br>
+                <p:dataTable id="UsuarioTable" var="Usuario" value="#{adminBean.consultarUsuarios()}" widgetVar="UsuarioTable" scrollable="true">
+                    <p:column filterBy="#{Usuario.documento}" headerText="Documento" sortBy="#{Usuario.documento}">
+			<h:outputText value="#{Usuario.documento}" binding = "#{doc}"/>
+		</p:column>
+		<p:column filterBy="#{Usuario.nombre}" headerText="Nombre">
+			<h:outputText value="#{Usuario.nombre}" />
+		</p:column>
+		<p:column filterBy="#{Usuario.area}" headerText="Area">
+			<h:outputText value="#{Usuario.area}" />
+		</p:column>
+		<p:column filterBy="#{Usuario.telefono}" headerText="Telefono">
+			<h:outputText value="#{Usuario.telefono}" />
+		</p:column>
+		<p:column filterBy="#{Usuario.correo}" headerText="Email">
+			<h:outputText value="#{Usuario.correo}" />
+		</p:column>
+                <p:column filterBy="#{Usuario.getStringRol()}" headerText="Rol Actual">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('UsuarioTable').filter()" >
+                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{adminBean.roles}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        
+			<h:outputText value="#{Usuario.rol}" />
+		</p:column>
+                    
+		<p:column headerText="Roles">
+                        <p:selectOneMenu id="roles" binding="#{rolnuevo}" >
+                        <f:selectItem itemLabel="Select Rol" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{adminBean.roles}" />
+                        </p:selectOneMenu>
+                        <p:commandButton id="Actualizar" update="busquedaUsuarioForm" value="Actualizar" actionListener="#{adminBean.updateUsuario(doc.value,rolnuevo.value)}" icon="ui-icon-check"></p:commandButton>
+		</p:column>		
+        
+                </p:dataTable>
+                <br></br>
+                
+            </p:panel>
+            <br></br>            
+        </h:form>   
+    </h:body>
+</html>

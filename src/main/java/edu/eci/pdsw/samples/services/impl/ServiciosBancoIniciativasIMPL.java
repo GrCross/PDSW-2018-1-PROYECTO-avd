@@ -12,6 +12,7 @@ import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
+import java.util.List;
 
 @Singleton
 public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas {
@@ -41,6 +42,27 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
        
             iniciativaDAO.save(iniciativa);
         
+    }
+
+    @Override
+    public Usuario consultarUsuario(long documento) throws ExcepcionBancoIniciativas {
+       try {
+        return usuarioDao.consultarUsuario(documento);
+        } catch (PersistenceException e) {
+            throw new ExcepcionBancoIniciativas("Error al consultar el usuario ", e);
+        }
+    }
+
+    @Override
+    public void updateUsuario(long documento, String rol) throws PersistenceException {
+        System.out.println(documento+"-----"+rol);
+        usuarioDao.updateUsuario(documento, rol);
+       
+    }
+
+    @Override
+    public List<Usuario> consultarUsuarios() throws Exception {
+        return usuarioDao.consultarUsuarios();
     }
 
 }

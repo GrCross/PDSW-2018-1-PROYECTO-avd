@@ -16,6 +16,24 @@
         <collection property="intereses" ofType="Interes" resultMap="InteresResult"></collection>
     </resultMap>
     
+    <select id="consultarUsuario" parameterType="Usuario" resultMap="UsuarioResult">
+        SELECT *
+        FROM usuarios
+        WHERE documento = #{doc};
+    </select>
+    
+    <select id="consultarUsuarios" parameterType="Usuario" resultMap="UsuarioResult">
+        SELECT *
+        FROM usuarios;
+    </select>
+    
+    <update parameterType="map" id="updateUsuario">
+        UPDATE usuarios
+        SET rol=#{rol}
+        WHERE documento=#{doc};
+        
+    </update>
+
     <!--
     <resultMap type='Iniciativa' id='IniciativaResult'>
         <id property='id' column='id'/>        

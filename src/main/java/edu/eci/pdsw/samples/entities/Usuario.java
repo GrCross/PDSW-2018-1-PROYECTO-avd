@@ -15,24 +15,22 @@ import java.util.LinkedList;
 public class Usuario implements Serializable{
     
     
-    private int documento;
+    private long documento;
     private String nombre;
     private String area;
-    private int telefono;
+    private long telefono;
     private String correo;
     private Rol rol;
     private ArrayList<Interes> intereses; 
-
+    
     public Usuario() {
     }
     
-    public Usuario(int newDocumento) {
-        System.out.println(newDocumento);
-        System.out.println("documento oooooooooooooooooooooooooooooooooo");
+    public Usuario(long newDocumento) {
         this.documento = newDocumento;
     }
 
-    public Usuario(String nombre, int documento, String area, int telefono, String correo, String rol, ArrayList<Interes> intereses) {   
+    public Usuario(String nombre, long documento, String area, long telefono, String correo, String rol, ArrayList<Interes> intereses) {   
         this.nombre = nombre;
         this.documento = documento;
         this.telefono = telefono;
@@ -43,7 +41,7 @@ public class Usuario implements Serializable{
 
     }
     
-    public Usuario(String nombre, int documento, String area, int telefono, String correo, String rol) {   
+    public Usuario(String nombre, long documento, String area, long telefono, String correo, String rol) {   
         this.nombre = nombre;
         this.documento = documento;
         this.telefono = telefono;
@@ -67,15 +65,15 @@ public class Usuario implements Serializable{
         return documento;
     }
 
-    public void setDocumento(int documento) {
+    public void setDocumento(long documento) {
         this.documento = documento;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 
@@ -110,6 +108,10 @@ public class Usuario implements Serializable{
 
     public void setIntereses(ArrayList<Interes> intereses) {
         this.intereses = intereses;
+    }
+    
+    public String getStringRol(){
+        return rol.toString();
     }
     
 
