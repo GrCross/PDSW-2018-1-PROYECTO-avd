@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Consultar Iniciativas</title>
+        
+        <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+    </h:head>
+    <h:body>
+        <div class="item">
+                <img src="/resources/images/cabecera.jpg" class="imagen" />
+         </div>
+        
+        <h1>Iniciavitas</h1>        
+        <h:form id="iniciativaForm">
+            <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar">
+                <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">
+                     <p:column colspan="2" >
+                        <p:inputText id ="palabraNueva" binding="#{palabraNueva}"></p:inputText>
+                            <br></br>
+                            <br></br>
+                            <p:commandButton id="agregarPalabra" update="consultar_Tabla" value="AgregarPalabra" actionListener="#{insertIniciativasBean.agregarPalabrasClaveConsultar(palabraNueva.value)}"></p:commandButton>
+                     </p:column>
+                    <p:dataTable id="palabras_table" style="width:250px;" var="palabras" value="#{insertIniciativasBean.palabrasClaveConsultar}" scrollable="true" scrollHeight="100">
+                        <p:column headerText="palabras Clave">
+                            <h:outputText value="#{palabras}" />
+                        </p:column>
+                    </p:dataTable>
+                    
+                    <p:commandButton id="consultar" update="consultar_Tabla" value="Consultar" actionListener="#{insertIniciativasBean.consultarIniciativas()}"></p:commandButton>
+                </h:panelGrid>
+            
+                <p:dataTable id="iniciativaTable" var="Iniciativa" value="#{insertIniciativasBean.iniciativasClave}" widgetVar="IniciativasTable" scrollable="true">
+                    <p:column headerText="id">
+                        <h:outputText value="#{Iniciativa.id}"/>
+                    </p:column>
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{Iniciativa.estado}" />
+                    </p:column>
+                    <p:column headerText="Usuario">
+                        <h:outputText value="#{Iniciativa.usuario_documento.nombre}" />
+                    </p:column>
+                    <p:column headerText="Descripcion">
+                        <h:outputText value="#{Iniciativa.descripcion}" />
+                    </p:column>
+                    <p:column headerText="Fecha de Creacion">
+                        <h:outputText value="#{Iniciativa.fechaCreacion}" />
+                    </p:column>
+                    <p:column headerText="area">
+                        <h:outputText value="#{Iniciativa.area}" />
+                    </p:column> 
+                </p:dataTable>
+            </p:panel>>
+        </h:form>   
+    </h:body>
+</html>

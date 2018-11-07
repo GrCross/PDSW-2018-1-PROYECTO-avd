@@ -13,8 +13,8 @@
         <result property='descripcion' column='descripcion'/>
         <result property='fechaCreacion' column='fechaCreacion'/>
         <result property='area' column='area'/>
-        <association property='autor' javaType="Usuario" resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult'/>
-        <collection property="palabrasClave" ofType="java.lang.String"></collection>        
+        <result property='palabrasClave' column='palabrasclave'/>
+        <association property='autor' javaType="Usuario" resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult'/>       
         <collection property="comentarios" ofType="Comentario" resultMap="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ComentarioMapper.ComentarioResult"></collection>
     </resultMap>
     
@@ -22,6 +22,24 @@
     <insert parameterType="map" id="agregarIniciativa">
     	INSERT INTO iniciativas values(#{i.id},#{i.estado},#{i.autor.documento},#{i.nombre},#{i.descripcion},#{i.fechaCreacion}, string_to_array(#{i.palabrasClave},','),#{i.area});   	
     </insert>
+    
+    <select id="buscarIniciativas" parameterType="map" resultMap="IniciativaResult"> 
+        SELECT 
+            i.id,
+            i.estados_idEstado,
+            i.nombre,
+            i.descripcion,
+            i.fechaCreacion,
+            i.area,
+            i.palabrasclave,
+            u.documento,
+            u.nombre,
+            u.area,
+            u.telefono,
+            u.correo,
+            u.rol
+        FROM iniciativas as i,usuarios as u WHERE u.documento = i.usuarios_documento;
+    </select>
     
   </mapper>
 

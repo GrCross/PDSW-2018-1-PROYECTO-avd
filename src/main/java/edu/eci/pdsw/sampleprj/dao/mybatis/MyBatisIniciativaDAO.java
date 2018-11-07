@@ -10,6 +10,7 @@ import edu.eci.pdsw.sampleprj.dao.IniciativaDAO;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.IniciativaMapper;
 import org.apache.ibatis.exceptions.PersistenceException;
 import edu.eci.pdsw.samples.entities.Iniciativa;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,8 +24,16 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     @Override 
     public void save (Iniciativa ini) throws PersistenceException{
     	System.out.println(ini);
-    	iniciativaMapper.agregarIniciativa(ini);
-        
+    	iniciativaMapper.agregarIniciativa(ini);        
     }
+    
+    @Override
+    public ArrayList<Iniciativa> load() throws PersistenceException{
+        System.out.println("nombre "+iniciativaMapper.buscarIniciativas().get(0).getNombre());
+        System.out.println("id"+iniciativaMapper.buscarIniciativas().get(0).getId());
+        System.out.println("palabrasClave "+iniciativaMapper.buscarIniciativas().get(0).getPalabrasClave());
+        return iniciativaMapper.buscarIniciativas();
+    }
+            
     
 }
