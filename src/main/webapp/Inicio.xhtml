@@ -9,7 +9,7 @@
     <title>Login banco de iniciativas</title>
 </h:head>
 <h:body>
-    <h:form>
+    <h:form id="login">
         <p:growl id="msgs" showDetail="true" /> 
         <p:fieldset legend="Iniciar Sesión">
                 
@@ -18,7 +18,7 @@
                 <p:inputText id="username" required="true" value="#{LoginBean.username}"/>
                 
                  
-                <p:commandButton value="Ingresar" actionListener="#{LoginBean.doLogin()}" icon="ui-icon-check" />             
+                <p:commandButton value="Ingresar" update="msgs" actionListener="#{LoginBean.doLogin()}" icon="ui-icon-check" />             
                 
         	
         </p:fieldset>
