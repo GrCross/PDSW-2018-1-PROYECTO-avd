@@ -39,7 +39,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
     @Inject
     private ServiciosBancoIniciativas serviciosBancoIniciativa; 
     
-    public void registrarIniciativa (int id,String nombre, String descripcion,String area,int documento) throws Exception{
+    public void registrarIniciativa (int id,String nombre, String descripcion,String area,long documento) throws Exception{
          
         
     	Date date = java.util.Calendar.getInstance().getTime();
@@ -54,8 +54,10 @@ public class IniciativasUsuariosBean extends BasePageBean {
             }else   pClaves = pClaves +s+",";            
         }
         
-        
-        Iniciativa  iniciativa = new Iniciativa(id,1,nombre,descripcion,date,pClaves,usuario,area); 
+        System.out.println(usuario.getDocumento());
+
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Iniciativa  iniciativa = new Iniciativa(id,"En_Espera",nombre,descripcion,date,pClaves,usuario,area); 
         
 	serviciosBancoIniciativa.InsertarIniciativa(iniciativa);
 		

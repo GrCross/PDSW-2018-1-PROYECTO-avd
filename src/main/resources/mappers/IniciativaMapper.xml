@@ -20,7 +20,7 @@
     
     
     <insert parameterType="map" id="agregarIniciativa">
-    	INSERT INTO iniciativas values(#{i.id},#{i.estado},#{i.autor.documento},#{i.nombre},#{i.descripcion},#{i.fechaCreacion}, string_to_array(#{i.palabrasClave},','),#{i.area});   	
+    	INSERT INTO iniciativas values(#{i.id},#{i.autor.documento},#{i.nombre},#{i.descripcion},#{i.fechaCreacion}, string_to_array(#{i.palabrasClave},','),#{i.area},#{i.estado});   	
     </insert>
     
     <select id="consultarIniciativas" parameterType="map" resultMap="IniciativaResult">

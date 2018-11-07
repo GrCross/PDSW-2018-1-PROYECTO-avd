@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class Iniciativa implements Serializable{
     private int id;
-    private int estado;
+    private Estado estado;
     private String nombre;
     private String descripcion;
     private Date fechaCreacion;
@@ -25,9 +25,9 @@ public class Iniciativa implements Serializable{
     private ArrayList<Comentario> comentarios;
     private String area;
 
-    public Iniciativa(int id, int estado, String nombre, String descripcion, Date fechaCreacion,ArrayList<Comentario>comentarios,String palabrasClave,Usuario autor,String area) {
+    public Iniciativa(int id, String estado, String nombre, String descripcion, Date fechaCreacion,ArrayList<Comentario>comentarios,String palabrasClave,Usuario autor,String area) {
         this.id = id;
-        this.estado = estado;
+        this.estado = Estado.valueOf(estado);
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
@@ -40,10 +40,10 @@ public class Iniciativa implements Serializable{
 
     public Iniciativa() {
     }
-    public Iniciativa(int id2, int estado2, String nombre2, String descripcion2, Date now,
+    public Iniciativa(int id2, String estado2, String nombre2, String descripcion2, Date now,
 			String palabrasClave2, Usuario usuario,String area) {
     	this.id = id2;
-        this.estado = estado2;
+        this.estado = Estado.valueOf(estado2);
         this.nombre = nombre2;
         this.descripcion = descripcion2;
         this.fechaCreacion = now;  
@@ -64,11 +64,11 @@ public class Iniciativa implements Serializable{
 
 
 
-    public int getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
     
