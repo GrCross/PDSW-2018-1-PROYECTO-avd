@@ -8,6 +8,7 @@ import edu.eci.pdsw.sampleprj.dao.IniciativaDAO;
 
 import edu.eci.pdsw.sampleprj.dao.UsuarioDao;
 import edu.eci.pdsw.samples.entities.Iniciativa;
+import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 
@@ -78,6 +79,21 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 	public void updateEstadoIniciativa(int estado, int id) throws Exception {
 		iniciativaDAO.updateEstadoIniciativa(estado, id);
 		
+	}
+
+	@Override
+	public boolean autorizacionLogin(String user) throws ExcepcionBancoIniciativas {
+		int b=usuarioDao.compararUsuario(user);
+		if(b==1) {
+			return true;
+		}
+		else{return false;}
+	}
+
+	@Override
+	public Rol getRolUsuario(String correo) throws ExcepcionBancoIniciativas {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
