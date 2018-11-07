@@ -39,7 +39,7 @@ public class LoginBean extends BasePageBean implements Serializable {
 				/*Rol rol = serviciosImpl.tipoUsuario(username2);
 				System.out.println("rol del if");
 				System.out.println("DFWQqwdwqdqwqwdqwddqwqw");*/
-				FacesContext.getCurrentInstance().getExternalContext().redirect("urlToRedirectTo");
+				FacesContext.getCurrentInstance().getExternalContext().redirect("consultaEntradasForo.xhtml");
 			}
 		} catch (ExcepcionBancoIniciativas e) {
 			
