@@ -16,13 +16,13 @@ import edu.eci.pdsw.samples.services.impl.ServiciosBancoIniciativasIMPL;
 
 @ManagedBean(name = "LoginBean")
 @SessionScoped
-public class LoginBean implements Serializable {
+public class LoginBean extends BasePageBean implements Serializable {
 
     private String username;
     private String password;
     
-    
-    private ServiciosBancoIniciativasIMPL serviciosImpl= new ServiciosBancoIniciativasIMPL();
+    @Inject
+    private ServiciosBancoIniciativas serviciosImpl;
 
     /**
      * Managed bean que se encarga de la validar la autenticación de usuarios
