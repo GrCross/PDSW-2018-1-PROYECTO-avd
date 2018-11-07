@@ -40,4 +40,6 @@ public interface ServiciosBancoIniciativas {
         
         public abstract Rol getRolUsuario(String correo) throws ExcepcionBancoIniciativas;
         
+        public abstract Usuario obtenerUsuario(String user);
+        
 }

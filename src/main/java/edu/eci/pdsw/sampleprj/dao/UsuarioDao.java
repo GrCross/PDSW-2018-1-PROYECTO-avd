@@ -10,7 +10,7 @@ public interface UsuarioDao {
         public Usuario consultarUsuario(long documento) throws PersistenceException;
         public void updateUsuario(long documento, String rol) throws PersistenceException;
         public List<Usuario> consultarUsuarios () throws PersistenceException;
-        public int compararUsuario(String correo) throws PersistenceException;
+        public Usuario compararUsuario(String correo) throws PersistenceException;
     	
     	public String getRolusuario(String correo) throws PersistenceException;
 }

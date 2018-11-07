@@ -13,25 +13,26 @@
         <div class="item">
                 <img src="/resources/images/cabecera.jpg" class="imagen" />
          </div>
-        <f:ajax event="load" listener="#{perfilUsuariosBean.consultarUsuario()}" />
             
         <h1>Iniciavitas</h1>        
-        <h:form id="iniciativaForm">
-            
-            <p:outputLabel  value="#{perfilUsuariosBean.usuario.documento}" />
-            <p:outputLabel  value="#{perfilUsuariosBean.usuario.documento}" />
-            <p:panel id="informacionUsuario" header="" visible="true" class="ui-panel-titlebar">
-                <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">
-                    
-                    <p:outputLabel id="documento" value="docuemto:" />
-                    
-                    <p:outputLabel for="documento" value="#{perfilUsuariosBean.usuario.documento}" />
+        <h:form id="iniciativaForm">            
+            <p:panel id="informacionUsuario" header="" visible="true">
+                <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">                    
+                    <p:outputLabel id="documento" value="documento:"/>     
+                    <p:outputLabel for="documento" value="#{LoginBean.usuario.documento}" />
                     <p:message for="documento" />
+                    
+                    <p:outputLabel id = "nombre" value="nombre: "/>     
+                    <p:outputLabel for="nombre" value="#{LoginBean.usuario.nombre}" />
+                    <p:message for="nombre"/>
                     
                 </h:panelGrid>
             
                 
-            </p:panel>>
+            </p:panel>
+            <h:outputText id = "pagina" value="consultarIniciativas" binding="#{pagina1}" style="display:none"/>  
+            <p:commandButton id="consultarIniciativas" value="Consultar iniciativas" actionListener="#{LoginBean.redirect(pagina1.value)}" ></p:commandButton>
+            <p:commandButton id="ActualizarEstados" value="Consultar " rendered ="#{LoginBean.filtroPaginas()}" actionListener="#{LoginBean.redirect(pagina1.value)}" ></p:commandButton>
         </h:form>   
     </h:body>
 </html>

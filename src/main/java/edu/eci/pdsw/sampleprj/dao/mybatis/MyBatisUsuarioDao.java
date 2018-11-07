@@ -40,14 +40,8 @@ public class MyBatisUsuarioDao implements UsuarioDao {
     }
 
 	@Override
-	public int compararUsuario(String correo) throws PersistenceException {
-		Usuario user = usuarioMapper.compararUsuario(correo);
-		if(user==null) {
-			return 0;
-		}
-		else {
-			return 1;
-		}
+	public Usuario compararUsuario(String correo) throws PersistenceException {
+		return usuarioMapper.compararUsuario(correo);
 	}
 
 	@Override
