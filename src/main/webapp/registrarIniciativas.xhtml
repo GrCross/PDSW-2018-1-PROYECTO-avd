@@ -45,19 +45,18 @@
 		        </h:panelGrid>
 		        
 		        <h:panelGrid columns="2" cellpadding="5" class="ui-panelGrid-Datos1">
-		        	<p:column colspan="2" >
-	               		<p:inputText id ="palabraNueva" binding="#{palabraNueva}"></p:inputText>
-	               		<br></br>
-	               		<br></br>
-	               		<p:commandButton id="agregarPalabra" update="registrar_Tabla" value="AgregarPalabra" actionListener="#{insertIniciativasBean.agregarPalabrasClave(palabraNueva.value)}"></p:commandButton>
-	                </p:column>
-	                <p:dataTable id="palabras_table" style="width:250px;" var="palabras" value="#{insertIniciativasBean.palabrasClave}" scrollable="true" scrollHeight="100">
-						<p:column headerText="palabras Clave">
-							<h:outputText value="#{palabras}" />
-						</p:column>
-					</p:dataTable>
-					
-				</h:panelGrid>
+                            <p:column colspan="2" >
+                                    <p:inputText id ="palabraNueva" binding="#{palabraNueva}"></p:inputText>
+                                    <br></br>
+                                    <br></br>
+                                    <p:commandButton id="agregarPalabra" update="registrar_Tabla" value="AgregarPalabra" actionListener="#{insertIniciativasBean.agregarPalabrasClave(palabraNueva.value)}"></p:commandButton>
+                            </p:column>
+                            <p:dataTable id="palabras_table" style="width:250px;" var="palabras" value="#{insertIniciativasBean.palabrasClave}" scrollable="true" scrollHeight="100">
+                                <p:column headerText="palabras Clave">
+                                    <h:outputText value="#{palabras}" />
+				</p:column>
+                            </p:dataTable>					
+                        </h:panelGrid>
                 <br></br>
                 <p:commandButton id="registrar" update="IniciativaForm" value="Registrar" actionListener="#{insertIniciativasBean.registrarIniciativa(id.value,nombre.value,descripcion.value,area.value,autor.value)}"></p:commandButton>
             </p:panel>

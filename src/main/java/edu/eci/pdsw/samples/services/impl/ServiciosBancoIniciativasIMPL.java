@@ -12,6 +12,7 @@ import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
+import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -39,9 +40,12 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 
     @Override
     public void InsertarIniciativa(Iniciativa iniciativa) throws PersistenceException {
-       
-            iniciativaDAO.save(iniciativa);
-        
+        iniciativaDAO.save(iniciativa);        
+    }
+    
+    @Override
+    public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException{
+        return iniciativaDAO.load();
     }
 
     @Override
@@ -66,7 +70,7 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     }
 
 	@Override
-	public List<Iniciativa> consultarIniciativas() throws Exception {
+	public List<Iniciativa> consultarIniciativasEst() throws Exception {
 		return iniciativaDAO.consultarIniciativas();
 	}
 

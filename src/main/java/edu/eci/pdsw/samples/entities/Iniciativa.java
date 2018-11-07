@@ -33,9 +33,9 @@ public class Iniciativa implements Serializable{
         this.fechaCreacion = fechaCreacion;
         this.palabrasClave = palabrasClave;
         this.comentarios = comentarios;
+        System.out.println("asdasd"+palabrasClave);
         this.autor = autor;
-        this.area = area;
-        
+        this.area = area;        
     }
 
     public Iniciativa() {
@@ -46,13 +46,15 @@ public class Iniciativa implements Serializable{
         this.estado = estado2;
         this.nombre = nombre2;
         this.descripcion = descripcion2;
-        this.fechaCreacion = now;
+        this.fechaCreacion = now;  
+        
+        
         this.palabrasClave = palabrasClave2;
         this.autor = usuario;
         this.area = area;
 	}
 
-	public int getId() {
+    public int getId() {
         return id;
     }
 
@@ -106,6 +108,7 @@ public class Iniciativa implements Serializable{
     
 
     public String getPalabrasClave() {
+        
         return palabrasClave;
     }
 

@@ -2,7 +2,9 @@ package edu.eci.pdsw.samples.services;
 
 import edu.eci.pdsw.samples.entities.Iniciativa;
 import edu.eci.pdsw.samples.entities.Usuario;
+import java.util.ArrayList;
 import java.util.List;
+import org.apache.ibatis.exceptions.PersistenceException;
 
 public interface ServiciosBancoIniciativas {
 
@@ -21,7 +23,7 @@ public interface ServiciosBancoIniciativas {
          * @return
          * @throws Exception
          */
-        public abstract List<Iniciativa> consultarIniciativas() throws Exception;
+        public abstract List<Iniciativa> consultarIniciativasEst() throws Exception;
         
         /**
          * Actualiza el estado de una iniciativa
@@ -31,4 +33,5 @@ public interface ServiciosBancoIniciativas {
          */
         public abstract void updateEstadoIniciativa(int estado, int id)  throws Exception;
         
+        public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException;
 }

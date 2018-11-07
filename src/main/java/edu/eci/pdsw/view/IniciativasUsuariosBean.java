@@ -31,27 +31,18 @@ public class IniciativasUsuariosBean extends BasePageBean {
 	// no borrar lo de arriba puede ser util en el xhtml
     private int documento;
     private ArrayList<String> palabrasClave=new ArrayList<String>();
+    private ArrayList<String> palabrasClaveConsultar=new ArrayList<String>();
+    private ArrayList<Iniciativa> iniciativasClave=new ArrayList<Iniciativa>();
+
     
     
     @Inject
     private ServiciosBancoIniciativas serviciosBancoIniciativa; 
     
-    /**
-    *private int id;
-    private int estado;
-    private String nombre;
-    private String descripcion;
-    private Date fechaCreacion;
-    private ArrayList<String> palabrasClave;
-    private Usuario autor;
-    */
     public void registrarIniciativa (int id,String nombre, String descripcion,String area,int documento) throws Exception{
          
-        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        //Calendar today = Calendar.getInstance();
-    	//today.set(Calendar.HOUR_OF_DAY, 0);
+        
     	Date date = java.util.Calendar.getInstance().getTime();
-        //no se registran las palabras claves, por el problema con postgresql (en los test, creo)
         Usuario usuario = new Usuario(documento);
         System.out.println(usuario);
         String pClaves = "";
@@ -70,17 +61,55 @@ public class IniciativasUsuariosBean extends BasePageBean {
 		
     }
     
-    public void agregarPalabrasClave(String nuevaPalabra) {
-    	this.palabrasClave.add(nuevaPalabra);
-    	
+    public void consultarIniciativas(){
+        ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
+        ArrayList<Iniciativa> iniciativasPalClaves = new ArrayList<Iniciativa>();
+        
+        for(Iniciativa i: iniciativas){
+            for(String s: palabrasClaveConsultar){
+                System.out.println(i.getPalabrasClave());
+                System.out.println("palabras claveeeeeeeeeeeeeeeee");
+                if(i.getPalabrasClave().contains(s) && !iniciativasPalClaves.contains(i)){                    
+                    iniciativasPalClaves.add(i);
+                }
+            }
+        }
+        palabrasClave.clear();
+        iniciativasClave = iniciativasPalClaves;
     }
+    
+    public void agregarPalabrasClave(String nuevaPalabra) {
+    	this.palabrasClave.add(nuevaPalabra);    	
+    }
+    
+    public void agregarPalabrasClaveConsultar(String nuevaPalabra) {
+    	this.palabrasClaveConsultar.add(nuevaPalabra);    	
+    }
+    
     
     public ArrayList<String> getpalabrasClave(){
 		return this.palabrasClave;
-	}
+    }
     
     public void setpalabrasClave(ArrayList<String> nuevasPalabras){
 		this.palabrasClave=nuevasPalabras;
-	}
+    }
+    
+    public ArrayList<String> getPalabrasClaveConsultar() {
+        return palabrasClaveConsultar;
+    }
+
+    public void setPalabrasClaveConsultar(ArrayList<String> palabrasClaveConsultar) {
+        this.palabrasClaveConsultar = palabrasClaveConsultar;
+    }
+    
+    
+    public ArrayList<Iniciativa> getIniciativasClave() {
+        return iniciativasClave;
+    }
+
+    public void setIniciativasClave(ArrayList<Iniciativa> iniciativasClave) {
+        this.iniciativasClave = iniciativasClave;
+    }
     
 }
