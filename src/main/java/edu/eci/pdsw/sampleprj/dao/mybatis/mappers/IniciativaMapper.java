@@ -24,6 +24,6 @@ public interface IniciativaMapper {
     
     public List<Iniciativa> consultarIniciativas();
     
-    public void updateEstadoIniciativa(@Param("estado") int estado, @Param("id") int id);
+    public void updateEstadoIniciativa(@Param("estado") String estado, @Param("id") int id);
     
 }

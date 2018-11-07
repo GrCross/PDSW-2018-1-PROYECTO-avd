@@ -20,7 +20,9 @@
         SELECT *
         FROM usuarios
         WHERE documento = #{doc};
-    </select>
+    </select> 
+    
+   
     
     <select id="consultarUsuarios" parameterType="Usuario" resultMap="UsuarioResult">
         SELECT *

@@ -17,10 +17,10 @@
         <h:form id="actualizarEstadoIniciativaForm">
         
         	<p:growl id="msgs" showDetail="true" /> 
-            <p:panel id="busquedaIniciativa" header="Registrar Usuario" visible="true" class="ui-panel-titlebar">
+            <p:panel id="busquedaIniciativa" header="Cambiar Iniciativa" visible="true" class="ui-panel-titlebar">
                 <br></br>
                 <p:dataTable id="IniciativaTable" var="Iniciativa" value="#{adminBean.consultarIniciativas()}" widgetVar="IniciativaTable" scrollable="true" scrollHeight="400">
-                	<p:column filterBy="#{Iniciativa.id}" headerText="Id" type="ordered" >
+                	<p:column filterBy="#{Iniciativa.id}" headerText="Id">
 						<h:outputText value="#{Iniciativa.id}" binding = "#{id}"/>
 					</p:column>
                 
@@ -41,9 +41,12 @@
 						<h:outputText value="#{Iniciativa.fechaCreacion}"/>
 					</p:column>
 					
-					<p:column headerText="Roles">
-                        <p:inputText id="newEstado" binding="#{estado}"  ></p:inputText>
-                        <p:commandButton id="Actualizar" update="actualizarEstadoIniciativaForm" value="Actualizar" actionListener="#{adminBean.updateEstadoIniciativa(estado.value,id.value)}" icon="ui-icon-check" ></p:commandButton>
+					<p:column headerText="Cambiar Estado">
+                                             <p:selectOneMenu id="roles" binding="#{estado}" >
+                                                <f:selectItem itemLabel="Select Rol" itemValue="" noSelectionOption="true" />
+                                                <f:selectItems value="#{adminBean.estados}" />
+                                            </p:selectOneMenu>
+                                            <p:commandButton id="Actualizar" update="actualizarEstadoIniciativaForm" value="Actualizar" actionListener="#{adminBean.updateEstadoIniciativa(estado.value,id.value)}" icon="ui-icon-check" ></p:commandButton>
 					</p:column>	
 					
 					

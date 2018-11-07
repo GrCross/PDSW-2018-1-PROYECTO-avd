@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Consultar Iniciativas</title>
+        
+        <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+    </h:head>
+    <h:body >
+        <div class="item">
+                <img src="/resources/images/cabecera.jpg" class="imagen" />
+         </div>
+        <f:ajax event="load" listener="#{perfilUsuariosBean.consultarUsuario()}" />
+            
+        <h1>Iniciavitas</h1>        
+        <h:form id="iniciativaForm">
+            
+            <p:outputLabel  value="#{perfilUsuariosBean.usuario.documento}" />
+            <p:outputLabel  value="#{perfilUsuariosBean.usuario.documento}" />
+            <p:panel id="informacionUsuario" header="" visible="true" class="ui-panel-titlebar">
+                <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">
+                    
+                    <p:outputLabel id="documento" value="docuemto:" />
+                    
+                    <p:outputLabel for="documento" value="#{perfilUsuariosBean.usuario.documento}" />
+                    <p:message for="documento" />
+                    
+                </h:panelGrid>
+            
+                
+            </p:panel>>
+        </h:form>   
+    </h:body>
+</html>

@@ -31,7 +31,7 @@ public interface ServiciosBancoIniciativas {
          * @param id
          * @throws Exception
          */
-        public abstract void updateEstadoIniciativa(int estado, int id)  throws Exception;
+        public abstract void updateEstadoIniciativa(String estado, int id)  throws Exception;
         
         public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException;
 }

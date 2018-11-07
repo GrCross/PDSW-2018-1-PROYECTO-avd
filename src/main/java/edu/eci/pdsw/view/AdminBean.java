@@ -6,6 +6,7 @@
 package edu.eci.pdsw.view;
 
 import com.google.inject.Inject;
+import edu.eci.pdsw.samples.entities.Estado;
 import edu.eci.pdsw.samples.entities.Iniciativa;
 import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -33,6 +34,8 @@ public class AdminBean extends BasePageBean {
     private final Rol[] roles = Rol.values();
     private ArrayList<String> rolesString = Rol.arreglo();
     private Rol rolCambio;
+    private Estado[] estados = Estado.values();
+
 
     private List<Usuario> Busuario = null;
 
@@ -75,11 +78,11 @@ public class AdminBean extends BasePageBean {
     	 return BeanIniciativas;
     }
     
-    public void updateEstadoIniciativa (int estado, int id) {
+    public void updateEstadoIniciativa (Estado estado, int id) {
     	System.out.println(estado);
     	System.out.println(id+"-------");
     	try {
-            serviciosBancoIniciativa.updateEstadoIniciativa(estado,id );
+            serviciosBancoIniciativa.updateEstadoIniciativa(estado.toString(),id );
             FacesMessage msg;
             msg = new FacesMessage("Actualizado el estado");
             FacesContext.getCurrentInstance().addMessage(null, msg); 
@@ -119,6 +122,14 @@ public class AdminBean extends BasePageBean {
 
     public void setRolCambio(Rol rolCambio) {
         this.rolCambio = rolCambio;
+    }    
+    
+     public Estado[] getEstados() {
+        return estados;
+    }
+
+    public void setEstados(Estado[] estados) {
+        this.estados = estados;
     }
     
 

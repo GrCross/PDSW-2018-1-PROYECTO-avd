@@ -60,6 +60,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
         Iniciativa  iniciativa = new Iniciativa(id,"En_Espera",nombre,descripcion,date,pClaves,usuario,area); 
         
 	serviciosBancoIniciativa.InsertarIniciativa(iniciativa);
+        palabrasClave.clear();
 		
     }
     

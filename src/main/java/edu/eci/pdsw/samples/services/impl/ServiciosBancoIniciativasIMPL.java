@@ -75,7 +75,7 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 	}
 
 	@Override
-	public void updateEstadoIniciativa(int estado, int id) throws Exception {
+	public void updateEstadoIniciativa(String estado, int id) throws Exception {
 		iniciativaDAO.updateEstadoIniciativa(estado, id);
 		
 	}
