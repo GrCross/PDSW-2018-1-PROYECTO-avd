@@ -1,6 +1,7 @@
 package edu.eci.pdsw.samples.services;
 
 import edu.eci.pdsw.samples.entities.Iniciativa;
+import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,4 +35,9 @@ public interface ServiciosBancoIniciativas {
         public abstract void updateEstadoIniciativa(String estado, int id)  throws Exception;
         
         public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException;
+        
+        public abstract boolean autorizacionLogin(String user) throws ExcepcionBancoIniciativas;
+        
+        public abstract Rol getRolUsuario(String correo) throws ExcepcionBancoIniciativas;
+        
 }

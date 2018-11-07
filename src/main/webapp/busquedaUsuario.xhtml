@@ -16,51 +16,51 @@
 
         <h1></h1>
         <h:form id="busquedaUsuarioForm">
-            
+
             <p:growl id="msgs" showDetail="true" /> 
             <p:panel id="busquedaUsuario" header="Busqueda de Usuarios" visible="true" class="ui-panel-titlebar">
 
-                 <br></br>
-                 
+                <br></br>
+
                 <br></br>
                 <p:dataTable id="UsuarioTable" var="Usuario" value="#{adminBean.consultarUsuarios()}" widgetVar="UsuarioTable" scrollable="true">
-			         <p:column filterBy="#{Usuario.documento}" headerText="Documento" sortBy="#{Usuario.documento}">
-						<h:outputText value="#{Usuario.documento}" binding = "#{doc}"/>
-					</p:column>
-					<p:column filterBy="#{Usuario.nombre}" headerText="Nombre">
-						<h:outputText value="#{Usuario.nombre}" />
-					</p:column>
-					<p:column filterBy="#{Usuario.area}" headerText="Area">
-						<h:outputText value="#{Usuario.area}" />
-					</p:column>
-					<p:column filterBy="#{Usuario.telefono}" headerText="Telefono">
-						<h:outputText value="#{Usuario.telefono}" />
-					</p:column>
-					<p:column filterBy="#{Usuario.correo}" headerText="Email">
-						<h:outputText value="#{Usuario.correo}" />
-					</p:column>
-			                <p:column filterBy="#{Usuario.getStringRol()}" headerText="Rol Actual">
-			                        <f:facet name="filter">
-			                            <p:selectOneMenu onchange="PF('UsuarioTable').filter()" >
-			                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
-			                                <f:selectItems value="#{adminBean.roles}" />
-			                            </p:selectOneMenu>
-			                        </f:facet>
-			                        
-						<h:outputText value="#{Usuario.rol}" />
-					</p:column>
-			                    
-					<p:column headerText="Roles">
+                    <p:column filterBy="#{Usuario.documento}" headerText="Documento" sortBy="#{Usuario.documento}">
+                        <h:outputText value="#{Usuario.documento}" binding = "#{doc}"/>
+                    </p:column>
+                    <p:column filterBy="#{Usuario.nombre}" headerText="Nombre">
+                        <h:outputText value="#{Usuario.nombre}" />
+                    </p:column>
+                    <p:column filterBy="#{Usuario.area}" headerText="Area">
+                        <h:outputText value="#{Usuario.area}" />
+                    </p:column>
+                    <p:column filterBy="#{Usuario.telefono}" headerText="Telefono">
+                        <h:outputText value="#{Usuario.telefono}" />
+                    </p:column>
+                    <p:column filterBy="#{Usuario.correo}" headerText="Email">
+                        <h:outputText value="#{Usuario.correo}" />
+                    </p:column>
+                    <p:column filterBy="#{Usuario.getStringRol()}" headerText="Rol Actual">
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('UsuarioTable').filter()" >
+                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{adminBean.roles}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+
+                        <h:outputText value="#{Usuario.rol}" />
+                    </p:column>
+
+                    <p:column headerText="Roles">
                         <p:selectOneMenu id="roles" binding="#{rolnuevo}" >
-                        <f:selectItem itemLabel="Select Rol" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{adminBean.roles}" />
+                            <f:selectItem itemLabel="Select Rol" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{adminBean.roles}" />
                         </p:selectOneMenu>
                         <p:commandButton id="Actualizar" update="busquedaUsuarioForm" value="Actualizar" actionListener="#{adminBean.updateUsuario(doc.value,rolnuevo.value)}" icon="ui-icon-check"></p:commandButton>
-					</p:column>		
-			        
+                    </p:column>		
+
                 </p:dataTable>
                 <br></br>
-                
+
             </p:panel>
             <br></br>            
         </h:form>   

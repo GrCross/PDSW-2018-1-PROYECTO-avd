@@ -16,5 +16,10 @@ public interface UsuarioMapper {
             public void updateUsuario(@Param("doc") long documento, @Param("rol") String rol);
             
             public List<Usuario> consultarUsuarios();
+            
+            
+            public Usuario compararUsuario(@Param("correousr") String correo);
+            
+            public String getRolUsuario(@Param("correousr") String id) ;
 
 }

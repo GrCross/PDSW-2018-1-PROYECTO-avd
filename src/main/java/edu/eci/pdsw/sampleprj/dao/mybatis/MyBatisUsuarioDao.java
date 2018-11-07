@@ -38,6 +38,23 @@ public class MyBatisUsuarioDao implements UsuarioDao {
     public List<Usuario> consultarUsuarios() throws PersistenceException {
         return usuarioMapper.consultarUsuarios();
     }
+
+	@Override
+	public int compararUsuario(String correo) throws PersistenceException {
+		Usuario user = usuarioMapper.compararUsuario(correo);
+		if(user==null) {
+			return 0;
+		}
+		else {
+			return 1;
+		}
+	}
+
+	@Override
+	public String getRolusuario(String correo) throws PersistenceException {
+		
+		return usuarioMapper.getRolUsuario(correo);
+	}
         
         
 
