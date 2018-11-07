@@ -23,7 +23,8 @@ public class LoginBean extends BasePageBean implements Serializable {
 
     private String username;
     private String password;
-    private Usuario usuario;       
+    private Usuario usuario;
+    
     
     @Inject
     private ServiciosBancoIniciativas serviciosImpl;
@@ -45,6 +46,7 @@ public class LoginBean extends BasePageBean implements Serializable {
 				System.out.println("DFWQqwdwqdqwqwdqwddqwqw");*/
 				FacesContext.getCurrentInstance().getExternalContext().redirect("perfilesUsuarios.xhtml");
                                 usuario = serviciosImpl.obtenerUsuario(username);
+
 			}
 		} catch (ExcepcionBancoIniciativas e) {			
 			System.out.println("rrrrrrrrrrrrrrrrrr77777777777777");
@@ -64,21 +66,38 @@ public class LoginBean extends BasePageBean implements Serializable {
         }
     }
     
-    public boolean filtroPaginas(){
-        Rol rol=usuario.getRol();
-       
-        switch (rol) {
-            case ADMINISTRADOR:
-                return true;
-            case PMO_ODI:
-                return true;
-            case PROPONENTE:
-                return false;
-            default:
-                return true;
+    public boolean filtroAdministrador(){
+        
+        if (compararPermisos(Rol.ADMINISTRADOR)){
+            return true;
         }
+        else {return false;}
     }
     
+    public boolean filtroProponente(){
+        
+        if (compararPermisos(Rol.ADMINISTRADOR) || compararPermisos(Rol.PROPONENTE)){
+            return true;
+        }
+        else {return false;}
+    }
+    
+    public boolean filtroPMO(){
+        
+        if (compararPermisos(Rol.ADMINISTRADOR) || compararPermisos(Rol.PMO_ODI)){
+            return true;
+        }
+        else {return false;}
+       
+    }
+    
+    private boolean compararPermisos(Rol rolComparar){
+        Rol rol=usuario.getRol();
+        if (rol.equals(rolComparar)){
+            return true;
+        }
+        else {return false;}
+    }
     
     public Usuario getUsuario() {
         return usuario;

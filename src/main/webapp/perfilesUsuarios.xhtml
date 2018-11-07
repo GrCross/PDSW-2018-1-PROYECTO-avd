@@ -30,9 +30,15 @@
             
                 
             </p:panel>
-            <h:outputText id = "pagina" value="consultarIniciativas" binding="#{pagina1}" style="display:none"/>  
-            <p:commandButton id="consultarIniciativas" value="Consultar iniciativas" actionListener="#{LoginBean.redirect(pagina1.value)}" ></p:commandButton>
-            <p:commandButton id="ActualizarEstados" value="Consultar " rendered ="#{LoginBean.filtroPaginas()}" actionListener="#{LoginBean.redirect(pagina1.value)}" ></p:commandButton>
+            <h:outputText id = "pagConsultarIniciativas" value="consultarIniciativas" binding="#{pagina1}" style="display:none"/>  
+            <p:commandButton id="consultarIniciativas" value="Consultar iniciativas"  actionListener="#{LoginBean.redirect(pagina1.value)}" ></p:commandButton>
+            <h:outputText id = "pagActualizarEstado" value="actualizarEstadoIniciativas" binding="#{pagina2}" style="display:none"/>  
+            <p:commandButton id="ActualizarEstados" value="Actualizar Estados" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina2.value)}" ></p:commandButton>
+            <h:outputText id = "pagRegistrarIniciativa" value="registrarIniciativas" binding="#{pagina3}" style="display:none"/>  
+            <p:commandButton id="RegistrarIniciativa" value="registrarIniciativas" rendered ="#{LoginBean.filtroProponente()}" actionListener="#{LoginBean.redirect(pagina3.value)}" ></p:commandButton>
+            <h:outputText id = "pagActualizarPerfil" value="busquedaUsuarios" binding="#{pagina4}" style="display:none"/>  
+            <p:commandButton id="ActualizarPerfil" value="Cambiar Perfil Usuarios" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina4.value)}" ></p:commandButton>
+            
         </h:form>   
     </h:body>
 </html>
