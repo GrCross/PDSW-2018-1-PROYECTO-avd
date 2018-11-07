@@ -32,23 +32,7 @@ public class AdminBean extends BasePageBean {
 
     private final Rol[] roles = Rol.values();
     private ArrayList<String> rolesString = Rol.arreglo();
-
-    public ArrayList<String> getRolesString() {
-        return rolesString;
-    }
-
-    public void setRolesString(ArrayList<String> rolesString) {
-        this.rolesString = rolesString;
-    }
     private Rol rolCambio;
-
-    public Rol getRolCambio() {
-        return rolCambio;
-    }
-
-    public void setRolCambio(Rol rolCambio) {
-        this.rolCambio = rolCambio;
-    }
 
     private List<Usuario> Busuario = null;
 
@@ -79,6 +63,31 @@ public class AdminBean extends BasePageBean {
             Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public List<Iniciativa> consultarIniciativas() {
+    	List<Iniciativa> BeanIniciativas = null;
+    	 try {
+    		 BeanIniciativas= serviciosBancoIniciativa.consultarIniciativas();
+    		 System.out.println(BeanIniciativas.get(0));
+    	 } catch (Exception ex) {
+             Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    	 return BeanIniciativas;
+    }
+    
+    public void updateEstadoIniciativa (int estado, int id) {
+    	System.out.println(estado);
+    	System.out.println(id+"-------");
+    	try {
+            serviciosBancoIniciativa.updateEstadoIniciativa(estado,id );
+            FacesMessage msg;
+            msg = new FacesMessage("Actualizado el estado");
+            FacesContext.getCurrentInstance().addMessage(null, msg); 
+        } catch (Exception ex) {
+            Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    	
+    }
 
     public List<Usuario> getBusuario() {
         return Busuario;
@@ -96,7 +105,21 @@ public class AdminBean extends BasePageBean {
 
     }
     
-   
+    public ArrayList<String> getRolesString() {
+        return rolesString;
+    }
+
+    public void setRolesString(ArrayList<String> rolesString) {
+        this.rolesString = rolesString;
+    }
+    
+    public Rol getRolCambio() {
+        return rolCambio;
+    }
+
+    public void setRolCambio(Rol rolCambio) {
+        this.rolCambio = rolCambio;
+    }
     
 
 }

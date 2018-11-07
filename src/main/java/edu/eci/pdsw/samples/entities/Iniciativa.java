@@ -125,15 +125,23 @@ public class Iniciativa implements Serializable{
         return area;
     }
 
+    public void setAutor(Usuario area) {
+        this.autor = area;
+    }
+
+    public Usuario getAutor() {
+        return autor;
+    }
+
     public void setArea(String area) {
         this.area = area;
     }
-
 
     @Override
     public String toString() {
         return "Item{" + " id= " + id + ", estado=" + estado + ", nombre=" + nombre + ",descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", palabrasclave=" + palabrasClave+", autor="+autor+",area="+area+"}";
     }
+
 
 
     

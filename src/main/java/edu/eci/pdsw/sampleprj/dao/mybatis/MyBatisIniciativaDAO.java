@@ -8,6 +8,9 @@ package edu.eci.pdsw.sampleprj.dao.mybatis;
 import com.google.inject.Inject;
 import edu.eci.pdsw.sampleprj.dao.IniciativaDAO;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.IniciativaMapper;
+
+import java.util.List;
+
 import org.apache.ibatis.exceptions.PersistenceException;
 import edu.eci.pdsw.samples.entities.Iniciativa;
 
@@ -26,5 +29,16 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     	iniciativaMapper.agregarIniciativa(ini);
         
     }
+
+	@Override
+	public List<Iniciativa> consultarIniciativas() throws PersistenceException {
+		return iniciativaMapper.consultarIniciativas();
+	}
+
+	@Override
+	public void updateEstadoIniciativa(int estado, int id) throws PersistenceException {
+		iniciativaMapper.updateEstadoIniciativa(estado, id);
+		
+	}
     
 }

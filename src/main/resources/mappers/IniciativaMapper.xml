@@ -23,5 +23,17 @@
     	INSERT INTO iniciativas values(#{i.id},#{i.estado},#{i.autor.documento},#{i.nombre},#{i.descripcion},#{i.fechaCreacion}, string_to_array(#{i.palabrasClave},','),#{i.area});   	
     </insert>
     
+    <select id="consultarIniciativas" parameterType="map" resultMap="IniciativaResult">
+        SELECT *
+        FROM iniciativas;
+    </select>
+    
+    <update parameterType="map" id="updateEstadoIniciativa">
+        UPDATE iniciativas
+        SET estados_idEstado=#{estado}
+        WHERE id=#{id};
+        
+    </update>
+    
   </mapper>
 
