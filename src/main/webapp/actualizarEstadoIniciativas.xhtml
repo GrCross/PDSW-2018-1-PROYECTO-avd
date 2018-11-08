@@ -43,7 +43,7 @@
 					
 					<p:column headerText="Cambiar Estado">
                                              <p:selectOneMenu id="roles" binding="#{estado}" >
-                                                <f:selectItem itemLabel="Select Rol" itemValue="" noSelectionOption="true" />
+                                                <f:selectItem itemLabel="Select Estado" itemValue="" noSelectionOption="true" />
                                                 <f:selectItems value="#{adminBean.estados}" />
                                             </p:selectOneMenu>
                                             <p:commandButton id="Actualizar" update="actualizarEstadoIniciativaForm" value="Actualizar" actionListener="#{adminBean.updateEstadoIniciativa(estado.value,id.value)}" icon="ui-icon-check" ></p:commandButton>

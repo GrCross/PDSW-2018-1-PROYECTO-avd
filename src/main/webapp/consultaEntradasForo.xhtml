@@ -15,17 +15,17 @@
                 <p:inputText id ="nombreIngresado" binding="#{nombreIngresado}"></p:inputText>
                 documento
                 <p:inputText id ="documentoIngresado" binding="#{documentoIngresado}"></p:inputText>
+                area
+                <p:inputText id ="telefonoIngresado" binding="#{areaIngresado}"></p:inputText>
                 telefono
-                <p:inputText id ="telefonoIngresado" binding="#{telefonoIngresado}"></p:inputText>
-                direccion
-                <p:inputText id ="areaIngresada" binding="#{areaIgresada}"></p:inputText>
+                <p:inputText id ="areaIngresada" binding="#{telefonoIgresado}"></p:inputText>
                 email
                 <p:inputText id ="correoIngresado" binding="#{correoIngresado}"></p:inputText>
                 rol
                 <p:inputText id ="rolIngresado" binding="#{rolIngresado}"></p:inputText>
                 <br></br>
                 <br></br>
-                <p:commandButton id="registrar" update="usuarioForm" value="Registrar" actionListener="#{insertUsersBean.registrarCliente(nombreIngresado.value,documentoIngresado.value,telefonoIngresado.value,areaIngresada.value,correoIngresado.value,rolIngresado.value)}"></p:commandButton>
+                <p:commandButton id="registrar" update="usuarioForm" value="Registrar" actionListener="#{insertUsersBean.registrarCliente(nombreIngresado.value,documentoIngresado.value,areaIngresado.value,telefonoIngresado.value,correoIngresado.value,rolIngresado.value)}"></p:commandButton>
             </p:panel>
             <br></br>            
         </h:form>   

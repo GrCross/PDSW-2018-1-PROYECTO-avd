@@ -8,6 +8,7 @@
     <h:head>
         <h:outputStylesheet name="css/cssLayout.css"/> 
         <title>Login banco de iniciativas</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
     </h:head>
     <h:body>
         <div class="item">
@@ -25,6 +26,7 @@
                     <p:inputText id="username" required="true" value="#{LoginBean.username}" title="Escriba aca su correo institucional"/>
                     <p:tooltip id="toolTipFocus" for="username" showEvent="focus" hideEvent="blur" />
                     <br></br>
+                    <br></br> 
 
 
                     <p:commandButton value="Ingresar" update="msgs" actionListener="#{LoginBean.doLogin()}" icon="ui-icon-check" />             
@@ -33,7 +35,7 @@
                 </p:fieldset>
             </h:form>
         </div>
-        <div id="bottom">
+        <div id="bottom" style="display:none">
             <p:link outcome="busquedaUsuario.xhtml" value="busqueda de usuarios" style="text-decoration: none;font-size:15px;color: #010101"/>
             <br/>            
             <br/>

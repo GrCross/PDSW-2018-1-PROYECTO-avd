@@ -9,9 +9,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.persistence.PersistenceException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -39,27 +43,33 @@ public class IniciativasUsuariosBean extends BasePageBean {
     @Inject
     private ServiciosBancoIniciativas serviciosBancoIniciativa; 
     
-    public void registrarIniciativa (int id,String nombre, String descripcion,String area,long documento) throws Exception{
+    public void registrarIniciativa (String nombre, String descripcion,String area,long documento) throws Exception {
          
         
     	Date date = java.util.Calendar.getInstance().getTime();
         Usuario usuario = new Usuario(documento);
         System.out.println(usuario);
         String pClaves = "";
-        
-        for(String s:palabrasClave){
-            
+        System.out.println(palabrasClave);
+        for(String s:palabrasClave){     
+        	 System.out.println(s);
             if(palabrasClave.indexOf(s)== palabrasClave.size()-1){
                 pClaves = pClaves +s;
             }else   pClaves = pClaves +s+",";            
         }
-        
+        System.out.println(usuario.getDocumento());
+        int id = this.calcularID();
         System.out.println(usuario.getDocumento());
 
         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
         Iniciativa  iniciativa = new Iniciativa(id,"En_Espera",nombre,descripcion,date,pClaves,usuario,area); 
         
-	serviciosBancoIniciativa.InsertarIniciativa(iniciativa);
+        System.out.println(iniciativa);
+		serviciosBancoIniciativa.InsertarIniciativa(iniciativa);
+		FacesMessage msg;
+        msg = new FacesMessage("Insertada una iniciativa Exitosamente");
+        FacesContext.getCurrentInstance().addMessage(null, msg); 
+	
         palabrasClave.clear();
 		
     }
@@ -77,8 +87,29 @@ public class IniciativasUsuariosBean extends BasePageBean {
                 }
             }
         }
-        palabrasClave.clear();
+        palabrasClaveConsultar.clear();
         iniciativasClave = iniciativasPalClaves;
+    }
+    
+    private int calcularID() {
+    	try {
+    		ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
+       	 	System.out.println(iniciativas);
+	       	int maxId = 0;
+	     	if (!iniciativas.isEmpty()) {
+	     		for (Iniciativa ini: iniciativas) {
+	         		if(ini.getId() > maxId) {
+	         			maxId = ini.getId();
+	         		}
+         		}
+         		
+         	}
+         	return maxId+1;
+    	} catch (Exception ex) {
+    		return 1;
+    	}
+    	
+    	
     }
     
     public void agregarPalabrasClave(String nuevaPalabra) {

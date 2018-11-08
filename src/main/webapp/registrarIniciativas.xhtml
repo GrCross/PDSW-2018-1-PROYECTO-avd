@@ -16,13 +16,11 @@
     	
         <h1></h1>
         <h:form id="IniciativaForm">
+         <p:growl id="msgs" showDetail="true" /> 
             <p:panel id="registrar_Tabla" header="Registrar Iniciativas" visible="true" class="ui-panel-titlebar">
                
                 <h:panelGrid columns="3" cellpadding="5"  class="ui-panelGrid-Datos1">
-		            <p:outputLabel for="id" value="Id:" />
-		            <p:inputText id="id" binding="#{id}" required="true" >
-		            </p:inputText>
-		            
+		            		            
 		            <p:message for="area" />
 		            <p:outputLabel for="area" value="Area:" />
 		            <p:inputText id="area" binding="#{area}" required="true" />
@@ -34,7 +32,7 @@
 		            <p:message for="nombre" />
 		            
 		            <p:outputLabel for="autor" value="Autor:" />
-		            <p:inputText id="autor" binding="#{autor}" required="true" />
+		            <p:outputLabel id="autor" value="#{LoginBean.usuario.documento}" binding="#{autor}"  />
 		            <p:message for="autor" />
 		            
 		            <p:outputLabel for="descripcion" value="Descripción" />
@@ -58,7 +56,7 @@
                             </p:dataTable>					
                         </h:panelGrid>
                 <br></br>
-                <p:commandButton id="registrar" update="IniciativaForm" value="Registrar" actionListener="#{insertIniciativasBean.registrarIniciativa(id.value,nombre.value,descripcion.value,area.value,autor.value)}"></p:commandButton>
+                <p:commandButton id="registrar" update="IniciativaForm" value="Registrar" actionListener="#{insertIniciativasBean.registrarIniciativa(nombre.value,descripcion.value,area.value,autor.value)}"  icon="ui-icon-check"></p:commandButton>
             </p:panel>
             <br></br>            
         </h:form>   

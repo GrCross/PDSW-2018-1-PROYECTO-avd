@@ -14,9 +14,9 @@
                 <img src="/resources/images/cabecera.jpg" class="imagen" />
          </div>
             
-        <h1>Iniciavitas</h1>        
+        <h1></h1>        
         <h:form id="iniciativaForm">            
-            <p:panel id="informacionUsuario" header="" visible="true">
+            <p:panel id="informacionUsuario" header="Usuario" visible="true">
                 <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">                    
                     <p:outputLabel id="documento" value="documento:"/>     
                     <p:outputLabel for="documento" value="#{LoginBean.usuario.documento}" />
@@ -28,16 +28,24 @@
                     
                 </h:panelGrid>
             
-                
+               
             </p:panel>
+            <br></br> 
             <h:outputText id = "pagConsultarIniciativas" value="consultarIniciativas" binding="#{pagina1}" style="display:none"/>  
             <p:commandButton id="consultarIniciativas" value="Consultar iniciativas"  actionListener="#{LoginBean.redirect(pagina1.value)}" ></p:commandButton>
+            
             <h:outputText id = "pagActualizarEstado" value="actualizarEstadoIniciativas" binding="#{pagina2}" style="display:none"/>  
             <p:commandButton id="ActualizarEstados" value="Actualizar Estados" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina2.value)}" ></p:commandButton>
+            
             <h:outputText id = "pagRegistrarIniciativa" value="registrarIniciativas" binding="#{pagina3}" style="display:none"/>  
-            <p:commandButton id="RegistrarIniciativa" value="registrarIniciativas" rendered ="#{LoginBean.filtroProponente()}" actionListener="#{LoginBean.redirect(pagina3.value)}" ></p:commandButton>
-            <h:outputText id = "pagActualizarPerfil" value="busquedaUsuarios" binding="#{pagina4}" style="display:none"/>  
+            <p:commandButton id="RegistrarIniciativa" value="registrar Iniciativas" rendered ="#{LoginBean.filtroProponente()}" actionListener="#{LoginBean.redirect(pagina3.value)}" ></p:commandButton>
+            
+            <h:outputText id = "pagActualizarPerfil" value="busquedaUsuario" binding="#{pagina4}" style="display:none"/>  
             <p:commandButton id="ActualizarPerfil" value="Cambiar Perfil Usuarios" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina4.value)}" ></p:commandButton>
+            <br></br>
+            <br></br>
+            <h:outputText id = "pagInicio" value="Inicio" binding="#{paginaInicio}" style="display:none"/>  
+            <p:commandButton id="CerrarSesion" value="Cerrar Sesión"  actionListener="#{LoginBean.redirect(paginaInicio.value)}" ></p:commandButton>
             
         </h:form>   
     </h:body>
