@@ -39,7 +39,7 @@ public class LoginBean extends BasePageBean implements Serializable {
     public void doLogin() {
     	boolean login;
 		try {
-			login = serviciosImpl.autorizacionLogin(username);
+			login = serviciosImpl.autorizacionLogin(username,password);
 			if(login) {
 				/*Rol rol = serviciosImpl.tipoUsuario(username2);
 				System.out.println("rol del if");

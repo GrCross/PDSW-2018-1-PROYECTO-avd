@@ -36,7 +36,7 @@ public interface ServiciosBancoIniciativas {
         
         public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException;
         
-        public abstract boolean autorizacionLogin(String user) throws ExcepcionBancoIniciativas;
+        public abstract boolean autorizacionLogin(String user, String psw) throws ExcepcionBancoIniciativas;
         
         public abstract Rol getRolUsuario(String correo) throws ExcepcionBancoIniciativas;
         
