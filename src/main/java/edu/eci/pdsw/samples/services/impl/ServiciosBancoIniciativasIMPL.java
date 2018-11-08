@@ -84,17 +84,31 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 	}
 
 	@Override
-	public boolean autorizacionLogin(String user) throws ExcepcionBancoIniciativas {
+	public boolean autorizacionLogin(String user, String psw) throws ExcepcionBancoIniciativas {
 		Usuario usuario = usuarioDao.compararUsuario(user);
-                if(usuario == null) {
-                    FacesMessage msg;
-                    msg = new FacesMessage("Correo Incorrecto");
-                    FacesContext.getCurrentInstance().addMessage(null, msg);
-                    return false;
+		boolean credenciales =false;
+		if(!(usuario==null)) {
+			if(usuario.getCorreo().equals(user) && Integer.toString((int) usuario.getDocumento()).equals(psw)) {
+				credenciales=true;
+			}
+			
+	        if(credenciales==false) {
+	                    FacesMessage msg;
+	                    msg = new FacesMessage("Credenciales Incorrecto");
+	                    FacesContext.getCurrentInstance().addMessage(null, msg);
+	                    return false;
+				}
+			
+			else {
+	                    return true;
+            }
 		}
 		else {
-                    return true;
-                }
+			 FacesMessage msg;
+             msg = new FacesMessage("Credenciales Incorrecto");
+             FacesContext.getCurrentInstance().addMessage(null, msg);
+			 return false;
+		 }
 	}
         @Override
         public Usuario obtenerUsuario(String user){
