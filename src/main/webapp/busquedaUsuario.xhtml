@@ -23,7 +23,9 @@
                 <br></br>
 
                 <br></br>
-                <p:dataTable id="UsuarioTable" var="Usuario" value="#{adminBean.consultarUsuarios()}" widgetVar="UsuarioTable" scrollable="true">
+                <p:dataTable id="UsuarioTable" var="Usuario" value="#{adminBean.consultarUsuarios()}" widgetVar="UsuarioTable" scrollable="true"
+                            paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="2,5,10,15">
                     <p:column filterBy="#{Usuario.documento}" headerText="Documento" sortBy="#{Usuario.documento}">
                         <h:outputText value="#{Usuario.documento}" binding = "#{doc}"/>
                     </p:column>

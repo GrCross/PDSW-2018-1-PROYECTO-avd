@@ -19,7 +19,9 @@
         	<p:growl id="msgs" showDetail="true" /> 
             <p:panel id="busquedaIniciativa" header="Cambiar Iniciativa" visible="true" class="ui-panel-titlebar">
                 <br></br>
-                <p:dataTable id="IniciativaTable" var="Iniciativa" value="#{adminBean.consultarIniciativas()}" widgetVar="IniciativaTable" scrollable="true" scrollHeight="400">
+                <p:dataTable id="IniciativaTable" var="Iniciativa" value="#{adminBean.consultarIniciativas()}" widgetVar="IniciativaTable" scrollable="true" scrollHeight="400"
+                             paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15,20">
                 	<p:column filterBy="#{Iniciativa.id}" headerText="Id">
 						<h:outputText value="#{Iniciativa.id}" binding = "#{id}"/>
 					</p:column>

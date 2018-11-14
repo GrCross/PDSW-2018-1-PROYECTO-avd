@@ -17,7 +17,7 @@ public class Comentario implements Serializable {
 
     private String contenido;
     private Date fechaDePublicacion;
-    private Usuario usuario;   
+    private Usuario usuario;
 
     public Comentario(Usuario usuario, Date fechaDeCreacion, String contenido) {
         this.usuario = usuario;

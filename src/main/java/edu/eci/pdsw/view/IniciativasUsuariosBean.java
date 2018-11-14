@@ -5,10 +5,13 @@ import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
 import edu.eci.pdsw.view.BasePageBean;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
@@ -34,9 +37,9 @@ public class IniciativasUsuariosBean extends BasePageBean {
     //<h:graphicImage library="images" name="cabecera.jpg" style =" text-align : center;"> </h:graphicImage> 
 	// no borrar lo de arriba puede ser util en el xhtml
     private int documento;
-    private ArrayList<String> palabrasClave=new ArrayList<String>();
-    private ArrayList<String> palabrasClaveConsultar=new ArrayList<String>();
-    private ArrayList<Iniciativa> iniciativasClave=new ArrayList<Iniciativa>();
+    private ArrayList<String> palabrasClave = new ArrayList<String>();
+    private ArrayList<String> palabrasClaveConsultar = new ArrayList<String>();
+    private ArrayList<Iniciativa> iniciativasClave = new ArrayList<Iniciativa>();
 
     
     
@@ -48,7 +51,6 @@ public class IniciativasUsuariosBean extends BasePageBean {
         
     	Date date = java.util.Calendar.getInstance().getTime();
         Usuario usuario = new Usuario(documento);
-        System.out.println(usuario);
         String pClaves = "";
         System.out.println(palabrasClave);
         for(String s:palabrasClave){     
@@ -57,11 +59,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
                 pClaves = pClaves +s;
             }else   pClaves = pClaves +s+",";            
         }
-        System.out.println(usuario.getDocumento());
         int id = this.calcularID();
-        System.out.println(usuario.getDocumento());
-
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
         Iniciativa  iniciativa = new Iniciativa(id,"En_Espera",nombre,descripcion,date,pClaves,usuario,area); 
         
         System.out.println(iniciativa);
@@ -80,15 +78,17 @@ public class IniciativasUsuariosBean extends BasePageBean {
         
         for(Iniciativa i: iniciativas){
             for(String s: palabrasClaveConsultar){
-                System.out.println(i.getPalabrasClave());
-                System.out.println("palabras claveeeeeeeeeeeeeeeee");
                 if(i.getPalabrasClave().contains(s) && !iniciativasPalClaves.contains(i)){                    
                     iniciativasPalClaves.add(i);
                 }
             }
+        }if(iniciativasPalClaves.isEmpty()){
+            iniciativasClave = iniciativas;
+        }else{
+            palabrasClaveConsultar.clear();
+            iniciativasClave = iniciativasPalClaves;
         }
-        palabrasClaveConsultar.clear();
-        iniciativasClave = iniciativasPalClaves;
+        
     }
     
     private int calcularID() {
@@ -108,8 +108,14 @@ public class IniciativasUsuariosBean extends BasePageBean {
     	} catch (Exception ex) {
     		return 1;
     	}
-    	
-    	
+    }
+    
+    public void redirect(String pagina){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(pagina+".xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void agregarPalabrasClave(String nuevaPalabra) {

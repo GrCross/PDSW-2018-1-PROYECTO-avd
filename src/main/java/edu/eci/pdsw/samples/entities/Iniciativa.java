@@ -52,7 +52,7 @@ public class Iniciativa implements Serializable{
         this.palabrasClave = palabrasClave2;
         this.autor = usuario;
         this.area = area;
-	}
+    }
 
     public int getId() {
         return id;

@@ -7,9 +7,11 @@ import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import edu.eci.pdsw.sampleprj.dao.ComentarioDAO;
 import edu.eci.pdsw.sampleprj.dao.IniciativaDAO;
 
 import edu.eci.pdsw.sampleprj.dao.UsuarioDao;
+import edu.eci.pdsw.sampleprj.dao.mybatis.MyBatisComentarioDAO;
 import edu.eci.pdsw.sampleprj.dao.mybatis.MyBatisIniciativaDAO;
 import edu.eci.pdsw.sampleprj.dao.mybatis.MyBatisUsuarioDao;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
@@ -33,12 +35,11 @@ public class GuiceContextListener implements ServletContextListener {
                 setEnvironmentId("development");
                 setClassPathResource("mybatis-config.xml");
 
-                // TODO Add service class associated to Stub implementation
                 
                 bind(ServiciosBancoIniciativas.class).to(ServiciosBancoIniciativasIMPL.class);
                 bind(UsuarioDao.class).to(MyBatisUsuarioDao.class);
                 bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
-               
+                bind(ComentarioDAO.class).to(MyBatisComentarioDAO.class);
             }
         });
 

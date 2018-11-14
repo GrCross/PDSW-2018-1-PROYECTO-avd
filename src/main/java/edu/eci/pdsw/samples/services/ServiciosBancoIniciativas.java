@@ -1,5 +1,6 @@
 package edu.eci.pdsw.samples.services;
 
+import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.Iniciativa;
 import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -41,5 +42,9 @@ public interface ServiciosBancoIniciativas {
         public abstract Rol getRolUsuario(String correo) throws ExcepcionBancoIniciativas;
         
         public abstract Usuario obtenerUsuario(String user);
+        
+        public abstract void InsertarComentario (Comentario com, int idIni) throws Exception;
+        
+        public abstract ArrayList<Comentario> consultarComentarios(int id) throws Exception;
         
 }

@@ -4,9 +4,11 @@ import org.apache.ibatis.exceptions.PersistenceException;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import edu.eci.pdsw.sampleprj.dao.ComentarioDAO;
 import edu.eci.pdsw.sampleprj.dao.IniciativaDAO;
 
 import edu.eci.pdsw.sampleprj.dao.UsuarioDao;
+import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.Iniciativa;
 import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -26,6 +28,9 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     
     @Inject
     private IniciativaDAO iniciativaDAO;
+    
+    @Inject
+    private ComentarioDAO comentarioDAO;
 
     public ServiciosBancoIniciativasIMPL() {
 		// TODO Auto-generated constructor stub
@@ -120,5 +125,17 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    @Override
+    public void InsertarComentario(Comentario com, int idIni) throws Exception {
+        comentarioDAO.save(com, idIni);
+    }
+    
+    @Override
+    public ArrayList<Comentario> consultarComentarios(int id) throws Exception {
+        return comentarioDAO.load(id);
+    }
+    
+    
 
 }

@@ -13,6 +13,8 @@ import org.mybatis.guice.XMLMyBatisModule;
 import java.util.Optional;
 
 import static com.google.inject.Guice.createInjector;
+import edu.eci.pdsw.sampleprj.dao.ComentarioDAO;
+import edu.eci.pdsw.sampleprj.dao.mybatis.MyBatisComentarioDAO;
 
 public class ServiciosBancoIniciativasFactory {
 
@@ -29,6 +31,7 @@ public class ServiciosBancoIniciativasFactory {
                setEnvironmentId(env);
                setClassPathResource(pathResource);
                bind(UsuarioDao.class).to(MyBatisUsuarioDao.class);
+               bind(ComentarioDAO.class).to(MyBatisComentarioDAO.class);
                bind(ServiciosBancoIniciativas.class).to(ServiciosBancoIniciativasIMPL.class);
               
            }

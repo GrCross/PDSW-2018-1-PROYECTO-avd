@@ -12,4 +12,23 @@
         <association property='usuario' javaType ="Usuario" resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult'/>
     </resultMap>
     
+    
+    <insert parameterType="map" id="agregarComentario">
+    	insert into comentarios (contenido,fechaCreacion,Usuarios_documento,Iniciativas_id) values(#{c.contenido},#{c.fechaDePublicacion},#{c.usuario.documento},#{ini});    	
+    </insert>
+    
+    <select id="consultarComentarios" parameterType="map" resultMap="ComentarioResult"> 
+        SELECT 
+            c.contenido,
+            c.fechacreacion,
+            u.documento,
+            u.nombre,
+            u.area,
+            u.telefono,
+            u.correo,
+            u.rol
+        FROM usuarios as u,comentarios as c WHERE u.documento = c.usuarios_documento and c.iniciativas_id = #{idIniciativa};
+    </select>
+    
+    
 </mapper>
