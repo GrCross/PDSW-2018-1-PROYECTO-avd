@@ -56,7 +56,11 @@
                     </p:column>
                     <p:column headerText="Detalles">
                         <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{pagina1}" style="display:none"/>
-                        <p:commandButton id="Ver" update="iniciativaTable" value="ver" actionListener="#{iniciativasBean.redirect(pagina1.value)}"></p:commandButton>
+                        <p:commandButton id="Ver" update="iniciativaTable" value="ver" >
+                            <f:actionListener binding="#{iniciativasBean.redirect(pagina1.value)}"/>
+                            <f:actionListener binding="#{iniciativasBean.setIniciativa(Iniciativa)}"/>
+                            
+                        </p:commandButton>
                     </p:column> 
                     
                 </p:dataTable>

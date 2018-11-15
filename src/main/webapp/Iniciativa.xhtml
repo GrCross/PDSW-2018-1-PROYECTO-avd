@@ -1,16 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Consultar Iniciativas</title>
+        
+        <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+    </h:head>
+    <h:body>
+        <div class="item">
+                <img src="/resources/images/cabecera.jpg" class="imagen" />
+         </div>
+        
+        <h1></h1>        
+        <h:form id="iniciativaForm">
+            <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar">
+                <h:panelGrid columns="2" cellpadding="5" >
+                    
+                    <p:outputLabel value="Nombre Iniciativa: " />
+                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.nombre}"/>
+                    
+                    <p:outputLabel value="Autor " />
+                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.autor.nombre}"/>
+                    
+                    <p:outputLabel value="Correo " />
+                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.autor.correo}"/>
+                    
+                    <p:outputLabel value="Contenido " />
+                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.descripcion}"/>                    
+                    
+                    <p:outputLabel value="Estado " />
+                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.estado}"/>
+                    
+                    <p:outputLabel value="Palabras Clave " />
+                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.palabrasClave}"/>
+                    
+                </h:panelGrid>
+            </p:panel>
+        </h:form>   
+    </h:body>
 </html>
