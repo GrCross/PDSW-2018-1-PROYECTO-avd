@@ -65,10 +65,6 @@
             u.rol as user_rol
         FROM iniciativas as i,usuarios as u WHERE u.documento = i.usuarios_documento;
     </select>
-    
-    
-    
-    
-    
+   
   </mapper>
 
