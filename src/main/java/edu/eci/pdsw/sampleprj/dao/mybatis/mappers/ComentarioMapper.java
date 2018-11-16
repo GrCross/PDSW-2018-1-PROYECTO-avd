@@ -21,4 +21,6 @@ public interface ComentarioMapper {
      public void agregarComentario(@Param("c") Comentario com, @Param("ini") int idIni);
     
      public ArrayList<Comentario> consultarComentarios(@Param("idIniciativa")int id);
+     
+     public    ArrayList<Comentario>  consultarMax ();
 }

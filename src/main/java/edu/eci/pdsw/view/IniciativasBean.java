@@ -47,13 +47,21 @@ public class IniciativasBean extends BasePageBean {
         }
     }
     
-    public void agregarComentario(String contenido,Usuario usuario,int idIniciativa){
+    public void agregarComentario(String contenido,Usuario usuario,int idIniciativa) {
         Date fechaDeCreacion = java.util.Calendar.getInstance().getTime();
-        Comentario comentario = new Comentario(usuario, fechaDeCreacion, contenido);
+        long id=0;          
+        try {
+            id = serviciosBancoIniciativa.consultarMax();
+        } catch (Exception ex) {
+            Logger.getLogger(IniciativasBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            System.out.println("-------------------------------------------------------------------------------------------");
+        Comentario comentario = new Comentario(usuario, fechaDeCreacion, contenido, id);
         
         
         try {
             serviciosBancoIniciativa.InsertarComentario(comentario,idIniciativa);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Has añadido un comentario."));
         } catch (Exception ex) {
             Logger.getLogger(IniciativasBean.class.getName()).log(Level.SEVERE, null, ex);
         }

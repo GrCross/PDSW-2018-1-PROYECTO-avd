@@ -17,4 +17,5 @@ public interface ComentarioDAO {
     
     public void save (Comentario com, int idIni) throws PersistenceException;
     public ArrayList<Comentario> load(int id) throws PersistenceException;
+    public ArrayList<Comentario> consultaMax() throws PersistenceException;
 }

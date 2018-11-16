@@ -16,6 +16,7 @@
         
         <h1></h1>        
         <h:form id="iniciativaForm">
+            
             <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar">
                 <h:panelGrid columns="2" cellpadding="5" > 
                     <h:panelGrid columns="2" cellpadding="5" >                    
@@ -47,11 +48,18 @@
                             <p:inputTextarea id="contenido" rows="5" cols="30" counter="display" maxlength="300" counterTemplate="{0} characters remaining." autoResize="false" binding="#{contenido}" />
                             <h:outputText id="display" />
                             <p:commandButton id="comentar" update="iniciativaForm" value="Comentar" actionListener="#{iniciativasBean.agregarComentario(contenido.value,LoginBean.usuario,iniciativasBean.iniciativa.id)}"  icon="ui-icon-check">
-                                <p:ajax update="contenido" resetValues="true" />
+                                <p:resetInput target="contenido" />
+                               <p:ajax resetValues="true" />
                             </p:commandButton>
+                            <p:messages id="messages" showDetail="true" closable="true">
+                                <p:autoUpdate />
+                            </p:messages>
                         </h:panelGrid>
-                    </p:panel>>
+                    </p:panel>
                 </h:panelGrid>
+                
+
+                
                 
             </p:panel>
         </h:form>   

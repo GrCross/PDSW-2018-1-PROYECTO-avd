@@ -16,6 +16,7 @@ import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -128,12 +129,27 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 
     @Override
     public void InsertarComentario(Comentario com, int idIni) throws Exception {
+        System.out.println(com);
         comentarioDAO.save(com, idIni);
     }
     
     @Override
     public ArrayList<Comentario> consultarComentarios(int id) throws Exception {
         return comentarioDAO.load(id);
+    }
+
+    @Override
+    public long consultarMax() throws Exception {
+        long max= 0;
+        if (comentarioDAO.consultaMax().isEmpty()){
+                return 1;
+            }
+        else{
+        for (Comentario i : comentarioDAO.consultaMax()){
+            max = max<i.getCommentId()? i.getCommentId():max;
+        }
+        }
+        return max+1;
     }
 
  

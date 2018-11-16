@@ -29,4 +29,9 @@ public class MyBatisComentarioDAO implements ComentarioDAO{
     public ArrayList<Comentario> load(int id) throws PersistenceException{
         return comentarioMapper.consultarComentarios(id);
     }
+
+    @Override
+    public ArrayList<Comentario> consultaMax() throws PersistenceException {        
+        return comentarioMapper.consultarMax();
+    }
 }
