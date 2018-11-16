@@ -58,6 +58,32 @@
                     </p:panel>
                 </h:panelGrid>
                 
+                           
+                
+                
+                 <p:dataScroller value="#{iniciativasBean.consultarComentarios()}" var="Comentarios" chunkSize="10" class="ui-datascroller ui-datascroller-item">
+                     <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+                    <f:facet name="header">
+                        Comentarios
+                    </f:facet>
+
+                    <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                        <img src="/resources/images/2.jpg" class="logo" style="width: 100px"/> 
+
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="Autor:" />
+                                <p:outputLabel value="#{Comentarios.usuario.nombre}"  class="logo"/>
+
+                                <h:outputText value="Fecha:" />
+                                <h:outputText value="#{Comentarios.fechaDePublicacion}" style="text-align:left ;padding-left: 25px"/>
+
+                                <h:outputText value="Contenido:" />
+                                <h:outputText value="#{Comentarios.contenido}" style="text-align:left;padding-left: 25px"/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                </p:dataScroller>
 
                 
                 

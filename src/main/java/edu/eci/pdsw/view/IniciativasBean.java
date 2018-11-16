@@ -64,11 +64,14 @@ public class IniciativasBean extends BasePageBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Has añadido un comentario."));
         } catch (Exception ex) {
             Logger.getLogger(IniciativasBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        } 
     }
-    public void consultarComentarios() throws Exception{
+    
+    
+    
+    public ArrayList<Comentario> consultarComentarios() throws Exception{
         comentarios = serviciosBancoIniciativa.consultarComentarios(iniciativa.getId());
+        return serviciosBancoIniciativa.consultarComentarios(iniciativa.getId());
     }
     
     public Iniciativa getIniciativa() {
