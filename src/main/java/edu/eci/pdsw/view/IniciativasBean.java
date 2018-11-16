@@ -15,6 +15,7 @@ import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,19 @@ public class IniciativasBean extends BasePageBean {
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void agregarComentario(String contenido,Usuario usuario,int idIniciativa){
+        Date fechaDeCreacion = java.util.Calendar.getInstance().getTime();
+        Comentario comentario = new Comentario(usuario, fechaDeCreacion, contenido);
+        
+        
+        try {
+            serviciosBancoIniciativa.InsertarComentario(comentario,idIniciativa);
+        } catch (Exception ex) {
+            Logger.getLogger(IniciativasBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     public void consultarComentarios() throws Exception{
         comentarios = serviciosBancoIniciativa.consultarComentarios(iniciativa.getId());

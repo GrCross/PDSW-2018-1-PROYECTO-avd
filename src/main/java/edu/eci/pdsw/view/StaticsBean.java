@@ -91,7 +91,7 @@ public class StaticsBean extends BasePageBean implements Serializable {
         
         for (Iniciativa in:iniciativas){
             if(!tablaAreas.contains(in.getArea())){
-                tablaAreas. put(in.getArea(), tablaAreas[in.getArea()]+1);
+                //tablaAreas. put(in.getArea(), tablaAreas[in.getArea()]+1);
             }
         }
 

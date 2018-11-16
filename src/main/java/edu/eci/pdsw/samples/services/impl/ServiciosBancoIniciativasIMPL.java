@@ -135,6 +135,8 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     public ArrayList<Comentario> consultarComentarios(int id) throws Exception {
         return comentarioDAO.load(id);
     }
+
+ 
     
     
 

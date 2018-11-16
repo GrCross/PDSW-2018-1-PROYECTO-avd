@@ -17,27 +17,42 @@
         <h1></h1>        
         <h:form id="iniciativaForm">
             <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar">
-                <h:panelGrid columns="2" cellpadding="5" >
+                <h:panelGrid columns="2" cellpadding="5" > 
+                    <h:panelGrid columns="2" cellpadding="5" >                    
+                        <p:outputLabel value="Nombre Iniciativa: " />
+                        <p:outputLabel  value ="#{iniciativasBean.iniciativa.nombre}"/>
+
+                        <p:outputLabel value="Autor " />
+                        <p:outputLabel  value ="#{iniciativasBean.iniciativa.autor.nombre}"/>
+
+                        <p:outputLabel value="Correo " />
+                        <p:outputLabel  value ="#{iniciativasBean.iniciativa.autor.correo}"/>
+
+                        <p:outputLabel value="Contenido " />
+                        <p:outputLabel  value ="#{iniciativasBean.iniciativa.descripcion}"/>                    
+
+                        <p:outputLabel value="Estado " />
+                        <p:outputLabel  value ="#{iniciativasBean.iniciativa.estado}"/>
+
+                        <p:outputLabel value="Palabras Clave " />
+                        <p:outputLabel  value ="#{iniciativasBean.iniciativa.palabrasClave}"/>
                     
-                    <p:outputLabel value="Nombre Iniciativa: " />
-                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.nombre}"/>
+                    </h:panelGrid>
                     
-                    <p:outputLabel value="Autor " />
-                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.autor.nombre}"/>
-                    
-                    <p:outputLabel value="Correo " />
-                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.autor.correo}"/>
-                    
-                    <p:outputLabel value="Contenido " />
-                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.descripcion}"/>                    
-                    
-                    <p:outputLabel value="Estado " />
-                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.estado}"/>
-                    
-                    <p:outputLabel value="Palabras Clave " />
-                    <p:outputLabel  value ="#{iniciativasBean.iniciativa.palabrasClave}"/>
-                    
+                    <p:panel id="basic" header="Agregar comentario" style="margin-bottom:20px">
+                        <h:panelGrid columns="1" cellpadding="2"  class="ui-panelGrid-Datos1">
+
+                            
+                            <p:outputLabel  value="contenido" />
+                            <p:inputTextarea id="contenido" rows="5" cols="30" counter="display" maxlength="300" counterTemplate="{0} characters remaining." autoResize="false" binding="#{contenido}" />
+                            <h:outputText id="display" />
+                            <p:commandButton id="comentar" update="iniciativaForm" value="Comentar" actionListener="#{iniciativasBean.agregarComentario(contenido.value,LoginBean.usuario,iniciativasBean.iniciativa.id)}"  icon="ui-icon-check">
+                                <p:ajax update="contenido" resetValues="true" />
+                            </p:commandButton>
+                        </h:panelGrid>
+                    </p:panel>>
                 </h:panelGrid>
+                
             </p:panel>
         </h:form>   
     </h:body>

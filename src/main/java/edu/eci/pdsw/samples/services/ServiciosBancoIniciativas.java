@@ -46,5 +46,6 @@ public interface ServiciosBancoIniciativas {
         public abstract void InsertarComentario (Comentario com, int idIni) throws Exception;
         
         public abstract ArrayList<Comentario> consultarComentarios(int id) throws Exception;
+
         
 }
