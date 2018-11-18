@@ -15,9 +15,15 @@
          </div>
     	
         <h1></h1>
+        
         <h:form id="IniciativaForm">
+        <p:megaMenu  style="margin-top:20px" class="menuBar">
+         	<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+         		url="/faces/perfilesUsuarios.xhtml" icon="ui-icon-home" class="ui-menuitem"/>
+         	
+         </p:megaMenu>
          <p:growl id="msgs" showDetail="true" /> 
-            <p:panel id="registrar_Tabla" header="Registrar Iniciativas" visible="true" class="ui-panel-titlebar">
+            <p:panel id="registrar_Tabla" header="Registrar Iniciativas" visible="true" class="ui-panel-titlebar" styleClass="my-panel ui-panel-titlebar">
                
                 <h:panelGrid columns="3" cellpadding="5"  class="ui-panelGrid-Datos1">
 		            		            

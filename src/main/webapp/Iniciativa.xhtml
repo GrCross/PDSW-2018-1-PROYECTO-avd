@@ -14,12 +14,18 @@
                 <img src="/resources/images/cabecera.jpg" class="imagen" />
          </div>
         
-        <h1></h1>        
+        <h1></h1>  
+                  
         <h:form id="iniciativaForm">
+            <p:megaMenu  style="margin-top:20px" class="menuBar">
+         		<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+         		url="/faces/perfilesUsuarios.xhtml" icon="ui-icon-home" class="ui-menuitem"/>
+         	
+         	</p:megaMenu>
+            <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar" styleClass="my-panel ui-panel-titlebar">
             
-            <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar">
                 <h:panelGrid columns="2" cellpadding="5" > 
-                    <h:panelGrid columns="2" cellpadding="5" >                    
+                    <h:panelGrid columns="2" cellpadding="5" style="font-size: 20px;">                    
                         <p:outputLabel value="Nombre Iniciativa: " />
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.nombre}"/>
 
@@ -68,18 +74,20 @@
                     </f:facet>
 
                     <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                        <img src="/resources/images/2.jpg" class="logo" style="width: 100px"/> 
+                        <img src="/resources/images/2.jpg" class="logo" style="width: 70px"/> 
 
                         <p:outputPanel>
                             <h:panelGrid columns="2" cellpadding="5">
                                 <h:outputText value="Autor:" />
-                                <p:outputLabel value="#{Comentarios.usuario.nombre}"  class="logo"/>
+                                <p:outputLabel value="#{Comentarios.usuario.nombre}"  class="logo" style="text-align:left ;padding-left: 15px;"/>
 
                                 <h:outputText value="Fecha:" />
-                                <h:outputText value="#{Comentarios.fechaDePublicacion}" style="text-align:left ;padding-left: 25px"/>
+                                <h:outputText value="#{Comentarios.fechaDePublicacion}" style="text-align:left ;padding-left: 15px"/>
+                                
+                                
 
                                 <h:outputText value="Contenido:" />
-                                <h:outputText value="#{Comentarios.contenido}" style="text-align:left;padding-left: 25px"/>
+                                <h:outputText value="#{Comentarios.contenido}" style="text-align:left;padding-left: 15px"/>
                             </h:panelGrid>
                         </p:outputPanel>
                     </h:panelGrid>

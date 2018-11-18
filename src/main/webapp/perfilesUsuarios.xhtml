@@ -10,13 +10,14 @@
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
     </h:head>
     <h:body >
+    
         <div class="item">
                 <img src="/resources/images/cabecera.jpg" class="imagen" />
          </div>
             
         <h1></h1>        
         <h:form id="iniciativaForm">            
-            <p:panel id="informacionUsuario" header="Usuario" visible="true">
+            <p:panel id="informacionUsuario" header="Usuario" visible="true" >
                 <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">                    
                     <p:outputLabel id="documento" value="documento:"/>     
                     <p:outputLabel for="documento" value="#{LoginBean.usuario.documento}" />
@@ -46,6 +47,34 @@
             <br></br>
             <h:outputText id = "pagInicio" value="Inicio" binding="#{paginaInicio}" style="display:none"/>  
             <p:commandButton id="CerrarSesion" value="Cerrar Sesión"  actionListener="#{LoginBean.redirect(paginaInicio.value)}" ></p:commandButton>
+            
+            
+            <p:panel id="informacionEscuela"  visible="true" class="informacion footerPerfil">
+            	<h:panelGrid columns="1" cellpadding="5" class="letraInfo">                    
+                    Escuela Colombiana de Ingeniería Julio Garavito
+	               	<br></br>
+					Ak 45 No. 205 - 59 Autopista Norte, costado occidental.
+					<br></br>
+					Contact Center: 57(1) 668 3600
+					<br></br>
+					Línea Nacional Gratuita: 018000112668
+					<br></br>
+					www.escuelaing.edu.co
+					<br></br>
+					Bogotá - Colombia
+					<br></br>
+					<br></br>
+					 
+					Personería Jurídica 086 de enero 19 de 1973.
+					<br></br>
+					Acreditación institucional de alta calidad. Res. 20273 del 27 de noviembre de 2014. (Vigencia 4 años).
+					<br></br>
+					Vigilada Mineducación.
+	                    
+                </h:panelGrid>
+               	
+				 
+            </p:panel>
             
         </h:form>   
     </h:body>

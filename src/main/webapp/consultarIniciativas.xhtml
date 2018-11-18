@@ -14,9 +14,15 @@
                 <img src="/resources/images/cabecera.jpg" class="imagen" />
          </div>
         
-        <h1></h1>        
-        <h:form id="iniciativaForm">
-            <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar">
+        <h1></h1> 
+        
+        <p:megaMenu  style="margin-top:20px" class="menuBar">
+         	<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+         		url="/faces/perfilesUsuarios.xhtml" icon="ui-icon-home" class="ui-menuitem"/>
+         	
+         </p:megaMenu>       
+        <h:form id="iniciativaForm" >
+            <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
                 <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">
                      <p:column colspan="2" >
                         <p:inputText id ="palabraNueva" binding="#{palabraNueva}"></p:inputText>

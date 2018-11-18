@@ -2,7 +2,8 @@
 
 .ui-panel-titlebar{
 	border:red;
-	text-align: center;
+    background-color:#f7fcfb;
+	
 }
 
 .ui-panelGrid-Datos1{
@@ -30,7 +31,7 @@
 }
 
 .detail td {
-    font-size: 24px;
+    font-size: 17px;
 }
 
 .ui-datascroller .ui-datascroller-item {
@@ -38,4 +39,61 @@
    
     /* with the exported variables from Nova and Luna Themes*/
     border-bottom-color: var(--input-border-color, #A8A8A8);
+}
+
+.informacion{
+	background-color:#5DC1B9;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+}
+
+
+.footerPerfil{
+	margin-top: 200px;
+}
+
+.letraInfo{
+	color: #FFFFFF;
+}
+
+.inicioSesionImagen{
+	background-image: url("/resources/images/campus3.jpg") ;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+.inicioSesion{
+	vertical-align: middle;
+	width: 50%;
+}
+
+.menuBar{
+	background-color:#009C8C;
+	color:white;	
+}
+
+.ui-menuitem{
+	color: #FFFFFF;
+}
+
+.fa { 
+        color: orange;
+    }
+    
+.whiteIcon .ui-icon {
+	
+	 background-image: url("../javax.faces.resource/images/ui-icons_ffffff_256x240.png.jsf?ln=primefaces-aristo");
+}
+
+.my-panel .ui-panel-titlebar {
+     background: #FFFFFF;
+     color: #009C8C;
+     font-size: 25px;
 }

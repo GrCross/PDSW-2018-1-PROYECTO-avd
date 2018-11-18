@@ -9,7 +9,7 @@
 
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
     </h:head>
-    <h:body>
+    <h:body >
         <div class="item">
             <img src="/resources/images/cabecera.jpg" class="imagen" />
         </div>
@@ -18,9 +18,19 @@
         <h:form id="busquedaUsuarioForm">
 
             <p:growl id="msgs" showDetail="true" /> 
-            <p:panel id="busquedaUsuario" header="Busqueda de Usuarios" visible="true" class="ui-panel-titlebar">
-
+            <p:megaMenu  style="margin-top:20px" class="menuBar">
+            	<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+            		url="/faces/perfilesUsuarios.xhtml" icon="ui-icon-home" class="ui-menuitem"/>
+            	
+            </p:megaMenu>
+            <br></br>
+            <p:panel id="busquedaUsuario" visible="true" class="ui-panel-titlebar" >
+            
+                <div style="color: #009C8C; font-weight:bold; font-size: 25px;">
+                Busqueda de Usuarios
                 <br></br>
+                 _________________________
+        		</div>
 
                 <br></br>
                 <p:dataTable id="UsuarioTable" var="Usuario" value="#{adminBean.consultarUsuarios()}" widgetVar="UsuarioTable" scrollable="true"
