@@ -55,7 +55,7 @@ public class IniciativasBean extends BasePageBean {
         } catch (Exception ex) {
             Logger.getLogger(IniciativasBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-            System.out.println("-------------------------------------------------------------------------------------------");
+             
         Comentario comentario = new Comentario(usuario, fechaDeCreacion, contenido, id);
         
         

@@ -16,8 +16,11 @@
          </div>
             
         <h1></h1>        
-        <h:form id="iniciativaForm">            
+        <h:form id="iniciativaForm">
+            
+            
             <p:panel id="informacionUsuario" header="Usuario" visible="true" >
+            
                 <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">                    
                     <p:outputLabel id="documento" value="documento:"/>     
                     <p:outputLabel for="documento" value="#{LoginBean.usuario.documento}" />
@@ -33,7 +36,10 @@
             </p:panel>
             <br></br> 
             <h:outputText id = "pagConsultarIniciativas" value="consultarIniciativas" binding="#{pagina1}" style="display:none"/>  
-            <p:commandButton id="consultarIniciativas" value="Consultar iniciativas"  actionListener="#{LoginBean.redirect(pagina1.value)}" ></p:commandButton>
+            <p:commandButton id="consultarIniciativas" value="Consultar iniciativas" >
+                <f:actionListener binding="#{insertIniciativasBean.consultarIniciativas()}"/>
+                <f:actionListener binding="#{LoginBean.redirect(pagina1.value)}"/>
+            </p:commandButton>
             
             <h:outputText id = "pagActualizarEstado" value="actualizarEstadoIniciativas" binding="#{pagina2}" style="display:none"/>  
             <p:commandButton id="ActualizarEstados" value="Actualizar Estados" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina2.value)}" ></p:commandButton>

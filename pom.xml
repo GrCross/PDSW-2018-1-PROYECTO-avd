@@ -88,8 +88,8 @@
             <artifactId>primefaces</artifactId>
             <version>6.2</version>
         </dependency>
-
-        <!-- Test dependencies -->
+		
+	        <!-- Test dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -109,6 +109,9 @@
             <type>zip</type>
         </dependency>
     </dependencies>
+	
+
+
     
     <build>
         <plugins>

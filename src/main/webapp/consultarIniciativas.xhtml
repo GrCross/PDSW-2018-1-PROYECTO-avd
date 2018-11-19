@@ -24,11 +24,21 @@
         <h:form id="iniciativaForm" >
             <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
                 <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">
+                    
                      <p:column colspan="2" >
                         <p:inputText id ="palabraNueva" binding="#{palabraNueva}"></p:inputText>
                             <br></br>
                             <br></br>
                             <p:commandButton id="agregarPalabra" update="consultar_Tabla" value="AgregarPalabra" actionListener="#{insertIniciativasBean.agregarPalabrasClaveConsultar(palabraNueva.value)}"></p:commandButton>
+                            <p:commandButton id="movieBtn" value="Ver Palabras clave" actionListener="#{insertIniciativasBean.consultarPalabrasClave()}"/>
+                            <p:overlayPanel id="moviePanel" for="movieBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
+                                <p:dataTable var="palClave" value="#{insertIniciativasBean.palabrasClaveAll}" rows="5" paginator="true">
+                                    <p:column headerText="palabras clave">
+                                        <h:outputText value="#{palClave}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:overlayPanel>
+                            
                      </p:column>
                     <p:dataTable id="palabras_table" style="width:250px;" var="palabras" value="#{insertIniciativasBean.palabrasClaveConsultar}" scrollable="true" scrollHeight="100">
                         <p:column headerText="palabras Clave">
@@ -38,10 +48,13 @@
                     
                     <p:commandButton id="consultar" update="consultar_Tabla" value="Consultar" actionListener="#{insertIniciativasBean.consultarIniciativas()}"></p:commandButton>
                 </h:panelGrid>
+                
+               
             
                 <p:dataTable id="iniciativaTable" var="Iniciativa" value="#{insertIniciativasBean.iniciativasClave}" rows="10" widgetVar="IniciativasTable" paginator="true"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 rowsPerPageTemplate="5,10,15">
+                 rowsPerPageTemplate="5,10,15"
+                  stickyHeader="true">
                     <p:column sortBy="#{Iniciativa.id}" headerText="id">
                         <h:outputText value="#{Iniciativa.id}"/>
                     </p:column>
@@ -63,9 +76,9 @@
                     <p:column headerText="Detalles">
                         <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{pagina1}" style="display:none"/>
                         <p:commandButton id="Ver" update="iniciativaTable" value="ver" >
-                            <f:actionListener binding="#{iniciativasBean.redirect(pagina1.value)}"/>
-                            <f:actionListener binding="#{iniciativasBean.setIniciativa(Iniciativa)}"/>
                             
+                            <f:actionListener binding="#{iniciativasBean.redirect(pagina1.value)}"/>
+                            <f:actionListener binding="#{iniciativasBean.setIniciativa(Iniciativa)}"/>                            
                         </p:commandButton>
                     </p:column> 
                     

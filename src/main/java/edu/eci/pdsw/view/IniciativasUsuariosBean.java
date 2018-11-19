@@ -40,6 +40,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
     private ArrayList<String> palabrasClave = new ArrayList<String>();
     private ArrayList<String> palabrasClaveConsultar = new ArrayList<String>();
     private ArrayList<Iniciativa> iniciativasClave = new ArrayList<Iniciativa>();
+    private ArrayList<String> palabrasClaveAll = new ArrayList<String>();
 
     
     
@@ -87,27 +88,37 @@ public class IniciativasUsuariosBean extends BasePageBean {
         }else{
             palabrasClaveConsultar.clear();
             iniciativasClave = iniciativasPalClaves;
+        }        
+    }
+    
+    public void consultarPalabrasClave(){
+        ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();        
+        for(Iniciativa i: iniciativas){
+            System.out.println(i.getPalabrasClave());
+            String[] temp = i.getPalabrasClave().split("(,)|(\\})|(\\{)");
+            for (int j = 0; j <temp.length ; j++) {
+                palabrasClaveAll.add(temp[j]);
+            }
         }
-        
     }
     
     private int calcularID() {
-    	try {
-    		ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
-       	 	System.out.println(iniciativas);
-	       	int maxId = 0;
-	     	if (!iniciativas.isEmpty()) {
-	     		for (Iniciativa ini: iniciativas) {
-	         		if(ini.getId() > maxId) {
-	         			maxId = ini.getId();
-	         		}
-         		}
-         		
-         	}
-         	return maxId+1;
-    	} catch (Exception ex) {
-    		return 1;
-    	}
+    	   try {
+            ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
+            System.out.println(iniciativas);
+            int maxId = 0;
+            if (!iniciativas.isEmpty()) {
+                for (Iniciativa ini : iniciativas) {
+                    if (ini.getId() > maxId) {
+                        maxId = ini.getId();
+                    }
+                }
+
+            }
+            return maxId + 1;
+        } catch (Exception ex) {
+            return 1;
+        }
     }
     
     public void redirect(String pagina){
@@ -150,6 +161,14 @@ public class IniciativasUsuariosBean extends BasePageBean {
 
     public void setIniciativasClave(ArrayList<Iniciativa> iniciativasClave) {
         this.iniciativasClave = iniciativasClave;
+    }
+
+    public ArrayList<String> getPalabrasClaveAll() {
+        return palabrasClaveAll;
+    }
+
+    public void setPalabrasClaveAll(ArrayList<String> palabrasClaveAll) {
+        this.palabrasClaveAll = palabrasClaveAll;
     }
     
 }
