@@ -53,9 +53,9 @@ public class IniciativasUsuariosBean extends BasePageBean {
     	Date date = java.util.Calendar.getInstance().getTime();
         Usuario usuario = new Usuario(documento);
         String pClaves = "";
-        System.out.println(palabrasClave);
+        
         for(String s:palabrasClave){     
-        	 System.out.println(s);
+        
             if(palabrasClave.indexOf(s)== palabrasClave.size()-1){
                 pClaves = pClaves +s;
             }else   pClaves = pClaves +s+",";            
@@ -63,7 +63,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
         int id = this.calcularID();
         Iniciativa  iniciativa = new Iniciativa(id,"En_Espera",nombre,descripcion,date,pClaves,usuario,area); 
         
-        System.out.println(iniciativa);
+        
 		serviciosBancoIniciativa.InsertarIniciativa(iniciativa);
 		FacesMessage msg;
         msg = new FacesMessage("Insertada una iniciativa Exitosamente");
@@ -94,8 +94,8 @@ public class IniciativasUsuariosBean extends BasePageBean {
     public void consultarPalabrasClave(){
         ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();        
         for(Iniciativa i: iniciativas){
-            System.out.println(i.getPalabrasClave());
-            String[] temp = i.getPalabrasClave().split("(,)|(\\})|(\\{)");
+            
+            String[] temp = i.getPalabrasClave().split("\\W+");
             for (int j = 0; j <temp.length ; j++) {
                 palabrasClaveAll.add(temp[j]);
             }
@@ -105,7 +105,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
     private int calcularID() {
     	   try {
             ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
-            System.out.println(iniciativas);
+            
             int maxId = 0;
             if (!iniciativas.isEmpty()) {
                 for (Iniciativa ini : iniciativas) {

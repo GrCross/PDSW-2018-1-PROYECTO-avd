@@ -19,6 +19,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.Math.*;
+import java.util.Arrays;
+
 import javax.faces.application.FacesMessage;
 
 import javax.faces.bean.ManagedBean;
@@ -37,7 +40,18 @@ public class IniciativasBean extends BasePageBean {
     private ServiciosBancoIniciativas serviciosBancoIniciativa;
     
     private Iniciativa iniciativa;
-    private ArrayList<Comentario> comentarios;    
+    private ArrayList<Comentario> comentarios;
+    private ArrayList<Iniciativa> iniciativasParecidas;
+
+    public ArrayList<Iniciativa> getIniciativasParecidas() {
+        return iniciativasParecidas;
+    }
+
+    public void setIniciativasParecidas(ArrayList<Iniciativa> iniciativasParecidas) {
+        this.iniciativasParecidas = iniciativasParecidas;
+    }
+    
+    
 
     public void redirect(String pagina){
         try {
@@ -67,6 +81,76 @@ public class IniciativasBean extends BasePageBean {
         } 
     }
     
+    public void consultarIniciativasParecidas(){
+        ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
+        String[] palClavesAComparar = iniciativa.getPalabrasClave().split("\\W+");
+        for(Iniciativa ini: iniciativas){
+            System.out.println(ini.getPalabrasClave());
+            String[] palClavesOtras = ini.getPalabrasClave().split("\\W+");
+            List<String> pal1 = Arrays.asList(palClavesAComparar);
+            List<String> pal2 = Arrays.asList(palClavesOtras);
+            pal1.remove(0);
+            pal2.remove(0);
+            for (int j = 0; j < pal1.size(); j++) {
+               System.out.println("palCompara antes de seguir ----------------------");
+                System.out.println(pal1.size());
+                System.out.println(pal1.get(j));
+            }
+            
+            for (int j = 0; j < pal2.size(); j++) {
+                System.out.println("palCompara antes de seguir ----------------------");
+                System.out.println(pal2.size());
+                System.out.println(pal2.get(j));
+            }
+            
+            boolean seguir=true;
+            for (int i = 0; i < pal1.size() && seguir; i++) {
+                System.out.println("palCompara ----------------------");
+                System.out.println(pal1.size());
+                System.out.println(pal1.get(i));
+                for (int j = 0; j < pal2.size(); j++) {
+                    System.out.println("palClavesOtras ----------------------");
+                    System.out.println(pal2.size());
+                    System.out.println(pal2.get(i));
+                    if(levenshteinDistance(pal1.get(i), pal2.get(j)) < 3){
+                        iniciativasParecidas.add(ini);
+                        seguir=false;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    private int levenshteinDistance(String x, String y){
+        int[][] dp = new int[x.length() + 1][y.length() + 1];
+        System.out.println("dentro de levenstein");
+        System.out.println(x);
+        System.out.println(y);
+        for (int i = 0; i <= x.length(); i++) {
+            for (int j = 0; j <= y.length(); j++) {
+                if (i == 0) {
+                    dp[i][j] = j;
+                } else if (j == 0) {
+                    dp[i][j] = i;
+                } else {
+                    
+                    
+                    int e= dp[i - 1][j - 1] + costOfSubstitution(x.charAt(i - 1),y.charAt(j - 1));
+                    int temp = Math.min(e, dp[i - 1][j] + 1);
+                    int temp2 = Math.min(dp[i - 1][j] + 1,dp[i][j - 1] + 1);
+                    dp[i][j] = Math.min(temp,temp2);
+                }
+            }
+        }  
+        return dp[x.length()][y.length()];
+    }
+    
+    private int costOfSubstitution(char a, char b) {
+        return a == b ? 0 : 1;
+    }
+ 
     
     
     public ArrayList<Comentario> consultarComentarios() throws Exception{
@@ -89,6 +173,8 @@ public class IniciativasBean extends BasePageBean {
     public void setComentarios(ArrayList<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
+
+    
     
 
 }
