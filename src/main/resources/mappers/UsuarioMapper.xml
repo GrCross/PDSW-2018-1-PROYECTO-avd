@@ -43,6 +43,24 @@
         
     </update>
     
+    <insert parameterType="map" id="agregarInteres">
+    	INSERT INTO INTERESES (Iniciativa_documento,Usuarios_id,Afinidades_idAfinidad,voto) VALUES(#{iniciativa},#{usuario},#{in.afinidad},#{in.voto});
+        
+    </insert>
+    
+    <update parameterType="map" id="updateInteres">
+        UPDATE intereses
+        SET voto=#{voto}
+        WHERE Iniciativa_documento=#{doc} and Usuarios_id=#{usu};
+        
+    </update>
+    
+     <select id="consultarInteres" parameterType="Usuario" resultMap="UsuarioResult">
+        SELECT *
+        FROM intereses
+        WHERE Iniciativa_documento=#{doc} and Usuarios_id=#{usu};
+    </select> 
+    
     <insert parameterType="map" id="agregarUsuario">
     	insert into usuarios (documento,nombre,area,telefono,correo,rol) values(#{u.documento},#{u.nombre},#{u.area},#{u.telefono},#{u.correo},#{u.rol});    	
     </insert>

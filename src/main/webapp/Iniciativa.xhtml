@@ -88,15 +88,18 @@
                     <f:facet name="header">
                         Comentarios
                     </f:facet>
+                    <h:outputText id = "UsuarioComentario" value="perfilesUsuarios" binding="#{usuarioComment}" style="display:none"/>
 
                     <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
                         <img src="/resources/images/2.jpg" class="logo" style="width: 70px"/> 
-
+                        
                         <p:outputPanel>
                             <h:panelGrid columns="2" cellpadding="5">
                                 <h:outputText value="Autor:" />
-                                <p:commandLink value="#{Comentarios.usuario.nombre}" class="logo" style="text-align:left ;padding-left: 15px;text-decoration: none">
-                                    <f:param name="nombreAutor" value="#{Comentarios.usuario.nombre}" />
+                                
+                                <p:commandLink value="#{Comentarios.usuario.nombre}" action="#{iniciativasBean.redirect(usuarioComment.value)}" 
+                                               actionListener="#{perfilUsuariosBean.setDocumentoUsuario(1111111)}" class="logo" style="text-align:left ;padding-left: 15px;text-decoration: none">
+                                    <f:param name="nombreAutor" value="#{perfilUsuariosBean.usuario.nombre}" />
                                 </p:commandLink>
 
                                 <h:outputText value="Fecha:" />
