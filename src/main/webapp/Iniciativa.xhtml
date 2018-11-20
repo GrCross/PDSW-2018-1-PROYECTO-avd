@@ -68,6 +68,13 @@
                             <p:column headerText="Iniciativas Parecidas">
                                 <h:outputText value="#{IniciativaParecida.nombre}"/>
                             </p:column>
+                            <p:column headerText="Detalles">
+                                <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{reinicioPagina}" style="display:none"/>
+                                <p:commandButton id="Ver" update="iniciativaForm" value="ver" >
+                                    <f:actionListener binding="#{iniciativasBean.redirect(reinicioPagina.value)}"/>
+                                    <f:actionListener binding="#{iniciativasBean.setIniciativa(IniciativaParecida)}"/>                            
+                                </p:commandButton>
+                            </p:column>
                         </p:dataTable>
                     </p:overlayPanel>
                     
@@ -88,7 +95,9 @@
                         <p:outputPanel>
                             <h:panelGrid columns="2" cellpadding="5">
                                 <h:outputText value="Autor:" />
-                                <p:outputLabel value="#{Comentarios.usuario.nombre}"  class="logo" style="text-align:left ;padding-left: 15px;"/>
+                                <p:commandLink value="#{Comentarios.usuario.nombre}" class="logo" style="text-align:left ;padding-left: 15px;text-decoration: none">
+                                    <f:param name="nombreAutor" value="#{Comentarios.usuario.nombre}" />
+                                </p:commandLink>
 
                                 <h:outputText value="Fecha:" />
                                 <h:outputText value="#{Comentarios.fechaDePublicacion}" style="text-align:left ;padding-left: 15px"/>

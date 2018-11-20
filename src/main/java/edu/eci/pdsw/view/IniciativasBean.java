@@ -82,39 +82,27 @@ public class IniciativasBean extends BasePageBean {
     }
     
     public void consultarIniciativasParecidas(){
+        iniciativasParecidas = new ArrayList<Iniciativa>();
         ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
         String[] palClavesAComparar = iniciativa.getPalabrasClave().split("\\W+");
         for(Iniciativa ini: iniciativas){
-            System.out.println(ini.getPalabrasClave());
+            
             String[] palClavesOtras = ini.getPalabrasClave().split("\\W+");
             List<String> pal1 = Arrays.asList(palClavesAComparar);
             List<String> pal2 = Arrays.asList(palClavesOtras);
-            pal1.remove(0);
-            pal2.remove(0);
-            for (int j = 0; j < pal1.size(); j++) {
-               System.out.println("palCompara antes de seguir ----------------------");
-                System.out.println(pal1.size());
-                System.out.println(pal1.get(j));
-            }
             
-            for (int j = 0; j < pal2.size(); j++) {
-                System.out.println("palCompara antes de seguir ----------------------");
-                System.out.println(pal2.size());
-                System.out.println(pal2.get(j));
-            }
             
             boolean seguir=true;
-            for (int i = 0; i < pal1.size() && seguir; i++) {
-                System.out.println("palCompara ----------------------");
-                System.out.println(pal1.size());
-                System.out.println(pal1.get(i));
-                for (int j = 0; j < pal2.size(); j++) {
-                    System.out.println("palClavesOtras ----------------------");
-                    System.out.println(pal2.size());
-                    System.out.println(pal2.get(i));
+            for (int i = 1; i < pal1.size() && seguir; i++) {
+                
+                for (int j = 1; j < pal2.size(); j++) {
+                    
                     if(levenshteinDistance(pal1.get(i), pal2.get(j)) < 3){
+                        
                         iniciativasParecidas.add(ini);
+                        
                         seguir=false;
+                        
                         break;
                     }
                 }
@@ -125,25 +113,29 @@ public class IniciativasBean extends BasePageBean {
     
     private int levenshteinDistance(String x, String y){
         int[][] dp = new int[x.length() + 1][y.length() + 1];
-        System.out.println("dentro de levenstein");
-        System.out.println(x);
-        System.out.println(y);
         for (int i = 0; i <= x.length(); i++) {
             for (int j = 0; j <= y.length(); j++) {
                 if (i == 0) {
                     dp[i][j] = j;
+                    
                 } else if (j == 0) {
                     dp[i][j] = i;
+                    
                 } else {
-                    
-                    
-                    int e= dp[i - 1][j - 1] + costOfSubstitution(x.charAt(i - 1),y.charAt(j - 1));
+                    int e = dp[i - 1][j - 1] + costOfSubstitution(x.charAt(i - 1), y.charAt(j - 1));
                     int temp = Math.min(e, dp[i - 1][j] + 1);
-                    int temp2 = Math.min(dp[i - 1][j] + 1,dp[i][j - 1] + 1);
-                    dp[i][j] = Math.min(temp,temp2);
+                    int temp2 = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1);
+                    dp[i][j] = Math.min(temp, temp2);
+                    
                 }
             }
-        }  
+        }
+         for (int i = 0; i <= x.length(); i++) {
+            for (int j = 0; j <= y.length(); j++) {
+                
+            }
+            
+        }
         return dp[x.length()][y.length()];
     }
     
