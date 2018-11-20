@@ -49,6 +49,10 @@
             
             <h:outputText id = "pagActualizarPerfil" value="busquedaUsuario" binding="#{pagina4}" style="display:none"/>  
             <p:commandButton id="ActualizarPerfil" value="Cambiar Perfil Usuarios" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina4.value)}" ></p:commandButton>
+            
+            <h:outputText id = "pagEstadisticas" value="estadisticas" binding="#{pagina3}" style="display:none"/>  
+            <p:commandButton id="verEstadisticas" value="Ver Estadisticas" rendered ="#{LoginBean.filtroProponente()}" actionListener="#{LoginBean.redirect(pagina3.value)}" ></p:commandButton>
+            
             <br></br>
             <br></br>
             <h:outputText id = "pagInicio" value="Inicio" binding="#{paginaInicio}" style="display:none"/>  

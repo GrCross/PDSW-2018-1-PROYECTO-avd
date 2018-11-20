@@ -13,10 +13,16 @@
         <div class="item">
             <img src="/resources/images/cabecera.jpg" class="imagen" />
         </div>
+        <p:outputLabel id="username" value="#{estadisticasBean.red()}" />
 
-            
-        <p:chart type="pie" model="#{StaticsBean.pieModel1}" style="width:400px;height:300px" />
+        <p:chart type="bar" model="#{estadisticasBean.modeloAreas}" style="height:300px"/>
+        <br /><br />
+
         <br />
-        <p:chart type="pie" model="#{StaticsBean.pieModel2}" style="width:400px;height:300px" />
-    </h:body>
+        <p:chart id="username2"        type="pie" model="#{estadisticasBean.pieModel2}" style="width:400px;height:300px" /> 
+
+
+
+
+    </h:body> 
 </html>
