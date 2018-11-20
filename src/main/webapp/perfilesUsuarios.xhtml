@@ -19,12 +19,12 @@
         <h:form id="iniciativaForm">
             
             
-            <p:panel id="informacionUsuario" header="Usuario" visible="true" >
+            <p:panel id="informacionUsuario" header="Usuario" visible="true" styleClass="my-panel ui-panel-titlebar">
             
                 <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">                    
-                    <p:outputLabel id="documento" value="documento:"/>     
-                    <p:outputLabel for="documento" value="#{LoginBean.usuario.documento}" />
-                    <p:message for="documento" />
+                    <p:outputLabel id="correo" value="Correo:"/>     
+                    <p:outputLabel for="correo" value="#{LoginBean.usuario.correo}" />
+                    <p:message for="correo" />
                     
                     <p:outputLabel id = "nombre" value="nombre: "/>     
                     <p:outputLabel for="nombre" value="#{LoginBean.usuario.nombre}" />
