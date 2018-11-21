@@ -8,6 +8,7 @@
         <title>Busqueda de usuarios</title>
 
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
     <h:body >
         <div class="item">
@@ -19,10 +20,28 @@
 
             <p:growl id="msgs" showDetail="true" /> 
             <p:megaMenu  style="margin-top:20px" class="menuBar">
-            	<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
-            		url="/faces/perfilesUsuarios.xhtml" icon="ui-icon-home" class="ui-menuitem"/>
-            	
-            </p:megaMenu>
+        	<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+        		url="/faces/perfilesUsuarios.xhtml" icon="fa fa-home" class="ui-menuitem"/>
+        	 <p:submenu label="Usuarios" icon="fa fa-search" style=" color:#FFFFFF;font-weight:bold;" styleClass="subMenu1">
+		        <p:column>
+		            <p:submenu style="background-color:#00d7c1;">
+		                <p:menuitem value="Actualizar Perfil Usuarios" url="/faces/busquedaUsuario.xhtml"  style=" color:#009c8c;"/>
+		            </p:submenu>
+		        </p:column>
+        	 </p:submenu>
+        	 
+        	 <p:submenu label="Iniciativas" icon="fa fa-check" style=" color:#FFFFFF;font-weight:bold;" >
+		        <p:column>
+		            <p:submenu style="background-color:#FFFFFF;">
+		                <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;"/>
+		                <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;"/>
+		                <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"/>
+		                <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
+		            </p:submenu>
+		        </p:column>
+        	 </p:submenu>
+        
+        </p:megaMenu>
             <br></br>
             <p:panel id="busquedaUsuario" visible="true" class="ui-panel-titlebar" >
             

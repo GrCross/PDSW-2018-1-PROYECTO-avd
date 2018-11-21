@@ -8,6 +8,7 @@
         <title>Consultar Iniciativas</title>
         
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
     <h:body>
         <div class="item">
@@ -18,30 +19,48 @@
                   
         <h:form id="iniciativaForm">
             <p:megaMenu  style="margin-top:20px" class="menuBar">
-         		<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
-         		url="/faces/perfilesUsuarios.xhtml" icon="ui-icon-home" class="ui-menuitem"/>
-         	
-         	</p:megaMenu>
+        	<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+        		url="/faces/perfilesUsuarios.xhtml" icon="fa fa-home" class="ui-menuitem"/>
+        	 <p:submenu label="Usuarios" icon="fa fa-search" style=" color:#FFFFFF;font-weight:bold;" styleClass="subMenu1">
+		        <p:column>
+		            <p:submenu style="background-color:#00d7c1;">
+		                <p:menuitem value="Actualizar Perfil Usuarios" url="/faces/busquedaUsuario.xhtml"  style=" color:#009c8c;"/>
+		            </p:submenu>
+		        </p:column>
+        	 </p:submenu>
+        	 
+        	 <p:submenu label="Iniciativas" icon="fa fa-check" style=" color:#FFFFFF;font-weight:bold;" >
+		        <p:column>
+		            <p:submenu style="background-color:#FFFFFF;">
+		                <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;"/>
+		                <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;"/>
+		                <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"/>
+		                <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
+		            </p:submenu>
+		        </p:column>
+        	 </p:submenu>
+        
+        </p:megaMenu>
             <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar" styleClass="my-panel ui-panel-titlebar">
             
                 <h:panelGrid columns="3" cellpadding="5" > 
                     <h:panelGrid columns="2" cellpadding="5" style="font-size: 20px;">                    
-                        <p:outputLabel value="Nombre Iniciativa: " />
+                        <p:outputLabel value="Nombre Iniciativa: " class="presentIni"/>
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.nombre}"/>
 
-                        <p:outputLabel value="Autor " />
+                        <p:outputLabel value="Autor: " class="presentIni"/>
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.autor.nombre}"/>
 
-                        <p:outputLabel value="Correo " />
+                        <p:outputLabel value="Correo: " class="presentIni" />
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.autor.correo}"/>
 
-                        <p:outputLabel value="Contenido " />
+                        <p:outputLabel value="Contenido: "  class="presentIni"/>
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.descripcion}"/>                    
 
-                        <p:outputLabel value="Estado " />
+                        <p:outputLabel value="Estado: "  class="presentIni"/>
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.estado}"/>
 
-                        <p:outputLabel value="Palabras Clave " />
+                        <p:outputLabel value="Palabras Clave "  class="presentIni"/>
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.palabrasClave}"/>
                     
                     </h:panelGrid>
@@ -51,7 +70,7 @@
 
                             
                             <p:outputLabel  value="contenido" />
-                            <p:inputTextarea id="contenido" rows="5" cols="30" counter="display" maxlength="300" counterTemplate="{0} characters remaining." autoResize="false" binding="#{contenido}" />
+                            <p:inputTextarea id="contenido" rows="5" cols="30" counter="display" maxlength="300" counterTemplate="{0} characters remaining." autoResize="false" binding="#{contenido}"  />
                             <h:outputText id="display" />
                             <p:commandButton id="comentar" update="iniciativaForm" value="Comentar" actionListener="#{iniciativasBean.agregarComentario(contenido.value,LoginBean.usuario,iniciativasBean.iniciativa.id)}"  icon="ui-icon-check">
                                 <p:resetInput target="contenido" />
@@ -83,7 +102,7 @@
                            
                 
                 
-                 <p:dataScroller value="#{iniciativasBean.consultarComentarios()}" var="Comentarios" chunkSize="10" class="ui-datascroller ui-datascroller-item">
+                 <p:dataScroller value="#{iniciativasBean.consultarComentarios()}" var="Comentarios" chunkSize="10" class="ui-datascroller ui-datascroller-item"  >
                      <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
                     <f:facet name="header">
                         Comentarios
@@ -98,12 +117,12 @@
                                 <h:outputText value="Autor:" />
                                 
                                 <p:commandLink value="#{Comentarios.usuario.nombre}" action="#{iniciativasBean.redirect(usuarioComment.value)}" 
-                                               actionListener="#{perfilUsuariosBean.setDocumentoUsuario(1111111)}" class="logo" style="text-align:left ;padding-left: 15px;text-decoration: none">
-                                    <f:param name="nombreAutor" value="#{perfilUsuariosBean.usuario.nombre}" />
+                                               actionListener="#{perfilUsuariosBean.setDocumentoUsuario(1111111)}" class="logo" style="text-align:left ;padding-left: 15px;text-decoration: none;font-weight:bold;color:#707070">
+                                    <f:param name="nombreAutor" value="#{perfilUsuariosBean.usuario.nombre}"  />
                                 </p:commandLink>
 
                                 <h:outputText value="Fecha:" />
-                                <h:outputText value="#{Comentarios.fechaDePublicacion}" style="text-align:left ;padding-left: 15px"/>
+                                <h:outputText value="#{Comentarios.fechaDePublicacion}" style="text-align:left ;padding-left: 15px; color:#878787"/>
                                 
                                 
 

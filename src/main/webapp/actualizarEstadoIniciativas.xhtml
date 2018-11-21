@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Busqueda de Iniciativas</title>
+        <title>Actualizar Estados Iniciativas</title>
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
     </h:head>
     <h:body>
@@ -16,10 +16,28 @@
         <h1></h1>
         <h:form id="actualizarEstadoIniciativaForm">
         	<p:megaMenu  style="margin-top:20px" class="menuBar">
-            	<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
-            		url="/faces/perfilesUsuarios.xhtml" icon="ui-icon-home" class="ui-menuitem"/>
-            	
-            </p:megaMenu>
+        	<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+        		url="/faces/perfilesUsuarios.xhtml" icon="fa fa-home" class="ui-menuitem"/>
+        	 <p:submenu label="Usuarios" icon="fa fa-search" style=" color:#FFFFFF;font-weight:bold;" styleClass="subMenu1">
+		        <p:column>
+		            <p:submenu style="background-color:#00d7c1;">
+		                <p:menuitem value="Actualizar Perfil Usuarios" url="/faces/busquedaUsuario.xhtml"  style=" color:#009c8c;"/>
+		            </p:submenu>
+		        </p:column>
+        	 </p:submenu>
+        	 
+        	 <p:submenu label="Iniciativas" icon="fa fa-check" style=" color:#FFFFFF;font-weight:bold;" >
+		        <p:column>
+		            <p:submenu style="background-color:#FFFFFF;">
+		                <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;"/>
+		                <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;"/>
+		                <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"/>
+		                <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
+		            </p:submenu>
+		        </p:column>
+        	 </p:submenu>
+        
+        </p:megaMenu>
         
         	<p:growl id="msgs" showDetail="true" /> 
             <p:panel id="busquedaIniciativa" header="Cambiar Iniciativa" visible="true" class="ui-panel-titlebar" styleClass="my-panel ui-panel-titlebar">

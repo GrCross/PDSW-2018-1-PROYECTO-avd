@@ -5,9 +5,10 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Consultar Iniciativas</title>
+        <title>Perfil de Usuarios</title>
         
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
     <h:body >
     
@@ -19,7 +20,7 @@
         <h:form id="iniciativaForm">
             
             
-            <p:panel id="informacionUsuario" header="Usuario" visible="true" styleClass="my-panel ui-panel-titlebar">
+            <p:panel id="informacionUsuario" header="Usuario" visible="true" styleClass="my-panel ui-panel-titlebar infoUsuario">
             
                 <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">                    
                     <p:outputLabel id="correo" value="Correo:"/>     
@@ -34,6 +35,7 @@
             
                
             </p:panel>
+            <br></br> 
             <br></br> 
             <h:outputText id = "pagConsultarIniciativas" value="consultarIniciativas" binding="#{pagina1}" style="display:none"/>  
             <p:commandButton id="consultarIniciativas" value="Consultar iniciativas" >

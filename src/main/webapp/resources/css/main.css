@@ -76,15 +76,20 @@
 
 .menuBar{
 	background-color:#009C8C;
-	color:white;	
+	color:#FFFFFF;
 }
 
-.ui-menuitem{
+.subMenu .ui-widget-content a{
+	background-color:#009C8C;
+	color:#FFFFFF;
+}
+
+.subMenu1.ui-menuitem-text{
 	color: #FFFFFF;
 }
 
 .fa { 
-        color: orange;
+        color: white;
     }
     
 .whiteIcon .ui-icon {
@@ -96,4 +101,18 @@
      background: #FFFFFF;
      color: #009C8C;
      font-size: 25px;
+}
+
+.presentIni{
+	color: #878787;
+}
+
+.comentarios .ui-panel-titlebar {
+     background: #FFFFFF;
+     color: #009C8C;
+     font-size: 15px;
+}
+
+.infoUsuario{
+	float:left;
 }
