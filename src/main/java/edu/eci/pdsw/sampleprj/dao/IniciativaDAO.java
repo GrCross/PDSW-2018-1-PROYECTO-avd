@@ -34,4 +34,6 @@ public interface IniciativaDAO {
      */
     public void updateEstadoIniciativa(String estado, int id) throws PersistenceException;
     
+    public List<Iniciativa> iniciativasUnUsuario (long documento) throws PersistenceException;
+    
 }

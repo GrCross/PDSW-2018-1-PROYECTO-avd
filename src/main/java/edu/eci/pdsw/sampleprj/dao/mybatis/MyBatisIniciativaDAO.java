@@ -48,6 +48,11 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
         System.out.println("palabrasClave "+iniciativaMapper.buscarIniciativas().get(0).getPalabrasClave());
         return iniciativaMapper.buscarIniciativas();
     }
+
+    @Override
+    public List<Iniciativa> iniciativasUnUsuario(long documento) throws PersistenceException {
+        return iniciativaMapper.iniciativasUnUsuario(documento);
+    }
             
     
 }

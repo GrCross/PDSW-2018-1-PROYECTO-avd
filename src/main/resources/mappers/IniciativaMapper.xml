@@ -66,5 +66,26 @@
         FROM iniciativas as i,usuarios as u WHERE u.documento = i.usuarios_documento;
     </select>
    
+   
+   
+    <select id="iniciativasUnUsuario" parameterType="map" resultMap="IniciativaResult"> 
+        SELECT 
+            i.id,
+            i.estados_idEstado,
+            i.nombre,
+            i.descripcion,
+            i.fechaCreacion,
+            i.area,
+            i.palabrasclave,
+            u.documento as user_documento,
+            u.nombre as user_nombre,
+            u.area as user_area,
+            u.telefono as user_telefono,
+            u.correo as user_correo,
+            u.rol as user_rol
+        FROM iniciativas as i,usuarios as u WHERE u.documento = i.usuarios_documento and u.documento=#{doc};
+    </select>
+   
+   
   </mapper>
 

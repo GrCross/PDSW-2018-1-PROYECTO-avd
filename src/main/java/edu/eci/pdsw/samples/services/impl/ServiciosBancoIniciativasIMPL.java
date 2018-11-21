@@ -152,6 +152,11 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
         return max+1;
     }
 
+    @Override
+    public List<Iniciativa> iniciativasUnUsuario(long documento) throws Exception {
+        return iniciativaDAO.iniciativasUnUsuario(documento);
+    }
+
  
     
     

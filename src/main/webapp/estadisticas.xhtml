@@ -42,11 +42,11 @@
          <br /><br />
         <p:outputLabel id="username" value="#{estadisticasBean.red()}" />
 
-        <p:chart type="bar" model="#{estadisticasBean.modeloAreas}" style="height:300px"/>
+        <p:chart type="bar" model="#{estadisticasBean.modeloAreas}" styleClass= "estadisticas" style="height:300px;" responsive="true" />
         <br /><br />
 
         <br />
-        <p:chart id="username2"        type="pie" model="#{estadisticasBean.pieModel2}" style="width:400px;height:300px" /> 
+        <p:chart id="username2"        type="pie" model="#{estadisticasBean.pieModel2}" style="width:400px;height:300px" responsive="true" /> 
 
 
 

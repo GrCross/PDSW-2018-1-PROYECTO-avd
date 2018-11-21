@@ -73,6 +73,8 @@ public class IniciativasUsuariosBean extends BasePageBean {
 		
     }
     
+    
+    
     public void consultarIniciativas(){
         ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
         ArrayList<Iniciativa> iniciativasPalClaves = new ArrayList<Iniciativa>();

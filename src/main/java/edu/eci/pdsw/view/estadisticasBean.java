@@ -202,6 +202,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
     private void createModeloAreas() {
         modeloAreas = new BarChartModel();
         ChartSeries areas = new ChartSeries();
+        areas.setLabel("Numero de Proyectos");
         Hashtable<String, Integer> tablaAreas = new Hashtable<String, Integer>();
 
         for (Iniciativa in : iniciativas) {

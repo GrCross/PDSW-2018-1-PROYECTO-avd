@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Perfil de Usuarios</title>
+        <title>Perfil Usuario Consultado</title>
 
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -18,18 +18,46 @@
 
         <h1></h1>        
         <h:form id="iniciativaForm">
+            
+            <p:megaMenu  style="margin-top:20px" class="menuBar">
+            <p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+                        url="/faces/perfilesUsuarios.xhtml" icon="fa fa-home" class="ui-menuitem"/>
+            <p:submenu label="Usuarios" icon="fa fa-search"  styleClass="subMenu1">
+                <p:column>
+                    <p:submenu style="background-color:#00d7c1;">
+                        <p:menuitem value="Actualizar Perfil Usuarios" url="/faces/busquedaUsuario.xhtml"  style=" color:#009c8c;"/>
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
+
+            <p:submenu label="Iniciativas" icon="fa fa-check"  >
+                <p:column>
+                    <p:submenu style="background-color:#FFFFFF;">
+                        <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;" actionListener="#{iniciativasBean.setpalabrasClave()}"/>
+                        <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;"/>
+                        <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"/>
+                        <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
+
+        </p:megaMenu>       
 
 
-            <p:panel id="informacionUsuario" header="Usuario" visible="true" styleClass="my-panel ui-panel-titlebar infoUsuario">
+            <p:panel id="informacionUsuario" header="Usuario" visible="true" styleClass="visitado ui-panel-titlebar my-panel infoUsuario">
                 <img src="/resources/images/1.jpg" class="logo" style="width: 70px; float: left"/> 
-                <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">                    
+                
+                
+                <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1"> 
+                    
+                    <p:outputLabel id = "nombre" value="nombre: "/>     
+                    <p:outputLabel for="nombre" value="#{LoginBean.visitado.nombre}" />
+                    <p:message for="nombre"/>
                     <p:outputLabel id="correo" value="Correo:"/>     
-                    <p:outputLabel for="correo" value="#{LoginBean.usuario.correo}" />
+                    <p:outputLabel for="correo" value="#{LoginBean.visitado.correo}" />
                     <p:message for="correo" />
 
-                    <p:outputLabel id = "nombre" value="nombre: "/>     
-                    <p:outputLabel for="nombre" value="#{LoginBean.usuario.nombre}" />
-                    <p:message for="nombre"/>
+                    
 
                 </h:panelGrid>
 
@@ -37,36 +65,16 @@
             </p:panel>
             <br></br> 
             <br></br> 
-            <h:outputText id = "pagConsultarIniciativas" value="consultarIniciativas" binding="#{pagina1}" style="display:none"/>  
-            <p:commandButton id="consultarIniciativas" value="Consultar iniciativas" >
-                <f:actionListener binding="#{insertIniciativasBean.consultarIniciativas()}"/>
-                <f:actionListener binding="#{LoginBean.redirect(pagina1.value)}"/>
-            </p:commandButton>
-
-            <h:outputText id = "pagActualizarEstado" value="actualizarEstadoIniciativas" binding="#{pagina2}" style="display:none"/>  
-            <p:commandButton id="ActualizarEstados" value="Actualizar Estados" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina2.value)}" ></p:commandButton>
-
-            <h:outputText id = "pagRegistrarIniciativa" value="registrarIniciativas" binding="#{pagina3}" style="display:none"/>  
-            <p:commandButton id="RegistrarIniciativa" value="registrar Iniciativas" rendered ="#{LoginBean.filtroProponente()}" actionListener="#{LoginBean.redirect(pagina3.value)}" ></p:commandButton>
-
-            <h:outputText id = "pagActualizarPerfil" value="busquedaUsuario" binding="#{pagina4}" style="display:none"/>  
-            <p:commandButton id="ActualizarPerfil" value="Cambiar Perfil Usuarios" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina4.value)}" ></p:commandButton>
-
-            <h:outputText id = "pagEstadisticas" value="estadisticas" binding="#{pagina5}" style="display:none"/>  
-            <p:commandButton id="verEstadisticas" value="Ver Estadisticas" rendered ="#{LoginBean.filtroProponente()}" actionListener="#{LoginBean.redirect(pagina5.value)}" ></p:commandButton>
-
+            <br></br> 
+            <br></br> 
             <br></br>
             <br></br>
-            <h:outputText id = "pagInicio" value="Inicio" binding="#{paginaInicio}" style="display:none"/>  
-            <p:commandButton id="CerrarSesion" value="Cerrar Sesión"  actionListener="#{LoginBean.redirect(paginaInicio.value)}" ></p:commandButton>
-            <br></br> 
-            
-
-            <br></br> 
-            <br></br> 
-            <br></br> 
-            <p:panel header="Mis Iniciativas" styleClass="my-panel ui-panel-titlebar infoUsuario">
-                <p:dataTable id="iniciativaTable" var="Iniciativa" value="#{LoginBean.iniciativasUnUsuario()}" rows="10" widgetVar="IniciativasTable" 
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <p:panel header="Iniciativas Propuestas" styleClass="visitado ui-panel-titlebar infoUsuario my-panel">
+                <p:dataTable id="iniciativaTable" var="Iniciativa" value="#{LoginBean.iniciativasUnVisitado()}" rows="10" widgetVar="IniciativasTable" 
                              scrollable="true"
                              stickyHeader="true" style="width: 800px">
 

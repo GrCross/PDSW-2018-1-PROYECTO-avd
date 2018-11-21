@@ -48,6 +48,9 @@ public interface ServiciosBancoIniciativas {
         public abstract ArrayList<Comentario> consultarComentarios(int id) throws Exception;
         
         public abstract long consultarMax() throws Exception;
+        
+        public abstract List<Iniciativa> iniciativasUnUsuario (long documento) throws Exception;
+        
 
         
 }

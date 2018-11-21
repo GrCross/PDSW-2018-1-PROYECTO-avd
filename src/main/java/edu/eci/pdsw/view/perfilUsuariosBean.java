@@ -33,6 +33,7 @@ public class perfilUsuariosBean extends BasePageBean {
     
     private long documentoUsuario = 88888;
     private Usuario usuario;
+    private Usuario visitado;
     
     
     

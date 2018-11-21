@@ -8,12 +8,14 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import com.google.inject.Inject;
+import edu.eci.pdsw.samples.entities.Iniciativa;
 
 import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
 import edu.eci.pdsw.samples.services.impl.ServiciosBancoIniciativasIMPL;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +26,7 @@ public class LoginBean extends BasePageBean implements Serializable {
     private String username;
     private String password;
     private Usuario usuario;
+    private Usuario visitado;
     
     
     @Inject
@@ -57,6 +60,14 @@ public class LoginBean extends BasePageBean implements Serializable {
     	
     	
     } 
+    
+    public List<Iniciativa> iniciativasUnUsuario () throws Exception {
+        return serviciosImpl.iniciativasUnUsuario(usuario.getDocumento());
+    }
+    
+    public List<Iniciativa> iniciativasUnVisitado() throws Exception {
+        return serviciosImpl.iniciativasUnUsuario(visitado.getDocumento());
+    }
     
     public void redirect(String pagina){
         try {
@@ -138,6 +149,16 @@ public class LoginBean extends BasePageBean implements Serializable {
     public void setPassword(String senha) {
         this.password = senha;
     }
+
+    public Usuario getVisitado() {
+        return visitado;
+    }
+
+    public void setVisitado(Usuario visitado) {
+        this.visitado = visitado;
+    }
+    
+    
 
   
 
