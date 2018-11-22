@@ -9,6 +9,9 @@
          
          <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+         <f:metadata>
+ 			 <f:viewAction action="#{insertIniciativasBean.limpiar()}" />
+		</f:metadata>
     </h:head>
     <h:body>
     	<div class="item">
@@ -18,29 +21,24 @@
         <h1></h1>
         
         <h:form id="IniciativaForm">
-        <p:megaMenu  style="margin-top:20px" class="menuBar">
-        	<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+        <p:menubar  style="margin-top:20px" class="menuBar">
+        		<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
         		url="/faces/perfilesUsuarios.xhtml" icon="fa fa-home" class="ui-menuitem"/>
-        	 <p:submenu label="Usuarios" icon="fa fa-search" style=" color:#FFFFFF;font-weight:bold;" styleClass="subMenu1">
-		        <p:column>
-		            <p:submenu style="background-color:#00d7c1;">
-		                <p:menuitem value="Actualizar Perfil Usuarios" url="/faces/busquedaUsuario.xhtml"  style=" color:#009c8c;"/>
-		            </p:submenu>
-		        </p:column>
-        	 </p:submenu>
+        	 	<p:submenu label="Usuarios" icon="fa fa-search"  styleClass="subMenu a.ui-menuitem-link" rendered ="#{LoginBean.filtroAdministrador()}">
+		        	<p:menuitem value="Actualizar Perfil Usuarios" url="/faces/busquedaUsuario.xhtml"  style=" color:#009c8c;"/>
+		           
+        		</p:submenu>
         	 
-        	 <p:submenu label="Iniciativas" icon="fa fa-check" style=" color:#FFFFFF;font-weight:bold;" >
-		        <p:column>
-		            <p:submenu style="background-color:#FFFFFF;">
-		                <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;"/>
-		                <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;"/>
-		                <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"/>
-		                <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
-		            </p:submenu>
-		        </p:column>
+        	 <p:submenu label="Iniciativas" icon="fa fa-check" styleClass="subMenu a.ui-menuitem-link" >
+		        
+                <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;" />
+                <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;" rendered ="#{LoginBean.filtroAdministrador()}"/>
+                <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"  rendered ="#{LoginBean.filtroProponente()}"/>
+                <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
+            
         	 </p:submenu>
         
-        </p:megaMenu>
+        </p:menubar> 
          <p:growl id="msgs" showDetail="true" /> 
             <p:panel id="registrar_Tabla" header="Registrar Iniciativas" visible="true" class="ui-panel-titlebar" styleClass="my-panel ui-panel-titlebar">
                
@@ -61,7 +59,7 @@
 		            <p:message for="autor" />
 		            
 		            <p:outputLabel for="descripcion" value="Descripción" />
-		            <p:inputText id="descripcion" binding="#{descripcion}" required="true" />
+		            <p:inputTextarea id="descripcion" binding="#{descripcion}" required="true" rows="5" cols="30" autoResize="false"/>
 		            <p:message for="descripcion" />
 		            
 	

@@ -97,7 +97,7 @@ public class IniciativasBean extends BasePageBean {
                 
                 for (int j = 1; j < pal2.size(); j++) {
                     
-                    if(levenshteinDistance(pal1.get(i), pal2.get(j)) < 3){
+                    if(levenshteinDistance(pal1.get(i), pal2.get(j)) < 3 && !(ini.getId()==iniciativa.getId())){
                         
                         iniciativasParecidas.add(ini);
                         

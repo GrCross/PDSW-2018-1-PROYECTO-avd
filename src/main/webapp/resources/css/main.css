@@ -78,18 +78,17 @@
 	width: 50%;
 }
 
-.menuBar{
+.menuBar {
+  
 	background-color:#009C8C;
 	color:#FFFFFF;
 }
 
-.subMenu .ui-widget-content a{
-	background-color:#009C8C;
-	color:#FFFFFF;
-}
 
-.subMenu1.ui-menuitem-text{
+
+.subMenu a.ui-menuitem-link {
 	color: #FFFFFF;
+	font-weight:bold;
 }
 
 .fa { 

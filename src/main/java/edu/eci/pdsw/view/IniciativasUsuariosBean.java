@@ -18,7 +18,13 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.persistence.PersistenceException;
+import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -46,6 +52,15 @@ public class IniciativasUsuariosBean extends BasePageBean {
     
     @Inject
     private ServiciosBancoIniciativas serviciosBancoIniciativa; 
+    
+    public void limpiar(){
+
+        //Antes de  hacer  render se llama a este metodo
+        //Limpiara los objetos o propiedades
+    	palabrasClave.clear();
+    	palabrasClaveConsultar.clear();
+    	System.out.println("lo llameeeee---------------------------");
+      }
     
     public void registrarIniciativa (String nombre, String descripcion,String area,long documento) throws Exception {
          

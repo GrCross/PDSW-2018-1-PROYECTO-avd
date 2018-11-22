@@ -53,12 +53,16 @@
             <p:commandButton id="ActualizarPerfil" value="Cambiar Perfil Usuarios" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina4.value)}" ></p:commandButton>
 
             <h:outputText id = "pagEstadisticas" value="estadisticas" binding="#{pagina5}" style="display:none"/>  
-            <p:commandButton id="verEstadisticas" value="Ver Estadisticas" rendered ="#{LoginBean.filtroProponente()}" actionListener="#{LoginBean.redirect(pagina5.value)}" ></p:commandButton>
+            <p:commandButton id="verEstadisticas" value="Ver Estadisticas"  actionListener="#{LoginBean.redirect(pagina5.value)}" ></p:commandButton>
 
             <br></br>
             <br></br>
             <h:outputText id = "pagInicio" value="Inicio" binding="#{paginaInicio}" style="display:none"/>  
-            <p:commandButton id="CerrarSesion" value="Cerrar Sesión"  actionListener="#{LoginBean.redirect(paginaInicio.value)}" ></p:commandButton>
+            <p:commandButton id="CerrarSesion" value="Cerrar Sesión" >
+            	<f:actionListener binding="#{LoginBean.setUsuario(null)}"/>
+                <f:actionListener binding="#{LoginBean.redirect(paginaInicio.value)}"/>
+               
+            </p:commandButton>
             <br></br> 
             
 
@@ -91,7 +95,9 @@
 
                 </p:dataTable>
             </p:panel>
-
+			<br></br> 
+            <br></br> 
+            <br></br> 
 
             <p:panel id="informacionEscuela"  visible="true" class="informacion footerPerfil">
                 <h:panelGrid columns="1" cellpadding="5" class="letraInfo">                    
