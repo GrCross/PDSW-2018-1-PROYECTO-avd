@@ -59,9 +59,11 @@
 		            <p:message for="autor" />
 		            
 		            <p:outputLabel for="descripcion" value="Descripción" />
-		            <p:inputTextarea id="descripcion" binding="#{descripcion}" required="true" rows="5" cols="30" autoResize="false"/>
+                            <p:inputTextarea id="descripcion" binding="#{descripcion}" required="true" rows="10" cols="40" 
+                                             counter="display" maxlength="500" counterTemplate="{0} caracteres restantes."/>
+                            <br/>
+                            <h:outputText id="display" />
 		            <p:message for="descripcion" />
-		            
 	
 		        </h:panelGrid>
 		        
