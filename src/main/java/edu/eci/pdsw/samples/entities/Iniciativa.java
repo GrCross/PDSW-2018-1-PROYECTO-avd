@@ -46,9 +46,19 @@ public class Iniciativa implements Serializable{
         this.estado = Estado.valueOf(estado2);
         this.nombre = nombre2;
         this.descripcion = descripcion2;
-        this.fechaCreacion = now;  
-        
-        
+        this.fechaCreacion = now;
+        this.palabrasClave = palabrasClave2;
+        this.autor = usuario;
+        this.area = area;
+    }
+    
+    public Iniciativa(int id2, Estado estado2, String nombre2, String descripcion2, Date now,
+			String palabrasClave2, Usuario usuario,String area) {
+    	this.id = id2;
+        this.estado = estado2;
+        this.nombre = nombre2;
+        this.descripcion = descripcion2;
+        this.fechaCreacion = now;
         this.palabrasClave = palabrasClave2;
         this.autor = usuario;
         this.area = area;

@@ -40,7 +40,17 @@ public class Usuario implements Serializable{
         this.intereses = intereses;
 
     }
-    
+    public Usuario(String nombre, long documento, String area, long telefono, String correo, Rol rol) {   
+        this.nombre = nombre;
+        this.documento = documento;
+        this.telefono = telefono;
+        this.area = area;
+        this.correo = correo;
+        this.rol = rol;
+        this.intereses = new ArrayList<Interes>();
+
+    }
+
     public Usuario(String nombre, long documento, String area, long telefono, String correo, String rol) {   
         this.nombre = nombre;
         this.documento = documento;
