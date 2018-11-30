@@ -28,4 +28,10 @@ public interface IniciativaMapper {
     
     public List<Iniciativa> iniciativasUnUsuario (@Param("doc") long documento);
     
+    
+    //public void cambiarInformacionIniciativa(@Param("descripcion") String descripcion, @Param("palabrasclave") String palabrasclave,@Param("id") int id);
+    public void cambiarInformacionIniciativa(@Param("descripcion") String descripcion,@Param("id") int id);
+    
+    public Iniciativa consultarIniciativa(@Param("id") int id);
+   
 }

@@ -88,8 +88,7 @@
                         <p:commandButton id="Ver" update="iniciativaTable" value="ver" >
 
                             <f:actionListener binding="#{iniciativasBean.redirect(pagina6.value)}"/>
-                            <f:actionListener binding="#{iniciativasBean.setIniciativa(Iniciativa)}"/>      
-                            <f:actionListener binding="#{iniciativasBean.setpalabrasClave()}"/>  
+                            <f:actionListener binding="#{iniciativasBean.setIniciativa(Iniciativa)}"/>     
                         </p:commandButton>
                     </p:column> 
 
@@ -99,32 +98,7 @@
             <br></br> 
             <br></br> 
 
-            <p:panel id="informacionEscuela"  visible="true" class="informacion footerPerfil">
-                <h:panelGrid columns="1" cellpadding="5" class="letraInfo">                    
-                    Escuela Colombiana de Ingeniería Julio Garavito
-                    <br></br>
-                    Ak 45 No. 205 - 59 Autopista Norte, costado occidental.
-                    <br></br>
-                    Contact Center: 57(1) 668 3600
-                    <br></br>
-                    Línea Nacional Gratuita: 018000112668
-                    <br></br>
-                    www.escuelaing.edu.co
-                    <br></br>
-                    Bogotá - Colombia
-                    <br></br>
-                    <br></br>
-
-                    Personería Jurídica 086 de enero 19 de 1973.
-                    <br></br>
-                    Acreditación institucional de alta calidad. Res. 20273 del 27 de noviembre de 2014. (Vigencia 4 años).
-                    <br></br>
-                    Vigilada Mineducación.
-
-                </h:panelGrid>
-
-
-            </p:panel>
+            
 
         </h:form>   
     </h:body>

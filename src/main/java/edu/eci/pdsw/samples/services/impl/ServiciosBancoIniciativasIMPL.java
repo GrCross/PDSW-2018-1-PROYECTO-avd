@@ -156,6 +156,18 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     public List<Iniciativa> iniciativasUnUsuario(long documento) throws Exception {
         return iniciativaDAO.iniciativasUnUsuario(documento);
     }
+    
+    @Override
+    public void cambiarInformacionIniciativa(String descripcion, int id) {    	
+    	iniciativaDAO.cambiarInformacionIniciativa(descripcion,id);
+    	
+    }
+
+	@Override
+	public Iniciativa consultarIniciativa(int id) throws Exception {
+		
+		return iniciativaDAO.consultarIniciativa(id);
+	}
 
  
     

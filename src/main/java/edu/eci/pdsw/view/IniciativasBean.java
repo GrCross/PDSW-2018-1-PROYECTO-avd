@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import java.lang.Math.*;
 import java.util.Arrays;
 
+import javax.el.ELContext;
 import javax.faces.application.FacesMessage;
 
 import javax.faces.bean.ManagedBean;
@@ -42,6 +43,8 @@ public class IniciativasBean extends BasePageBean {
     private Iniciativa iniciativa;
     private ArrayList<Comentario> comentarios;
     private ArrayList<Iniciativa> iniciativasParecidas;
+    private Usuario autor;
+    
 
     public ArrayList<Iniciativa> getIniciativasParecidas() {
         return iniciativasParecidas;
@@ -165,8 +168,70 @@ public class IniciativasBean extends BasePageBean {
     public void setComentarios(ArrayList<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
+    
+    public boolean habilitado() {
+    	if(iniciativa.getEstado().equals(Estado.En_Espera)) {
+    		return true;
+    	}
+    	return false;
+    }
+    
+    
+    
+    public boolean esCreador(Usuario user) {
+    	autor=user;
+    	System.out.println(autor.getCorreo());
+    	
+    	/*ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+    	LoginBean loginBean 
+    	    = (LoginBean) FacesContext.getCurrentInstance().getApplication()
+    	    .getELResolver().getValue(elContext, null, "LoginBean");*/
+    	
+    	if(iniciativa.getAutor().getCorreo()==autor.getCorreo() || autor.getRol().equals(Rol.ADMINISTRADOR)) {
+    		System.out.println("siiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+    		return true;
+    	}
+    	System.out.println("nooooooooooooooooooooooooo");
+    	return false;
+    }
+    
+    
+    
+    
+    
+    public void modificar(String desc) {
+    
+    	
+    	if(desc==null) {
+    		desc=iniciativa.getDescripcion();
+    	}
+    	
+    	try {
+    		if(iniciativa.getEstado().equals(Estado.En_Espera)) {
+    			serviciosBancoIniciativa.cambiarInformacionIniciativa(desc,iniciativa.getId());
+    		}
+    		
+    		System.out.println(iniciativa.getDescripcion());
+    		setIniciativa(serviciosBancoIniciativa.consultarIniciativa(iniciativa.getId()));
+	
+    		
+    		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	
+    }
+
+	public Usuario getAutor() {
+		return autor;
+	}
+
+	public void setAutor(Usuario autor) {
+		this.autor = autor;
+	}
 
     
-    
+	
 
 }

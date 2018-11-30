@@ -10,13 +10,14 @@
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
+    
     <h:body>
         <div class="item">
             <img src="/resources/images/cabecera.jpg" class="imagen" />
         </div>
 
         <h1></h1>  
-
+		
         <h:form id="iniciativaForm">
              <p:menubar  style="margin-top:20px" class="menuBar">
         		<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
@@ -59,6 +60,8 @@
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.palabrasClave}"/>
 
                     </h:panelGrid>
+                    
+                    
 
                     <p:panel id="basic" header="Agregar comentario" style="margin-bottom:20px">
                         <h:panelGrid columns="1" cellpadding="2"  class="ui-panelGrid-Datos1">
@@ -76,6 +79,41 @@
                             </p:messages>
                         </h:panelGrid>
                     </p:panel>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <p:panel id="cambios" header="Cambios Iniciativa " style="margin-bottom:20px" rendered="#{iniciativasBean.esCreador(LoginBean.usuario)}">
+                        <h:panelGrid columns="1" cellpadding="3"  class="ui-panelGrid-Datos1">
+
+
+                            <p:outputLabel  value="Descripcion" />
+                            <p:inputTextarea id="cDescripcion" rows="5" cols="30" autoResize="false" binding="#{cDescripcion}"  />  
+                            
+                            
+                            <p:commandButton id="Cambiar" update="iniciativaForm" value="Cambiar" actionListener="#{iniciativasBean.modificar(cDescripcion.value)}"  icon="ui-icon-check">
+                            <p:resetInput target="cDescripcion" />
+                                <p:ajax resetValues="true" />    
+                            </p:commandButton>
+                            <p:messages id="messages2" showDetail="true" closable="true">
+                                <p:autoUpdate />
+                            </p:messages>
+                        </h:panelGrid>
+                    </p:panel>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     <p:commandButton id="movieBtn" value="Iniciativas similares" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{iniciativasBean.consultarIniciativasParecidas()}"/>
                     <p:overlayPanel id="moviePanel" for="movieBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
                         <p:dataTable var="IniciativaParecida" value="#{iniciativasBean.iniciativasParecidas}" rows="5" paginator="true">
