@@ -30,7 +30,9 @@ public interface IniciativaMapper {
     
     
     //public void cambiarInformacionIniciativa(@Param("descripcion") String descripcion, @Param("palabrasclave") String palabrasclave,@Param("id") int id);
-    public void cambiarInformacionIniciativa(@Param("descripcion") String descripcion,@Param("id") int id);
+    public void cambiarDescripcionIniciativa(@Param("descripcion") String descripcion,@Param("id") int id);
+    
+    public void cambiarNombreIniciativa(@Param("nombre") String nombre,@Param("id") int id);
     
     public Iniciativa consultarIniciativa(@Param("id") int id);
    

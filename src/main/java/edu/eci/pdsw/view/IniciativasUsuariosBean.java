@@ -59,7 +59,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
         //Limpiara los objetos o propiedades
     	palabrasClave.clear();
     	palabrasClaveConsultar.clear();
-    	System.out.println("lo llameeeee---------------------------");
+    	
       }
     
     public void registrarIniciativa (String nombre, String descripcion,String area,long documento) throws Exception {

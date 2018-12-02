@@ -11,7 +11,6 @@ import edu.eci.pdsw.samples.entities.Estado;
 import edu.eci.pdsw.samples.entities.Iniciativa;
 import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
-import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,10 +18,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.lang.Math.*;
 import java.util.Arrays;
 
-import javax.el.ELContext;
 import javax.faces.application.FacesMessage;
 
 import javax.faces.bean.ManagedBean;
@@ -44,15 +41,28 @@ public class IniciativasBean extends BasePageBean {
     private ArrayList<Comentario> comentarios;
     private ArrayList<Iniciativa> iniciativasParecidas;
     private Usuario autor;
+    private ArrayList<String> palabrasClave;
+
+    public ArrayList<String> getPalabrasClave() {
+        return palabrasClave;
+    }
+
+    public void setPalabrasClave(ArrayList<String> palabrasClave) {
+        this.palabrasClave = palabrasClave;
+    }
+
+    public void procesarPalabrasClave(){
+        System.out.println("holaaaaaaaa");
+        String[] tempClaves = iniciativa.getPalabrasClave().split(",|\\{|\\}");
+        palabrasClave =new ArrayList( Arrays.asList(tempClaves));
+        palabrasClave.remove(0);
+        for(String s: palabrasClave){
+            s = s.replace("\"", "");
+            s = s.replace("\"", "");
+        }
+    }
     
 
-    public ArrayList<Iniciativa> getIniciativasParecidas() {
-        return iniciativasParecidas;
-    }
-
-    public void setIniciativasParecidas(ArrayList<Iniciativa> iniciativasParecidas) {
-        this.iniciativasParecidas = iniciativasParecidas;
-    }
     
     
 
@@ -85,7 +95,7 @@ public class IniciativasBean extends BasePageBean {
     }
     
     public void consultarIniciativasParecidas(){
-        iniciativasParecidas = new ArrayList<Iniciativa>();
+        iniciativasParecidas = new ArrayList<>();
         ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
         String[] palClavesAComparar = iniciativa.getPalabrasClave().split("\\W+");
         for(Iniciativa ini: iniciativas){
@@ -153,23 +163,7 @@ public class IniciativasBean extends BasePageBean {
         return serviciosBancoIniciativa.consultarComentarios(iniciativa.getId());
     }
     
-    public Iniciativa getIniciativa() {
-        return iniciativa;
-    }
-
-    public void setIniciativa(Iniciativa iniciativa) {
-        this.iniciativa = iniciativa;
-    }
-    
-    public ArrayList<Comentario> getComentarios() {
-        return comentarios;
-    }
-
-    public void setComentarios(ArrayList<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
-    
-    public boolean habilitado() {
+    public boolean iniciativaHabilitada() {
     	if(iniciativa.getEstado().equals(Estado.En_Espera)) {
     		return true;
     	}
@@ -187,11 +181,11 @@ public class IniciativasBean extends BasePageBean {
     	    = (LoginBean) FacesContext.getCurrentInstance().getApplication()
     	    .getELResolver().getValue(elContext, null, "LoginBean");*/
     	
-    	if(iniciativa.getAutor().getCorreo()==autor.getCorreo() || autor.getRol().equals(Rol.ADMINISTRADOR)) {
-    		System.out.println("siiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-    		return true;
+    	if( iniciativa.getAutor().getCorreo().equals(autor.getCorreo()) || autor.getRol().equals(Rol.ADMINISTRADOR)) {
+    		if(iniciativaHabilitada()){
+                    return true;
+                }
     	}
-    	System.out.println("nooooooooooooooooooooooooo");
     	return false;
     }
     
@@ -199,27 +193,33 @@ public class IniciativasBean extends BasePageBean {
     
     
     
-    public void modificar(String desc) {
-    
+    public void modificarDescripcion(String descripcion) {
     	
-    	if(desc==null) {
-    		desc=iniciativa.getDescripcion();
+    	if(descripcion==null) {
+    		descripcion=iniciativa.getDescripcion();
     	}
     	
     	try {
-    		if(iniciativa.getEstado().equals(Estado.En_Espera)) {
-    			serviciosBancoIniciativa.cambiarInformacionIniciativa(desc,iniciativa.getId());
-    		}
-    		
-    		System.out.println(iniciativa.getDescripcion());
+                serviciosBancoIniciativa.cambiarDescripcionIniciativa(descripcion,iniciativa.getId());
     		setIniciativa(serviciosBancoIniciativa.consultarIniciativa(iniciativa.getId()));
-	
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    public void modificarNombre(String nombre) {
+    	if(nombre==null) {
+    		nombre=iniciativa.getNombre();
+    	}
+    	try {
+                serviciosBancoIniciativa.cambiarNombreIniciativa(nombre,iniciativa.getId());
+    		setIniciativa(serviciosBancoIniciativa.consultarIniciativa(iniciativa.getId()));
     		
-    		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     	
     }
 
@@ -232,6 +232,28 @@ public class IniciativasBean extends BasePageBean {
 	}
 
     
-	
+    public Iniciativa getIniciativa() {
+        return iniciativa;
+    }
 
+    public void setIniciativa(Iniciativa iniciativa) {
+        this.iniciativa = iniciativa;
+    }
+    
+    public ArrayList<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(ArrayList<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+    
+    
+    public ArrayList<Iniciativa> getIniciativasParecidas() {
+        return iniciativasParecidas;
+    }
+
+    public void setIniciativasParecidas(ArrayList<Iniciativa> iniciativasParecidas) {
+        this.iniciativasParecidas = iniciativasParecidas;
+    }
 }

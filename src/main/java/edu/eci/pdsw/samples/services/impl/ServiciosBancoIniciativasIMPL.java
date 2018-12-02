@@ -158,8 +158,8 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     }
     
     @Override
-    public void cambiarInformacionIniciativa(String descripcion, int id) {    	
-    	iniciativaDAO.cambiarInformacionIniciativa(descripcion,id);
+    public void cambiarDescripcionIniciativa(String descripcion, int id) {    	
+    	iniciativaDAO.cambiarDescripcionIniciativa(descripcion,id);
     	
     }
 
@@ -168,6 +168,11 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 		
 		return iniciativaDAO.consultarIniciativa(id);
 	}
+
+    @Override
+    public void cambiarNombreIniciativa(String nombre, int id) throws Exception {
+        iniciativaDAO.cambiarNombreIniciativa(nombre, id);
+    }
 
  
     

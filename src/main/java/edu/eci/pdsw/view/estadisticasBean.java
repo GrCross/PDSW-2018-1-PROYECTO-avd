@@ -55,7 +55,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 
     public void consultarIniciativas() {
         iniciativas = serviciosBancoIniciativa.consultarIniciativas();
-        System.out.println(iniciativas.size());
+        
 
     }
 
@@ -89,7 +89,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
                 tablaAreas.put(in.getArea(), tablaAreas.get(in.getArea()) + 1);
             }
         }
-        System.out.println(tablaAreas.toString());
+        
 
         Set<String> keys = tablaAreas.keySet();
         for (String key : keys) {

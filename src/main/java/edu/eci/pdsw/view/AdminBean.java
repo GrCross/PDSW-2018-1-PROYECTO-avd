@@ -53,9 +53,7 @@ public class AdminBean extends BasePageBean {
     }
 
     public void updateUsuario(long documento, Rol nuevoRol) {
-        System.out.println(documento);
-        System.out.println(nuevoRol);
-        System.out.println("dasdasssssssssssssssssssssssssssssssssssssss");
+        
         try {
             
             serviciosBancoIniciativa.updateUsuario(documento,nuevoRol.toString() );
@@ -79,8 +77,7 @@ public class AdminBean extends BasePageBean {
     }
     
     public void updateEstadoIniciativa (Estado estado, int id) {
-    	System.out.println(estado);
-    	System.out.println(id+"-------");
+    	
     	try {
             serviciosBancoIniciativa.updateEstadoIniciativa(estado.toString(),id );
             FacesMessage msg;

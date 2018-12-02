@@ -55,14 +55,19 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     }
     
     @Override
-    public void cambiarInformacionIniciativa(String descripcion,int id) {
+    public void cambiarDescripcionIniciativa(String descripcion,int id) {
 
-    	iniciativaMapper.cambiarInformacionIniciativa(descripcion,id);  	
+    	iniciativaMapper.cambiarDescripcionIniciativa(descripcion,id);  	
     }
     @Override
     public Iniciativa consultarIniciativa(int id) throws PersistenceException{
     	return iniciativaMapper.consultarIniciativa(id);
     	
+    }
+
+    @Override
+    public void cambiarNombreIniciativa(String nombre, int id) {
+        iniciativaMapper.cambiarNombreIniciativa(nombre, id);
     }
     
             

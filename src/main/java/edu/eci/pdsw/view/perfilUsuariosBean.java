@@ -40,7 +40,7 @@ public class perfilUsuariosBean extends BasePageBean {
     
     
     public void consultarUsuario() throws Exception{
-        System.out.println("holaaaaaaaaaa-------------------");
+        
         this.usuario=serviciosBancoIniciativa.consultarUsuario(documentoUsuario);
     } 
 

@@ -8,6 +8,7 @@ package edu.eci.pdsw.sampleprj.dao;
 import edu.eci.pdsw.samples.entities.Iniciativa;
 import java.util.List;
 import java.util.ArrayList;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.exceptions.PersistenceException;
 
 /**
@@ -36,7 +37,9 @@ public interface IniciativaDAO {
     
     public List<Iniciativa> iniciativasUnUsuario (long documento) throws PersistenceException;
     
-    public void cambiarInformacionIniciativa(String descripcion,int id);
+    public void cambiarDescripcionIniciativa(String descripcion,int id);
+    
+    public void cambiarNombreIniciativa(String nombre,int id);
     
     public Iniciativa consultarIniciativa(int id) throws PersistenceException;
 }

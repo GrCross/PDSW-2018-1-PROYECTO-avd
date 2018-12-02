@@ -52,8 +52,9 @@ public interface ServiciosBancoIniciativas {
         public abstract List<Iniciativa> iniciativasUnUsuario (long documento) throws Exception;
         
         //public abstract void cambiarInformacionIniciativa(String descripcion, String palabrasclave, int id) throws Exception;
-        public abstract void cambiarInformacionIniciativa(String descripcion, int id) throws Exception;
+        public abstract void cambiarDescripcionIniciativa(String descripcion, int id) throws Exception;
         
+        public void cambiarNombreIniciativa(String nombre, int id)throws Exception;
 
         public abstract Iniciativa consultarIniciativa(int id) throws Exception;
         

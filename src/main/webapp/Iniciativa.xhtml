@@ -85,51 +85,82 @@
                     
                     
                     
-                    
-                    <p:panel id="cambios" header="Cambios Iniciativa " style="margin-bottom:20px" rendered="#{iniciativasBean.esCreador(LoginBean.usuario)}">
-                        <h:panelGrid columns="1" cellpadding="3"  class="ui-panelGrid-Datos1">
+                    <h:panelGrid columns="3" cellpadding="5" > 
+                        
+                        <p:commandButton id="movieBtn" value="Iniciativas similares" rendered ="#{LoginBean.filtroAdministrador()}">
+                            <f:actionListener binding="#{iniciativasBean.consultarIniciativasParecidas()}"/>
+                        </p:commandButton>>
+                        
+                        <p:overlayPanel id="moviePanel" for="movieBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
+                            <p:dataTable var="IniciativaParecida" value="#{iniciativasBean.iniciativasParecidas}" rows="5" paginator="true">
+                                <p:column headerText="Iniciativas Parecidas">
+                                    <h:outputText value="#{IniciativaParecida.nombre}"/>
+                                </p:column>
+                                <p:column headerText="Detalles">
+                                    <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{reinicioPagina}" style="display:none"/>
+                                    <p:commandButton id="Ver" update="iniciativaForm" value="ver" >
+                                        <f:actionListener binding="#{iniciativasBean.redirect(reinicioPagina.value)}"/>
+                                        <f:actionListener binding="#{iniciativasBean.setIniciativa(IniciativaParecida)}"/>
+                                        
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                        </p:overlayPanel>
+                        
+                        
+                        
+                        
+                        <p:commandButton value="Modificar" type="button" onclick="PF('dlg2').show();" rendered="#{iniciativasBean.esCreador(LoginBean.usuario)}" >
+                            <f:actionListener binding="#{iniciativasBean.procesarPalabrasClave()}"/>
+                        </p:commandButton>>
+                        
+                        <p:dialog header="Modificar Iniciativa" widgetVar="dlg2" modal="true" height="800" width="500">
+                            <p:panelGrid columns="2"  >
+                                <p:row>
+                                    <p:panel id="cambiosNombre" >
+                                        <h:panelGrid columns="1" cellpadding="3"  class="ui-panelGrid-Datos1">
+                                            <p:outputLabel  value="Nombre" />
+                                            <p:inputText id="cNombre" binding="#{cNombre}"  />  
+                                            <p:commandButton id="CambiarNombre" update="iniciativaForm" value="Cambiar" actionListener="#{iniciativasBean.modificarNombre(cNombre.value)}"  icon="ui-icon-check">
+                                                <p:resetInput target="cNombre" />
 
+                                            </p:commandButton>
+                                            <p:messages id="messages2" showDetail="true" closable="true">
+                                                <p:autoUpdate />
+                                            </p:messages>
+                                        </h:panelGrid>
+                                    </p:panel>
+                                
+                                
+                                    <p:panel id="cambiosDescripcion"  >
+                                        <h:panelGrid columns="1" cellpadding="3"  class="ui-panelGrid-Datos1">
+                                            <p:outputLabel  value="Descripcion" />
+                                            <p:inputTextarea id="CDescripcion" rows="5" cols="30" autoResize="false" binding="#{cDescripcion}"  />
 
-                            <p:outputLabel  value="Descripcion" />
-                            <p:inputTextarea id="cDescripcion" rows="5" cols="30" autoResize="false" binding="#{cDescripcion}"  />  
+                                            <p:commandButton id="CambiarDescripcion" update="iniciativaForm" value="Cambiar" actionListener="#{iniciativasBean.modificarDescripcion(cDescripcion.value)}"  icon="ui-icon-check">
+                                            <p:resetInput target="cDescripcion" />
+                                                <p:ajax resetValues="true" />    
+                                            </p:commandButton>
+                                            <p:messages id="messages3" showDetail="true" closable="true">
+                                                <p:autoUpdate />
+                                            </p:messages>
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </p:row>
+                                <p:row>
+                                    <p:outputLabel value="palabras Clave: " /><br/>
+                                    <p:chips id="pClaves" value="#{iniciativasBean.palabrasClave}"/><br/>
+                                    
+                                </p:row>
+                            </p:panelGrid>
                             
-                            
-                            <p:commandButton id="Cambiar" update="iniciativaForm" value="Cambiar" actionListener="#{iniciativasBean.modificar(cDescripcion.value)}"  icon="ui-icon-check">
-                            <p:resetInput target="cDescripcion" />
-                                <p:ajax resetValues="true" />    
-                            </p:commandButton>
-                            <p:messages id="messages2" showDetail="true" closable="true">
-                                <p:autoUpdate />
-                            </p:messages>
-                        </h:panelGrid>
-                    </p:panel>
+                        </p:dialog>
+                    
+                    </h:panelGrid>>
                     
                     
                     
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <p:commandButton id="movieBtn" value="Iniciativas similares" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{iniciativasBean.consultarIniciativasParecidas()}"/>
-                    <p:overlayPanel id="moviePanel" for="movieBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
-                        <p:dataTable var="IniciativaParecida" value="#{iniciativasBean.iniciativasParecidas}" rows="5" paginator="true">
-                            <p:column headerText="Iniciativas Parecidas">
-                                <h:outputText value="#{IniciativaParecida.nombre}"/>
-                            </p:column>
-                            <p:column headerText="Detalles">
-                                <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{reinicioPagina}" style="display:none"/>
-                                <p:commandButton id="Ver" update="iniciativaForm" value="ver" >
-                                    <f:actionListener binding="#{iniciativasBean.redirect(reinicioPagina.value)}"/>
-                                    <f:actionListener binding="#{iniciativasBean.setIniciativa(IniciativaParecida)}"/>                            
-                                </p:commandButton>
-                            </p:column>
-                        </p:dataTable>
-                    </p:overlayPanel>
-
                 </h:panelGrid>
 
 
@@ -156,7 +187,6 @@
 
                                 <h:outputText value="Fecha:" />
                                 <h:outputText value="#{Comentarios.fechaDePublicacion}" style="text-align:left ;padding-left: 15px; color:#878787"/>
-
 
 
                                 <h:outputText value="Contenido:" />
