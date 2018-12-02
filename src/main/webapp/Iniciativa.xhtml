@@ -89,7 +89,7 @@
                         
                         <p:commandButton id="movieBtn" value="Iniciativas similares" rendered ="#{LoginBean.filtroAdministrador()}">
                             <f:actionListener binding="#{iniciativasBean.consultarIniciativasParecidas()}"/>
-                        </p:commandButton>>
+                        </p:commandButton>
                         
                         <p:overlayPanel id="moviePanel" for="movieBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
                             <p:dataTable var="IniciativaParecida" value="#{iniciativasBean.iniciativasParecidas}" rows="5" paginator="true">
@@ -112,7 +112,7 @@
                         
                         <p:commandButton value="Modificar" type="button" onclick="PF('dlg2').show();" rendered="#{iniciativasBean.esCreador(LoginBean.usuario)}" >
                             <f:actionListener binding="#{iniciativasBean.procesarPalabrasClave()}"/>
-                        </p:commandButton>>
+                        </p:commandButton>
                         
                         <p:dialog header="Modificar Iniciativa" widgetVar="dlg2" modal="true" height="800" width="500">
                             <p:panelGrid columns="2"  >
@@ -156,7 +156,7 @@
                             
                         </p:dialog>
                     
-                    </h:panelGrid>>
+                    </h:panelGrid>
                     
                     
                     
@@ -168,9 +168,10 @@
 
                 <p:dataScroller value="#{iniciativasBean.consultarComentarios()}" var="Comentarios" chunkSize="10" class="ui-datascroller ui-datascroller-item"  >
                     <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
-                    <f:facet name="header">
-                        Comentarios
-                    </f:facet>
+                    
+	                    <f:facet name="header"  >
+	                        Comentarios
+	                    </f:facet>
                     <h:outputText id = "UsuarioComentario" value="perfilesVisitantes" binding="#{usuarioComment}" style="display:none"/>
 
                     <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">

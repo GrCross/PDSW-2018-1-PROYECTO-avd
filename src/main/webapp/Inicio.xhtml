@@ -8,31 +8,32 @@
     <h:head>
         <h:outputStylesheet name="css/cssLayout.css"/> 
         <title>Login banco de iniciativas</title>
-        <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/login.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
     <h:body>
-        <div class="item">
-            <img src="/resources/images/cabecera.jpg" class="imagen" />
-        </div>
+        
 
         <h1></h1>
-        <div id="section" class="inicioSesion">
+        <div id="section" class="loginBox">
+        	<img src="/resources/images/login.png" class="avatar" />
             <h:form id="login" >
                 <p:growl id="msgs" showDetail="true" /> 
                 <p:fieldset legend="Iniciar Sesión">
 
                     <p:outputLabel value="Correo :" for="username" />
 
-                    <p:inputText id="username" required="true" value="#{LoginBean.username}" title="Escriba aca su correo institucional"/>
+                    <p:inputText id="username" required="true" value="#{LoginBean.username}" title="Escriba aqui su correo institucional" type="text"/>
                     <p:tooltip id="toolTipFocus" for="username" showEvent="focus" hideEvent="blur" position="top"/>
-                    
+                    <br></br>
+                    <br></br>
                     <p:outputLabel value="Contraseña :" for="password" />
 
                     <p:inputText id="password" type="password" required="true" value="#{LoginBean.password}" title="Escriba aca su contraseña"/>
               
                     <br></br>
                     <br></br> 
+                    <br></br>
 
 
                     <p:commandButton value="Ingresar" update="msgs" actionListener="#{LoginBean.doLogin()}" icon="ui-icon-check" />             
