@@ -69,7 +69,7 @@ public class AdminBean extends BasePageBean {
     	List<Iniciativa> BeanIniciativas = null;
     	 try {
     		 BeanIniciativas= serviciosBancoIniciativa.consultarIniciativas();
-    		 System.out.println(BeanIniciativas.get(0));
+    		
     	 } catch (Exception ex) {
              Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
          }

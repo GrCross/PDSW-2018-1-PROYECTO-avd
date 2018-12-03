@@ -34,12 +34,19 @@ public class RegistroUsuariosBean extends BasePageBean {
      * @throws Exception
      */
     public void registrarCliente(String nombre, int documento, String area, long telefono, String correo,String rol) throws Exception {
-        try {
+       // try {
+    		System.out.println(nombre);
+    		System.out.println(documento);
+        	System.out.println(telefono);
+        	System.out.println(area);
+        	System.out.println(correo);
+        	System.out.println(rol);
+        	/*
             Usuario usuario = new Usuario(nombre, documento, area, telefono, correo, rol);
-            serviciosBancoIniciativa.InsertarUsuario(usuario);
-        } catch (ExcepcionBancoIniciativas ex) {
+            serviciosBancoIniciativa.InsertarUsuario(usuario);*/
+       /* } catch (ExcepcionBancoIniciativas ex) {
         	throw ex;
-        }
+        }*/
     }
 
     

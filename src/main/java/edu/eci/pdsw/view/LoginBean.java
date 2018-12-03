@@ -49,9 +49,6 @@ public class LoginBean extends BasePageBean implements Serializable {
 			login = serviciosImpl.autorizacionLogin(username,password);
 			if(login) {
 				usuario = serviciosImpl.obtenerUsuario(username);
-				/*Rol rol = serviciosImpl.tipoUsuario(username2);
-				System.out.println("rol del if");
-				System.out.println("DFWQqwdwqdqwqwdqwddqwqw");*/
 				FacesContext.getCurrentInstance().getExternalContext().redirect("perfilesUsuarios.xhtml");
                                 
 
@@ -180,6 +177,7 @@ public class LoginBean extends BasePageBean implements Serializable {
 
     
     public void autorizacion(){ 
+    	/*
     	String auth2 =FacesContext.getCurrentInstance().getViewRoot().getViewId();
     	String auth = auth2.substring(1, auth2.length()-6);
     	if(auth.equals("Inicio")){
@@ -216,7 +214,7 @@ public class LoginBean extends BasePageBean implements Serializable {
     	}
     	else {
     		redirect("Inicio");
-    	}
+    	}*/
     	
     }
     

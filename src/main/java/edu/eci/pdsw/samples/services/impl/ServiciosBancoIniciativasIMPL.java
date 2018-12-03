@@ -73,7 +73,7 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 
     @Override
     public void updateUsuario(long documento, String rol) throws PersistenceException {
-        System.out.println(documento+"-----"+rol);
+        
         usuarioDao.updateUsuario(documento, rol);
        
     }

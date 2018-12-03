@@ -115,7 +115,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
                 tablaEstados.put(in.getEstado().toString(), tablaEstados.get(in.getEstado().toString()) + 1);
             }
         }
-        System.out.println(tablaEstados.toString());
+    
 
         Set<String> keys = tablaEstados.keySet();
         for (String key : keys) {

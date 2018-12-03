@@ -67,6 +67,9 @@
                     <p:column filterBy="#{Usuario.correo}" headerText="Email">
                         <h:outputText value="#{Usuario.correo}" />
                     </p:column>
+                    <p:column filterBy="#{Usuario.teledono}" headerText="Telefono">
+                        <h:outputText value="#{Usuario.telefono}" />
+                    </p:column>
                     <p:column filterBy="#{Usuario.getStringRol()}" headerText="Rol Actual">
                         <f:facet name="filter">
                             <p:selectOneMenu onchange="PF('UsuarioTable').filter()" >
