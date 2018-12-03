@@ -21,7 +21,9 @@
         <id property='afinidad' column='Afinidades_idAfinidad'/>
         <result property='voto' column='voto'/>
         <association property='iniciativa' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.IniciativaMapper.IniciativaResult'/>
-    </resultMap>  
+    </resultMap> 
+    
+      
     
     <select id="consultarUsuario" parameterType="Usuario" resultMap="UsuarioResult">
         SELECT *

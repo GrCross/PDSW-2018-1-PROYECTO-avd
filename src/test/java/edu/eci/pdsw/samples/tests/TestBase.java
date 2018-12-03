@@ -14,6 +14,8 @@ import edu.eci.pdsw.samples.services.impl.ServiciosBancoIniciativasIMPL;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import edu.eci.pdsw.sampleprj.dao.InteresDAO;
+import edu.eci.pdsw.sampleprj.dao.mybatis.MyBatisInteresDAO;
 
 
 public class TestBase {
@@ -28,6 +30,7 @@ public class TestBase {
                 bind(UsuarioDao.class).to(MyBatisUsuarioDao.class);
                 bind(IniciativaDAO.class).to(MyBatisIniciativaDAO.class);
                 bind(ComentarioDAO.class).to(MyBatisComentarioDAO.class);
+                bind(InteresDAO.class).to(MyBatisInteresDAO.class);
             }
     });
     

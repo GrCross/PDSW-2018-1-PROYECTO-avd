@@ -33,6 +33,7 @@
         <mapper resource="mappers/UsuarioMapper.xml"></mapper>
         <mapper resource="mappers/IniciativaMapper.xml"></mapper>
         <mapper resource="mappers/ComentarioMapper.xml"></mapper>
+        
     </mappers> 
         
         

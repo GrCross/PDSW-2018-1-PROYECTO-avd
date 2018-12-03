@@ -43,12 +43,10 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     }
 
     @Override
-    public void InsertarUsuario(Usuario usuario) throws ExcepcionBancoIniciativas {
-        try {
+    public void InsertarUsuario(Usuario usuario) throws PersistenceException {
+        
             usuarioDao.save(usuario);
-        } catch (PersistenceException e) {
-            throw new ExcepcionBancoIniciativas("Error al registrar el usuario ", e);
-        }
+        
 	
      }
 
