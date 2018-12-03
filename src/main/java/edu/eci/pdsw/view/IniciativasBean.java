@@ -52,7 +52,6 @@ public class IniciativasBean extends BasePageBean {
     }
 
     public void procesarPalabrasClave(){
-        System.out.println("holaaaaaaaa");
         String[] tempClaves = iniciativa.getPalabrasClave().split(",|\\{|\\}");
         palabrasClave =new ArrayList( Arrays.asList(tempClaves));
         palabrasClave.remove(0);
@@ -174,7 +173,6 @@ public class IniciativasBean extends BasePageBean {
     
     public boolean esCreador(Usuario user) {
     	autor=user;
-    	System.out.println(autor.getCorreo());
     	
     	/*ELContext elContext = FacesContext.getCurrentInstance().getELContext();
     	LoginBean loginBean 

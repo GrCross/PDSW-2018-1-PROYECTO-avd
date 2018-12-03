@@ -71,7 +71,7 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 
     @Override
     public void updateUsuario(long documento, String rol) throws PersistenceException {
-        System.out.println(documento+"-----"+rol);
+        
         usuarioDao.updateUsuario(documento, rol);
        
     }
@@ -157,7 +157,13 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 
     @Override
     public List<Iniciativa> iniciativasUnUsuario(long documento) throws Exception {
-        return iniciativaDAO.iniciativasUnUsuario(documento);
+    	try {
+    		return iniciativaDAO.iniciativasUnUsuario(documento);
+        }
+		catch(Exception e) {
+			return null;
+    	}
+    	
     }
     
     @Override

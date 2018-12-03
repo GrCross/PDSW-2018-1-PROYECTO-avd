@@ -6,6 +6,9 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Registrar Usuario</title>
+         <f:metadata>        	
+            <f:event type="preRenderView" listener="#{LoginBean.autorizacion()}"/>
+         </f:metadata>
     </h:head>
     <h:body>
         <h1>Usuarios</h1>
@@ -16,9 +19,9 @@
                 documento
                 <p:inputText id ="documentoIngresado" binding="#{documentoIngresado}"></p:inputText>
                 area
-                <p:inputText id ="telefonoIngresado" binding="#{areaIngresado}"></p:inputText>
+                <p:inputText id ="areaIngresado" binding="#{areaIngresado}"></p:inputText>
                 telefono
-                <p:inputText id ="areaIngresada" binding="#{telefonoIgresado}"></p:inputText>
+                <p:inputText id ="telefonoIngresado" binding="#{telefonoIngresado}"></p:inputText>
                 email
                 <p:inputText id ="correoIngresado" binding="#{correoIngresado}"></p:inputText>
                 rol

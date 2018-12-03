@@ -6,7 +6,9 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Busqueda de usuarios</title>
-
+ <f:metadata>        	
+            <f:event type="preRenderView" listener="#{LoginBean.autorizacion()}"/>
+         </f:metadata>
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
@@ -64,6 +66,9 @@
                     </p:column>
                     <p:column filterBy="#{Usuario.correo}" headerText="Email">
                         <h:outputText value="#{Usuario.correo}" />
+                    </p:column>
+                    <p:column filterBy="#{Usuario.teledono}" headerText="Telefono">
+                        <h:outputText value="#{Usuario.telefono}" />
                     </p:column>
                     <p:column filterBy="#{Usuario.getStringRol()}" headerText="Rol Actual">
                         <f:facet name="filter">
