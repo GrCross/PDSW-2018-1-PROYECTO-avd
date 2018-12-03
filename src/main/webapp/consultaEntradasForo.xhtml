@@ -6,6 +6,9 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Registrar Usuario</title>
+         <f:metadata>        	
+            <f:event type="preRenderView" listener="#{LoginBean.autorizacion()}"/>
+         </f:metadata>
     </h:head>
     <h:body>
         <h1>Usuarios</h1>

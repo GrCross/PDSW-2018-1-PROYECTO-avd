@@ -26,16 +26,20 @@ public class LoginBean extends BasePageBean implements Serializable {
     private String username;
     private String password;
     private Usuario usuario;
-    private Usuario visitado;
+    private Usuario visitado;    
+    private String pagina;
     
     
-    @Inject
+	@Inject
     private ServiciosBancoIniciativas serviciosImpl;
 
     /**
      * Managed bean que se encarga de la validar la autenticación de usuarios
      */
     public LoginBean() {
+    	usuario=null;
+    	visitado=null;
+    	
 
     }
     
@@ -44,11 +48,12 @@ public class LoginBean extends BasePageBean implements Serializable {
 		try {
 			login = serviciosImpl.autorizacionLogin(username,password);
 			if(login) {
+				usuario = serviciosImpl.obtenerUsuario(username);
 				/*Rol rol = serviciosImpl.tipoUsuario(username2);
 				System.out.println("rol del if");
 				System.out.println("DFWQqwdwqdqwqwdqwddqwqw");*/
 				FacesContext.getCurrentInstance().getExternalContext().redirect("perfilesUsuarios.xhtml");
-                                usuario = serviciosImpl.obtenerUsuario(username);
+                                
 
 			}
 		} catch (ExcepcionBancoIniciativas e) {			
@@ -60,6 +65,12 @@ public class LoginBean extends BasePageBean implements Serializable {
     	
     	
     } 
+    
+    public void doLogOut() {
+    	usuario=null;
+    	redirect("Inicio");
+    	
+    }
     
     public List<Iniciativa> iniciativasUnUsuario () throws Exception {
         return serviciosImpl.iniciativasUnUsuario(usuario.getDocumento());
@@ -157,6 +168,79 @@ public class LoginBean extends BasePageBean implements Serializable {
     public void setVisitado(Usuario visitado) {
         this.visitado = visitado;
     }
+    
+    
+    public String getPagina() {
+		return pagina;
+	}
+
+	public void setPagina(String pagina) {
+		this.pagina = pagina;
+	}
+
+    
+    public void autorizacion(){ 
+    	String auth2 =FacesContext.getCurrentInstance().getViewRoot().getViewId();
+    	String auth = auth2.substring(1, auth2.length()-6);
+    	if(auth.equals("Inicio")){
+    		if(!(usuario==null)) {
+    			redirect("Inicio");
+			}
+    		else {
+    			redirect("perfilesUsuarios");
+    		}
+    		
+    	}
+    	else if(!(usuario==null)) {   
+    	
+    		if(!(auth.equals("visitante") && visitado==null)) {
+    			
+		        if(!(usuario.getRol().equals(Rol.ADMINISTRADOR))){
+		        	
+		            if(usuario.getRol().equals(Rol.USUARIO_DE_CONSULTA) && level(1,auth)) {
+		            	redirect("consultarIniciativas");
+		            }
+		            
+		            else if(usuario.getRol().equals(Rol.PROPONENTE) && level(2,auth)){
+		            	redirect("perfilesUsuarios");
+		            	
+		            }
+		            else if(usuario.getRol().equals(Rol.PMO_ODI) && level(3,auth)) {
+		            	redirect("perfilesUsuarios");
+		            }
+		        }
+    		}
+    		else {
+    			redirect("perfilesUsuarios");
+    		}
+    	}
+    	else {
+    		redirect("Inicio");
+    	}
+    	
+    }
+    
+    private boolean level(int lvl,String auth) {
+    	if(lvl==1){
+    		if((auth.equals("registrarIniciativas") || auth.equals("actualizarEstadoIniciativas") || auth.equals("busquedaUsuario") )) {
+    			return true;
+    		}
+    	}
+    		
+    	else if(lvl==2) {
+    		if( auth.equals("actualizarEstadoIniciativas") || auth.equals("busquedaUsuario")) {
+    			return true;
+    		}    		    		
+    	}
+    	else if(lvl==3) {
+    		if(auth.equals("registrarIniciativas")) {
+    			return true;
+    		}
+    		
+    	}
+    	return false;
+    		
+    	}
     
     
 
