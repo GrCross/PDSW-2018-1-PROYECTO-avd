@@ -68,13 +68,13 @@
                 </h:panelGrid>
 
 
-
+                <h:outputText value="#{LoginBean.usuario.documento}" binding = "#{usu}"/>
                 <p:dataTable id="iniciativaTable" var="Iniciativa" value="#{insertIniciativasBean.iniciativasClave}" rows="10" widgetVar="IniciativasTable" paginator="true"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15"
                              stickyHeader="true">
                     <p:column sortBy="#{Iniciativa.id}" headerText="id">
-                        <h:outputText value="#{Iniciativa.id}"/>
+                        <h:outputText value="#{Iniciativa.id}" binding = "#{doc}"/>
                     </p:column>
                     <p:column sortBy="#{Iniciativa.estado}" headerText="Estado">
                         <h:outputText value="#{Iniciativa.estado}" />
@@ -91,11 +91,11 @@
                     <p:column sortBy="#{Iniciativa.area}" headerText="area">
                         <h:outputText value="#{Iniciativa.area}" />
                     </p:column>
-                    <p:column sortBy="#{Iniciativa.area}" headerText="Me Gusta">
-                        <p:commandButton id="like" update="iniciativaTable" 
-                                         oncomplete="" value="Like" icon="fa fa-thumbs-o-up" >
+                    <p:column id = "meGusta" sortBy="#{Iniciativa.area}" headerText="Me Gusta">
+                        <p:commandButton id="like"  actionListener="#{insertIniciativasBean.votar(doc.value,usu.value)}" update="contador"
+                                         oncomplete="" value="Like" icon="#{insertIniciativasBean.like(doc.value,usu.value) ? 'fa fa-thumbs-up' : '  '}" >
                             </p:commandButton>
-                        <h:outputText value="#{Iniciativa.votos}"  />
+                        <h:outputText id="contador" value="#{Iniciativa.votos}"  />
                     </p:column>
                     <p:column headerText="Detalles">
                         <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{pagina1}" style="display:none"/>

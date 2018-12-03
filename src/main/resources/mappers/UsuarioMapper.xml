@@ -44,7 +44,7 @@
     </update>
     
     <insert parameterType="map" id="agregarInteres">
-    	INSERT INTO INTERESES (Iniciativa_documento,Usuarios_id,Afinidades_idAfinidad,voto) VALUES(#{iniciativa},#{usuario},#{in.afinidad},#{in.voto});
+    	INSERT INTO INTERESES (Iniciativa_documento,Usuarios_id,Afinidades_idAfinidad,voto) VALUES(#{iniciativa},#{usuario},#{inte.afinidad},#{inte.voto});
         
     </insert>
     
@@ -55,7 +55,7 @@
         
     </update>
     
-     <select id="consultarInteres" parameterType="Usuario" resultMap="UsuarioResult">
+     <select id="consultarInteres" parameterType="Usuario" resultMap="InteresResult">
         SELECT *
         FROM intereses
         WHERE Iniciativa_documento=#{doc} and Usuarios_id=#{usu};

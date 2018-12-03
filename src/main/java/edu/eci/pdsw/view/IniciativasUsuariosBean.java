@@ -1,6 +1,7 @@
 package edu.eci.pdsw.view;
 import com.google.inject.Inject;
 import edu.eci.pdsw.samples.entities.Iniciativa;
+import edu.eci.pdsw.samples.entities.Interes;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
@@ -88,6 +89,32 @@ public class IniciativasUsuariosBean extends BasePageBean {
 		
     }
     
+    public void votar(int iniciativa , long documento) throws Exception {
+        System.out.println(iniciativa);
+        try {
+            Interes interes = serviciosBancoIniciativa.consultarInteres(iniciativa, documento);
+            System.out.println(iniciativa+"------- "+ documento+ "       " + interes);
+            if (interes.getVoto()==false){
+                serviciosBancoIniciativa.updateInteres(iniciativa, documento, true);
+            } else {
+                serviciosBancoIniciativa.updateInteres(iniciativa, documento, false);
+            }
+            
+        } catch (Exception ex) {
+            
+            Interes interes = new Interes (iniciativa, 1,true);
+            serviciosBancoIniciativa.agregarInteres(iniciativa, documento, interes);
+        }    
+    }
+    
+    public boolean like (int iniciativa , long documento) {
+        try {
+            Interes interes = serviciosBancoIniciativa.consultarInteres(iniciativa, documento);
+            return interes.getVoto();
+        } catch (Exception ex) {
+            return false;
+        }
+    }
     
     
     public void consultarIniciativas(){
@@ -95,9 +122,11 @@ public class IniciativasUsuariosBean extends BasePageBean {
         ArrayList<Iniciativa> iniciativasPalClaves = new ArrayList<Iniciativa>();
         
         for(Iniciativa i: iniciativas){
+            System.out.println("++++++++++++++++++++++++++++++++++++" + i.getVotos() + "jesus");
             for(String s: palabrasClaveConsultar){
                 if(i.getPalabrasClave().contains(s) && !iniciativasPalClaves.contains(i)){                    
                     iniciativasPalClaves.add(i);
+                    
                 }
             }
         }if(iniciativasPalClaves.isEmpty()){

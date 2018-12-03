@@ -160,11 +160,13 @@ public class Iniciativa implements Serializable{
     public void setVotos(int votos) {
         this.votos = votos;
     }
-    
+
     @Override
     public String toString() {
-        return "Item{" + " id= " + id + ", estado=" + estado + ", nombre=" + nombre + ",descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", palabrasclave=" + palabrasClave+", autor="+autor+",area="+area+"}";
+        return "Iniciativa{" + "id=" + id + ", estado=" + estado + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", palabrasClave=" + palabrasClave + ", autor=" + autor + ", comentarios=" + comentarios + ", area=" + area + ", votos=" + votos + '}';
     }
+    
+
 
 
 

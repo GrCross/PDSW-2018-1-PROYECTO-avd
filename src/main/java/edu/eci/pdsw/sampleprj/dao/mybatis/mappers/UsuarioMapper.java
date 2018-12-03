@@ -25,8 +25,8 @@ public interface UsuarioMapper {
             
             public Interes consultarInteres (@Param("doc") int documento, @Param("usu") long usuario );
             
-            public void updateInteres (@Param("doc") int documento, @Param("usu") long usuario, @Param("doc") boolean like );
+            public void updateInteres (@Param("doc") int documento, @Param("usu") long usuario, @Param("voto") boolean like );
             
-            public void agregarInteres (@Param("doc") int documento, @Param("usu") long usuario, @Param("in") Interes interes );
+            public void agregarInteres (@Param("iniciativa") int documento, @Param("usuario") long usuario, @Param("inte") Interes interes );
 
 }
