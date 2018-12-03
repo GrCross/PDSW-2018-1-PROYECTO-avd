@@ -16,13 +16,13 @@ import java.util.List;
 
 public class IniciativasGenerator {
     
-    public static Gen<Iniciativa> iniciativas(Usuario usuario){
-        return id().zip(estado(),nombre(),fechaCreacion(),palabrasClave(),
-            (id2, estado2,nombre2,now,palabrasClave2) -> new Iniciativa(id2, estado2, nombre2, "descripcion", now, palabrasClave2, usuario, "rrrrr"));
+    public static Gen<Iniciativa> iniciativas(Usuario u){
+        return id().zip(nombre(),fechaCreacion(),palabrasClave(),
+            (id2,nombre2,now,palabrasClave2) -> new Iniciativa(id2, Estado.En_Espera, nombre2, "descripcion", now, "hola,como", u, "rrrrr"));
     }
     
     private static Gen<Integer> id(){
-        return integers().between(10000000, 1999999999);
+        return integers().between(1, 1999999999);
     }
     
     public static Gen<Estado> estado() {
@@ -64,5 +64,9 @@ public class IniciativasGenerator {
     
     private static Gen<String> area(){
         return strings().basicLatinAlphabet().ofLengthBetween(10, 145);
+    }
+    
+    private static Gen<Usuario> usuarios(){
+        return UsuariosGenerator.Usuarios();
     }
 }

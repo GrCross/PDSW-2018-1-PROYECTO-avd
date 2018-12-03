@@ -14,7 +14,9 @@ import java.util.Optional;
 
 import static com.google.inject.Guice.createInjector;
 import edu.eci.pdsw.sampleprj.dao.ComentarioDAO;
+import edu.eci.pdsw.sampleprj.dao.InteresDAO;
 import edu.eci.pdsw.sampleprj.dao.mybatis.MyBatisComentarioDAO;
+import edu.eci.pdsw.sampleprj.dao.mybatis.MyBatisInteresDAO;
 
 public class ServiciosBancoIniciativasFactory {
 
@@ -33,6 +35,7 @@ public class ServiciosBancoIniciativasFactory {
                bind(UsuarioDao.class).to(MyBatisUsuarioDao.class);
                bind(ComentarioDAO.class).to(MyBatisComentarioDAO.class);
                bind(ServiciosBancoIniciativas.class).to(ServiciosBancoIniciativasIMPL.class);
+               bind(InteresDAO.class).to(MyBatisInteresDAO.class);
               
            }
        });

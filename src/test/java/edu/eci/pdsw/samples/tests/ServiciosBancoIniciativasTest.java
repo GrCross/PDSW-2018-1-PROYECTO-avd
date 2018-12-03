@@ -1,6 +1,8 @@
 package edu.eci.pdsw.samples.tests;
 
 import com.google.inject.Inject;
+import edu.eci.pdsw.samples.entities.Iniciativa;
+import edu.eci.pdsw.samples.entities.Rol;
 
 
 import java.util.Optional;
@@ -47,6 +49,26 @@ public class ServiciosBancoIniciativasTest extends TestBase {
             return r;
         });
     }
+    
+    /*@Test
+    public void consultarIniciativas() throws ExcepcionBancoIniciativas{
+        Usuario u = new Usuario("Prueba", 1, "aarea1", 11111, "prueba@correo.com", Rol.PROPONENTE);
+        serviciosAlquiler.InsertarUsuario(u);
+        qt().forAll(IniciativasGenerator.iniciativas(u)).check(iniciativa ->{
+            boolean prueba = false;
+            try {
+                serviciosAlquiler.InsertarIniciativa(iniciativa);
+                Iniciativa ini = serviciosAlquiler.consultarIniciativa(iniciativa.getId());
+                
+                if(iniciativa.equals(ini)){
+                    prueba = true;
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(ServiciosBancoIniciativasTest.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return prueba;
+        });
+    }*/
 
 
     

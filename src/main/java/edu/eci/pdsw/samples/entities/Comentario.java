@@ -6,6 +6,7 @@
 package edu.eci.pdsw.samples.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -62,8 +63,8 @@ public class Comentario implements Serializable {
         this.commentId = commentId;
     }
 
-    public Date getFechaDePublicacion() {
-        return fechaDePublicacion;
+    public String getFechaDePublicacion() {
+    	return new SimpleDateFormat("dd-MM-yyyy").format(fechaDePublicacion);
     }
 
     public void setFechaDePublicacion(Date fechaDePublicacion) {

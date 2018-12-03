@@ -5,12 +5,16 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+    
         <title>Perfil de Usuarios</title>
 
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
     <h:body >
+         <f:metadata>        	
+            <f:event type="preRenderView" listener="#{LoginBean.autorizacion()}"/>
+         </f:metadata>
 
         <div class="item">
             <img src="/resources/images/cabecera.jpg" class="imagen" />

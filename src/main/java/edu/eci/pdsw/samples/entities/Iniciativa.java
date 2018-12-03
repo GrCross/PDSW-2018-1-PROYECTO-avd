@@ -6,6 +6,8 @@
 package edu.eci.pdsw.samples.entities;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,10 +36,10 @@ public class Iniciativa implements Serializable{
         this.fechaCreacion = fechaCreacion;
         this.palabrasClave = palabrasClave;
         this.comentarios = comentarios;
-        System.out.println("asdasd"+palabrasClave);
         this.autor = autor;
         this.area = area;  
         this.votos=voto;
+        System.out.println(fechaCreacion);
     }
 
     public Iniciativa() {
@@ -53,7 +55,12 @@ public class Iniciativa implements Serializable{
         this.palabrasClave = palabrasClave2;
         this.autor = usuario;
         this.area = area;
+        Date date1 = now;
+        
+        System.out.println(fechaCreacion);
     }
+    
+  
     
     public Iniciativa(int id2, Estado estado2, String nombre2, String descripcion2, Date now,
 			String palabrasClave2, Usuario usuario,String area) {
@@ -65,6 +72,8 @@ public class Iniciativa implements Serializable{
         this.palabrasClave = palabrasClave2;
         this.autor = usuario;
         this.area = area;
+
+        System.out.println(fechaCreacion);
     }
 
     public int getId() {
@@ -111,8 +120,9 @@ public class Iniciativa implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public Date getFechaCreacion() {
-        return fechaCreacion;
+    public String getFechaCreacion() {
+
+        return new SimpleDateFormat("dd-MM-yyyy").format(fechaCreacion);
     }
 
     public void setFechaCreacion(Date fechaCreacion) {
