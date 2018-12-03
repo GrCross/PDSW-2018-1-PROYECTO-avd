@@ -6,10 +6,12 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.eci.pdsw.sampleprj.dao.ComentarioDAO;
 import edu.eci.pdsw.sampleprj.dao.IniciativaDAO;
+import edu.eci.pdsw.sampleprj.dao.InteresDAO;
 
 import edu.eci.pdsw.sampleprj.dao.UsuarioDao;
 import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.Iniciativa;
+import edu.eci.pdsw.samples.entities.Interes;
 import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
@@ -32,6 +34,9 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     
     @Inject
     private ComentarioDAO comentarioDAO;
+    
+    @Inject
+    private InteresDAO interesDAO;
 
     public ServiciosBancoIniciativasIMPL() {
 		// TODO Auto-generated constructor stub
@@ -172,6 +177,21 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     @Override
     public void cambiarNombreIniciativa(String nombre, int id) throws Exception {
         iniciativaDAO.cambiarNombreIniciativa(nombre, id);
+    }
+
+    @Override
+    public Interes consultarInteres(int documento, long usuario) throws Exception {
+        return interesDAO.consultarInteres(documento, usuario);
+    }
+
+    @Override
+    public void updateInteres(int documento, long usuario, boolean like) throws Exception {
+        interesDAO.updateInteres(documento, usuario, like);
+    }
+
+    @Override
+    public void agregarInteres(int documento, long usuario, Interes interes) throws Exception {
+        interesDAO.agregarInteres(documento, usuario, interes);
     }
 
  

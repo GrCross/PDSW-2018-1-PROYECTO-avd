@@ -24,8 +24,9 @@ public class Iniciativa implements Serializable{
     private Usuario autor;
     private ArrayList<Comentario> comentarios;
     private String area;
+    private int votos;
 
-    public Iniciativa(int id, String estado, String nombre, String descripcion, Date fechaCreacion,ArrayList<Comentario>comentarios,String palabrasClave,Usuario autor,String area) {
+    public Iniciativa(int id, String estado, String nombre, String descripcion, Date fechaCreacion,ArrayList<Comentario>comentarios,String palabrasClave,Usuario autor,String area, int voto) {
         this.id = id;
         this.estado = Estado.valueOf(estado);
         this.nombre = nombre;
@@ -35,11 +36,13 @@ public class Iniciativa implements Serializable{
         this.comentarios = comentarios;
         System.out.println("asdasd"+palabrasClave);
         this.autor = autor;
-        this.area = area;        
+        this.area = area;  
+        this.votos=voto;
     }
 
     public Iniciativa() {
     }
+    
     public Iniciativa(int id2, String estado2, String nombre2, String descripcion2, Date now,
 			String palabrasClave2, Usuario usuario,String area) {
     	this.id = id2;
@@ -150,6 +153,14 @@ public class Iniciativa implements Serializable{
         this.area = area;
     }
 
+    public int getVotos() {
+        return votos;
+    }
+
+    public void setVotos(int votos) {
+        this.votos = votos;
+    }
+    
     @Override
     public String toString() {
         return "Item{" + " id= " + id + ", estado=" + estado + ", nombre=" + nombre + ",descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", palabrasclave=" + palabrasClave+", autor="+autor+",area="+area+"}";

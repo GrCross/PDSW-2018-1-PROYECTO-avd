@@ -2,6 +2,7 @@ package edu.eci.pdsw.samples.services;
 
 import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.Iniciativa;
+import edu.eci.pdsw.samples.entities.Interes;
 import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
 import java.util.ArrayList;
@@ -58,6 +59,11 @@ public interface ServiciosBancoIniciativas {
 
         public abstract Iniciativa consultarIniciativa(int id) throws Exception;
         
+        public abstract Interes consultarInteres( int documento,long usuario ) throws Exception;
+        
+        public abstract void updateInteres (int documento,long usuario, boolean like  )throws Exception;
+        
+        public abstract void agregarInteres (int documento,long usuario,Interes interes) throws Exception;
 
         
 }

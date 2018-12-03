@@ -13,6 +13,7 @@
         <result property='descripcion' column='descripcion'/>
         <result property='fechaCreacion' column='fechaCreacion'/>
         <result property='area' column='area'/>
+        <result property='votos' column='votos'/>
         <result property='palabrasClave' column='palabrasclave'/>
         <association property='autor' javaType="Usuario" columnPrefix ='user_' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.UsuarioMapper.UsuarioResult'/>       
         <collection property="comentarios" ofType="Comentario" resultMap="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ComentarioMapper.ComentarioResult"></collection>
@@ -82,8 +83,9 @@
             u.area as user_area,
             u.telefono as user_telefono,
             u.correo as user_correo,
-            u.rol as user_rol
-        FROM iniciativas as i,usuarios as u WHERE u.documento = i.usuarios_documento and u.documento=#{doc};
+            u.rol as user_rol,
+            sum(in.voto) as votos
+        FROM iniciativas as i,usuarios as u, intereses as in WHERE u.documento = i.usuarios_documento and u.documento=#{doc} and i.id=in.Iniciativa_documento and u.documento=Usuarios_id;
     </select>
     
      <update parameterType="map" id="cambiarDescripcionIniciativa">

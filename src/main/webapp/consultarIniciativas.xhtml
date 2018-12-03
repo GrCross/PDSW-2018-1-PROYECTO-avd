@@ -91,6 +91,12 @@
                     <p:column sortBy="#{Iniciativa.area}" headerText="area">
                         <h:outputText value="#{Iniciativa.area}" />
                     </p:column>
+                    <p:column sortBy="#{Iniciativa.area}" headerText="Me Gusta">
+                        <p:commandButton id="like" update="iniciativaTable" 
+                                         oncomplete="" value="Like" icon="fa fa-thumbs-o-up" >
+                            </p:commandButton>
+                        <h:outputText value="#{Iniciativa.votos}"  />
+                    </p:column>
                     <p:column headerText="Detalles">
                         <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{pagina1}" style="display:none"/>
                         <p:commandButton id="Ver" update="iniciativaTable" oncomplete="IniciativasTable.getPaginator().setPage(1)" value="ver" >
