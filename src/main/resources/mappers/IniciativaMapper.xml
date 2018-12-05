@@ -24,6 +24,10 @@
     	INSERT INTO iniciativas values(#{i.id},#{i.autor.documento},#{i.nombre},#{i.descripcion},#{i.fechaCreacion}, string_to_array(#{i.palabrasClave},','),#{i.area},#{i.estado});   	
     </insert>
     
+    <insert parameterType="map" id="agregarIniciativaTest">
+    	INSERT INTO iniciativas values(#{i.id},#{i.autor.documento},#{i.nombre},#{i.descripcion},#{i.fechaCreacion},'palabrasClave',#{i.area},#{i.estado});   	
+    </insert>
+    
     <select id="consultarIniciativas" parameterType="map" resultMap="IniciativaResult">
         SELECT 
             i.id,

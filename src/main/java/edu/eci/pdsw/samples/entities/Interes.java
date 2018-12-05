@@ -16,8 +16,7 @@ public class Interes implements Serializable{
     private boolean voto;
     private Iniciativa iniciativa;
 
-    public Interes(int iniciativa_documento, int afinidad, boolean voto ) {
-
+    public Interes(int iniciativa_documento, int afinidad, boolean voto) {
         this.afinidad =afinidad;
         this.voto = voto;
     }
@@ -43,7 +42,14 @@ public class Interes implements Serializable{
     public void setVoto(boolean  voto) {
         this.voto = voto;
     }
-    
+
+    public Iniciativa getIniciativa() {
+        return iniciativa;
+    }
+
+    public void setIniciativa(Iniciativa iniciativa) {
+        this.iniciativa = iniciativa;
+    }
     
 
     @Override

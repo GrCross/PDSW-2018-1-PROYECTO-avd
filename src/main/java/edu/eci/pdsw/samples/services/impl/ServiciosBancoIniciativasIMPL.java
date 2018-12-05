@@ -202,7 +202,10 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
         interesDAO.agregarInteres(documento, usuario, interes);
     }
 
- 
+    @Override
+    public void agregarIniciativaTest(Iniciativa ini) throws Exception {
+        iniciativaDAO.saveTest(ini);
+    }
     
     
 

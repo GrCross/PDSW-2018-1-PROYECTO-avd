@@ -1,4 +1,4 @@
-package edu.eci.pdsw.samples.tests;
+package edu.eci.pdsw.samples.tests.generators;
 
 import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
@@ -19,8 +19,8 @@ public class UsuariosGenerator {
         return strings().basicLatinAlphabet().ofLengthBetween(5, 35);
     }
     
-    private static Gen<Long> documentos(){
-        return longs().between(1, 1999999999);
+    public static Gen<Long> documentos(){
+        return longs().from(10000).upTo(999999999);
     }
 
     private static Gen<String> area(){

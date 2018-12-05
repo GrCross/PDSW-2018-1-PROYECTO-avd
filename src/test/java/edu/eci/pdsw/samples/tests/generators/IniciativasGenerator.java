@@ -1,4 +1,4 @@
-package edu.eci.pdsw.samples.tests;
+package edu.eci.pdsw.samples.tests.generators;
 
 import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.Estado;
@@ -17,12 +17,12 @@ import java.util.List;
 public class IniciativasGenerator {
     
     public static Gen<Iniciativa> iniciativas(Usuario u){
-        return id().zip(nombre(),fechaCreacion(),palabrasClave(),
-            (id2,nombre2,now,palabrasClave2) -> new Iniciativa(id2, Estado.En_Espera, nombre2, "descripcion", now, "hola,como", u, "rrrrr"));
+        return id().zip(nombre(),fechaCreacion(),descripcion(),
+            (id2,nombre2,now,descripcion) -> new Iniciativa(id2, Estado.En_Espera, nombre2, descripcion, now, "hola,como", u, "rrrrr"));
     }
     
     private static Gen<Integer> id(){
-        return integers().between(1, 1999999999);
+        return integers().between(2, 1999999);
     }
     
     public static Gen<Estado> estado() {

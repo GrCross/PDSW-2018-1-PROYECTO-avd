@@ -39,7 +39,7 @@ public class Iniciativa implements Serializable{
         this.autor = autor;
         this.area = area;  
         this.votos=voto;
-        System.out.println(fechaCreacion);
+        
     }
 
     public Iniciativa() {
@@ -57,7 +57,7 @@ public class Iniciativa implements Serializable{
         this.area = area;
         Date date1 = now;
         
-        System.out.println(fechaCreacion);
+        
     }
     
   
@@ -73,7 +73,6 @@ public class Iniciativa implements Serializable{
         this.autor = usuario;
         this.area = area;
 
-        System.out.println(fechaCreacion);
     }
 
     public int getId() {
@@ -120,9 +119,9 @@ public class Iniciativa implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
 
-        return new SimpleDateFormat("dd-MM-yyyy").format(fechaCreacion);
+        return this.fechaCreacion;
     }
 
     public void setFechaCreacion(Date fechaCreacion) {

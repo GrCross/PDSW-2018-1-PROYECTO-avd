@@ -19,7 +19,10 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface IniciativaMapper {
     
-    void agregarIniciativa(@Param("i") Iniciativa ini);
+    public void agregarIniciativa(@Param("i") Iniciativa ini);
+    
+    public void agregarIniciativaTest(@Param("i") Iniciativa ini);
+    
     ArrayList<Iniciativa> buscarIniciativas(); 
     
     public List<Iniciativa> consultarIniciativas();
