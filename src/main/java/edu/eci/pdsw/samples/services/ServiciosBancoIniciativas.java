@@ -65,6 +65,11 @@ public interface ServiciosBancoIniciativas {
         
         public abstract void agregarInteres (int documento,long usuario,Interes interes) throws Exception;
         
+
         public abstract void agregarIniciativaTest(Iniciativa ini)throws Exception;
+
+        public abstract Iniciativa LikesUnaIniciativa (int id) throws Exception;
+
+
         
 }

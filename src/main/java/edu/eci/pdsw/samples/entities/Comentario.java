@@ -63,8 +63,8 @@ public class Comentario implements Serializable {
         this.commentId = commentId;
     }
 
-    public String getFechaDePublicacion() {
-    	return new SimpleDateFormat("dd-MM-yyyy").format(fechaDePublicacion);
+    public Date getFechaDePublicacion() {
+    	return this.fechaDePublicacion;
     }
 
     public void setFechaDePublicacion(Date fechaDePublicacion) {

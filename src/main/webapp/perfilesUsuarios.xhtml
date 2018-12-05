@@ -73,19 +73,27 @@
             <br></br> 
             <br></br> 
             <br></br> 
+            <h:outputText value="#{LoginBean.usuario.documento}" binding = "#{usu}" rendered="false"/>
             <p:panel header="Mis Iniciativas" styleClass="my-panel ui-panel-titlebar infoUsuario">
                 <p:dataTable id="iniciativaTable" var="Iniciativa" value="#{LoginBean.iniciativasUnUsuario()}" rows="10" widgetVar="IniciativasTable" 
                              scrollable="true"
                              stickyHeader="true" style="width: 800px">
-
+                    
                     <p:column sortBy="#{Iniciativa.nombre}" headerText="Nombre">
+                        <h:outputText value="#{Iniciativa.id}" rendered="false" binding="#{doc}"/>
                         <h:outputText value="#{Iniciativa.nombre}" />
+                        
                     </p:column>
                     <p:column sortBy="#{Iniciativa.estado}" headerText="Estado">
                         <h:outputText value="#{Iniciativa.estado}" />
                     </p:column>
                     <p:column sortBy="#{Iniciativa.area}" headerText="area">
                         <h:outputText value="#{Iniciativa.area}" />
+                    </p:column>
+                    <p:column id = "meGusta" sortBy="#{Iniciativa.area}" headerText="Me Gusta">
+                        <p:commandButton id="like"  actionListener="#{insertIniciativasBean.votar(doc.value,usu.value)}" update="like"
+                                         oncomplete="" value="Likes:  #{Iniciativa.votos}" icon="#{insertIniciativasBean.like(doc.value,usu.value) ? 'fa fa-thumbs-up' : '  '}" >
+                            </p:commandButton>
                     </p:column>
                     <p:column headerText="Detalles">
                         <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{pagina6}" style="display:none"/>
@@ -95,6 +103,7 @@
                             <f:actionListener binding="#{iniciativasBean.setIniciativa(Iniciativa)}"/>     
                         </p:commandButton>
                     </p:column> 
+                  
 
                 </p:dataTable>
             </p:panel>

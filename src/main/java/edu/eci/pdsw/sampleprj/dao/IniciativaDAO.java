@@ -45,4 +45,6 @@ public interface IniciativaDAO {
     public void cambiarNombreIniciativa(String nombre,int id);
     
     public Iniciativa consultarIniciativa(int id) throws PersistenceException;
+    
+    public Iniciativa LikesUnaIniciativa (int id) throws PersistenceException;
 }

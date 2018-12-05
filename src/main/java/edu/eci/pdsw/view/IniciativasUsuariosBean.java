@@ -90,10 +90,12 @@ public class IniciativasUsuariosBean extends BasePageBean {
     }
     
     public void votar(int iniciativa , long documento) throws Exception {
-        
+
+            
+
         try {
             Interes interes = serviciosBancoIniciativa.consultarInteres(iniciativa, documento);
-            
+
             if (interes.getVoto()==false){
                 serviciosBancoIniciativa.updateInteres(iniciativa, documento, true);
             } else {
@@ -102,9 +104,10 @@ public class IniciativasUsuariosBean extends BasePageBean {
             
         } catch (Exception ex) {
             
-            Interes interes = new Interes (iniciativa, 1,true);
+            Interes interes = new Interes (true);
             serviciosBancoIniciativa.agregarInteres(iniciativa, documento, interes);
-        }    
+        }  
+        consultarIniciativas();
     }
     
     public boolean like (int iniciativa , long documento) {
@@ -122,7 +125,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
         ArrayList<Iniciativa> iniciativasPalClaves = new ArrayList<Iniciativa>();
         
         for(Iniciativa i: iniciativas){
-            
+
             for(String s: palabrasClaveConsultar){
                 if(i.getPalabrasClave().contains(s) && !iniciativasPalClaves.contains(i)){                    
                     iniciativasPalClaves.add(i);
@@ -132,8 +135,9 @@ public class IniciativasUsuariosBean extends BasePageBean {
         }if(iniciativasPalClaves.isEmpty()){
             iniciativasClave = iniciativas;
         }else{
-            palabrasClaveConsultar.clear();
+           palabrasClaveConsultar.clear();
             iniciativasClave = iniciativasPalClaves;
+           // System.out.println();
         }        
     }
     

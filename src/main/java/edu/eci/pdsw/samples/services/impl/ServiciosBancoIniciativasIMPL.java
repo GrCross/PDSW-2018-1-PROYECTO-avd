@@ -56,11 +56,7 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     }
     
     @Override
-    public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException{
-        for (Iniciativa i: iniciativaDAO.load()){
-            System.out.println(i.toString());
-        }
-        
+    public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException{        
         return iniciativaDAO.load();
     }
 
@@ -206,6 +202,14 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     public void agregarIniciativaTest(Iniciativa ini) throws Exception {
         iniciativaDAO.saveTest(ini);
     }
+    
+    @Override
+    public Iniciativa LikesUnaIniciativa(int id) throws Exception {
+        return iniciativaDAO.LikesUnaIniciativa(id);
+    }
+
+ 
+
     
     
 

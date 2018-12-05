@@ -8,6 +8,7 @@
         <title>Consultar Iniciativas</title>
 		 <f:metadata>        	
             <f:event type="preRenderView" listener="#{LoginBean.autorizacion()}"/>
+            
          </f:metadata>
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -70,7 +71,7 @@
                 </h:panelGrid>
 
 
-                <h:outputText value="#{LoginBean.usuario.documento}" binding = "#{usu}"/>
+                <h:outputText value="#{LoginBean.usuario.documento}" binding = "#{usu}" rendered="false"/>
                 <p:dataTable id="iniciativaTable" var="Iniciativa" value="#{insertIniciativasBean.iniciativasClave}" rows="10" widgetVar="IniciativasTable" paginator="true"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15"
@@ -93,11 +94,11 @@
                     <p:column sortBy="#{Iniciativa.area}" headerText="area">
                         <h:outputText value="#{Iniciativa.area}" />
                     </p:column>
-                    <p:column id = "meGusta" sortBy="#{Iniciativa.area}" headerText="Me Gusta">
-                        <p:commandButton id="like"  actionListener="#{insertIniciativasBean.votar(doc.value,usu.value)}" update="contador"
-                                         oncomplete="" value="Like" icon="#{insertIniciativasBean.like(doc.value,usu.value) ? 'fa fa-thumbs-up' : '  '}" >
-                            </p:commandButton>
-                        <h:outputText id="contador" value="#{Iniciativa.votos}"  />
+                    <p:column id = "meGusta" headerText="Me Gusta">
+                        <p:commandButton id="like"  actionListener="#{insertIniciativasBean.votar(doc.value,usu.value)}" update="like iniciativaTable"
+                                         value="Likes:  #{Iniciativa.votos}" icon="#{insertIniciativasBean.like(doc.value,usu.value) ? 'fa fa-thumbs-up' : '  '}" >
+                            
+                        </p:commandButton>
                     </p:column>
                     <p:column headerText="Detalles">
                         <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{pagina1}" style="display:none"/>

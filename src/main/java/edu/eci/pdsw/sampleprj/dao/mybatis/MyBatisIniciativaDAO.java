@@ -72,6 +72,10 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
         iniciativaMapper.agregarIniciativaTest(ini);
     }
     
+    @Override
+    public Iniciativa LikesUnaIniciativa(int id) throws PersistenceException {
+        return iniciativaMapper.LikesUnaIniciativa(id);
+    }
             
     
 }

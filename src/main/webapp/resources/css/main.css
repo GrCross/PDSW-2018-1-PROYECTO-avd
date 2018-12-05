@@ -1,25 +1,25 @@
 @charset "ISO-8859-1";
 
 .ui-panel-titlebar{
-	border:red;
+    border:red;
     background-color:#f7fcfb;
-	
+
 }
 
 .ui-panelGrid-Datos1{
-	margin: 0 auto;
-	text-align: center;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .imagen{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .perfil{
     display: block;
-    
+
 }
 .logo {
     text-align: left;
@@ -36,7 +36,7 @@
 
 .ui-datascroller .ui-datascroller-item {
     border-bottom: 1px solid #A8A8A8;
-   
+
     /* with the exported variables from Nova and Luna Themes*/
     border-bottom-color var(--input-border-color, #A8A8A8);
 }
@@ -61,12 +61,12 @@
 }
 
 .letraInfo{
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .inicioSesionImagen{
-	background-image: url("/resources/images/campus3.jpg") ;
-	display: block;
+    background-image: url("/resources/images/campus3.jpg") ;
+    display: block;
     margin-left: auto;
     margin-right: auto;
 
@@ -74,56 +74,56 @@
 
 
 .inicioSesion{
-	vertical-align: middle;
-	width: 50%;
+    vertical-align: middle;
+    width: 50%;
 }
 
 .menuBar {
-  
-	background-color:#009C8C;
-	color:#FFFFFF;
+
+    background-color:#009C8C;
+    color:#FFFFFF;
 }
 
 
 
 .subMenu a.ui-menuitem-link {
-	color: #FFFFFF;
-	font-weight:bold;
+    color: #FFFFFF;
+    font-weight:bold;
 }
 
 .fa { 
-        color: white;
-    }
-    
+    color: white;
+}
+
 .whiteIcon .ui-icon {
-	
-	 background-image: url("../javax.faces.resource/images/ui-icons_ffffff_256x240.png.jsf?ln=primefaces-aristo");
+
+    background-image: url("../javax.faces.resource/images/ui-icons_ffffff_256x240.png.jsf?ln=primefaces-aristo");
 }
 
 .my-panel .ui-panel-titlebar {
-     background: #FFFFFF;
-     color: #009C8C;
-     font-size: 25px;
+    background: #FFFFFF;
+    color: #009C8C;
+    font-size: 25px;
 }
 
 .visitado {
-     background: #FFFFFF;
-     color: #009C8C;
-     margin-left: 30%;
-     
+    background: #FFFFFF;
+    color: #009C8C;
+    margin-left: 30%;
+
 }
 .presentIni{
-	color: #878787;
+    color: #878787;
 }
 
 .comentarios .ui-panel-titlebar{
-     background: #FFFFFF;
-     color: #009C8C;
-     font-size: 15px;
+    background: #FFFFFF;
+    color: #009C8C;
+    font-size: 15px;
 }
 
 .infoUsuario{
-	float:left;
+    float:left;
 }
 
 .estadisticas{
@@ -131,5 +131,13 @@
 }
 
 .comentarios{
-	color:blue;
+    color:blue;
+}
+
+.left {
+    text-align: left;
+}
+
+.right div {
+    float: right;
 }
