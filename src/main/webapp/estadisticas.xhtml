@@ -7,6 +7,7 @@
     <h:head>
      <f:metadata>        	
             <f:event type="preRenderView" listener="#{LoginBean.autorizacion()}"/>
+            <f:event type="preRenderView" listener="#{estadisticasBean.red()}"/>
          </f:metadata>
         <h:outputStylesheet name="css/cssLayout.css"/> 
         <title>Estadisticas</title>
@@ -14,6 +15,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
     <h:body>
+    	
     	
         <div class="item">
             <img src="/resources/images/cabecera.jpg" class="imagen" />
@@ -38,7 +40,13 @@
         </p:menubar> 
         
          <br /><br />
-        <p:outputLabel id="username" value="#{estadisticasBean.red()}" />
+      <h:form id = "funciona">
+      <p:commandButton id="PDF1" value="Hacer PDF" actionListener="#{estadisticasBean.aPDF()}"></p:commandButton>
+      </h:form>
+      
+        
+        
+        
         
         <p:panel id="consultar_Tabla" header="Numero de Iniciativas por Area" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
 
@@ -47,10 +55,19 @@
         <br /><br />
 
         <br />
-                <p:panel id="consultar_Tabla" header="Porcentaje de Iniciativas por Estado" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
+                <p:panel id="consultar_Tabla2" header="Porcentaje de Iniciativas por Estado" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
 
         <p:chart id="username2"        type="pie" model="#{estadisticasBean.pieModel2}" style="width:400px;height:300px" responsive="true" /> 
+        
         </p:panel>
+        
+        
+        <:panel id = "pdfs">
+        	<p:commandButton id="PDF" value="PDF" action="#{estadisticasBean.lol()}"></p:commandButton>
+        </:panel>
+        
+        
+                        
 
 
 

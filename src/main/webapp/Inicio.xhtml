@@ -1,70 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
-        <h:outputStylesheet name="css/cssLayout.css"/> 
-        <title>Login banco de iniciativas</title>
-        <link rel="stylesheet" type="text/css" href="resources/css/login.css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    </h:head>
-    <h:body>
-        
-
-        <h1></h1>
-        <div id="section" class="loginBox">
-        	<img src="/resources/images/login.png" class="avatar" />
-            <h:form id="login" >
-                <p:growl id="msgs" showDetail="true" /> 
-                <p:fieldset legend="Iniciar Sesión">
-
-                    <p:outputLabel value="Correo :" for="username" />
-
-                    <p:inputText id="username" required="true" value="#{LoginBean.username}" title="Escriba aqui su correo institucional" type="text"/>
-                    <p:tooltip id="toolTipFocus" for="username" showEvent="focus" hideEvent="blur" position="top"/>
-                    <br></br>
-                    <br></br>
-                    <p:outputLabel value="Contraseña :" for="password" />
-
-                    <p:inputText id="password" type="password" required="true" value="#{LoginBean.password}" title="Escriba aca su contraseña"/>
-              
-                    <br></br>
-                    <br></br> 
-                    <br></br>
+<h:head>
+	<h:outputStylesheet name="css/cssLayout.css" />
+	<title>Login banco de iniciativas</title>
+	<link rel="stylesheet" type="text/css" href="resources/css/login.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</h:head>
+<h:body>
 
 
-                    <p:commandButton value="Ingresar" update="msgs" actionListener="#{LoginBean.doLogin()}" icon="ui-icon-check" />             
+	<h1></h1>
+	<div id="section" class="loginBox">
+		<img src="/resources/images/login.png" class="avatar" />
+		<h:form id="login">
+			<p:growl id="msgs" showDetail="true" />
+			<p:fieldset legend="Iniciar Sesión">
+
+				<p:outputLabel value="Correo :" for="username" />
+
+				<p:inputText id="username" required="true"
+					value="#{LoginBean.username}"
+					title="Escriba aqui su correo institucional" type="text" />
+				<p:tooltip id="toolTipFocus" for="username" showEvent="focus"
+					hideEvent="blur" position="top" />
+				<br></br>
+				<br></br>
+				<p:outputLabel value="Contraseña :" for="password" />
+
+				<p:inputText id="password" type="password" required="true"
+					value="#{LoginBean.password}" title="Escriba aca su contraseña" />
+
+				<br></br>
+				<br></br>
+				<br></br>
 
 
-                </p:fieldset>
-            </h:form>
-        </div>
-        <div id="bottom"  style="display:none">
-            <p:link outcome="busquedaUsuario.xhtml" value="busqueda de usuarios" style="text-decoration: none;font-size:15px;color: #010101"/>
-            <br/>            
-            <br/>
-            <p:link outcome="actualizarEstadoIniciativas.xhtml" value="Actualizar estado iniciativas" style="text-decoration: none;font-size:15px;color: #010101"/>
-            <br/>            
-            <br/>
-            <p:link outcome="registro.xhtml" value="Registrar nuevo usuario" style="text-decoration: none;font-size:15px;color: #010101"/>
-            <br/>            
-            <br/>
-            <p:link outcome="consultarIniciativas.xhtml" value="consultar las iniciativas" style="text-decoration: none;font-size:15px;color: #010101"/>
-            <br/>            
-            <br/>
-            <p:link outcome="perfilesUsuarios.xhtml" value="Perfiles de usuarios" style="text-decoration: none;font-size:15px;color: #010101"/>
-            <br/>            
-            <br/>
-            <p:link outcome="registrarIniciativas.xhtml" value="Registrar Nueva Iniciativa" style="text-decoration: none;font-size:15px;color: #010101"/>
-             <br/>            
-            <br/>
-            <p:link outcome="estadisticas.xhtml" value="Ver Estadisticas" style="text-decoration: none;font-size:15px;color: #010101"/>
-           
-        </div>
+				<p:commandButton value="Ingresar" update="msgs"
+					actionListener="#{LoginBean.doLogin()}" icon="ui-icon-check" />
 
 
-    </h:body>
+			</p:fieldset>
+		</h:form>
+	</div>
+	<div id="bottom" style="display: none">
+		<p:link outcome="busquedaUsuario.xhtml" value="busqueda de usuarios"
+			style="text-decoration: none;font-size:15px;color: #010101" />
+		<br /> <br />
+		<p:link outcome="actualizarEstadoIniciativas.xhtml"
+			value="Actualizar estado iniciativas"
+			style="text-decoration: none;font-size:15px;color: #010101" />
+		<br /> <br />
+		<p:link outcome="registro.xhtml" value="Registrar nuevo usuario"
+			style="text-decoration: none;font-size:15px;color: #010101" />
+		<br /> <br />
+		<p:link outcome="consultarIniciativas.xhtml"
+			value="consultar las iniciativas"
+			style="text-decoration: none;font-size:15px;color: #010101" />
+		<br /> <br />
+		<p:link outcome="perfilesUsuarios.xhtml" value="Perfiles de usuarios"
+			style="text-decoration: none;font-size:15px;color: #010101" />
+		<br /> <br />
+		<p:link outcome="registrarIniciativas.xhtml"
+			value="Registrar Nueva Iniciativa"
+			style="text-decoration: none;font-size:15px;color: #010101" />
+		<br /> <br />
+		<p:link outcome="estadisticas.xhtml" value="Ver Estadisticas"
+			style="text-decoration: none;font-size:15px;color: #010101" />
+
+	</div>
+
+
+</h:body>
 </html>

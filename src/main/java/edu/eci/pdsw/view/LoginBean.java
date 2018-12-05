@@ -111,11 +111,16 @@ public class LoginBean extends BasePageBean implements Serializable {
     }
     
     private boolean compararPermisos(Rol rolComparar){
-        Rol rol=usuario.getRol();
-        if (rol.equals(rolComparar)){
-            return true;
-        }
-        else {return false;}
+    	if(!(usuario==null)) {
+	        Rol rol=usuario.getRol();
+        	if (rol.equals(rolComparar)){
+        		return true;
+        	}
+        	else {return false;}
+    	}
+    	
+    	else return false;
+        
     }
     
     public Usuario getUsuario() {
@@ -177,7 +182,7 @@ public class LoginBean extends BasePageBean implements Serializable {
 
     
     public void autorizacion(){ 
-    	/*
+    	
     	String auth2 =FacesContext.getCurrentInstance().getViewRoot().getViewId();
     	String auth = auth2.substring(1, auth2.length()-6);
     	if(auth.equals("Inicio")){
@@ -214,7 +219,7 @@ public class LoginBean extends BasePageBean implements Serializable {
     	}
     	else {
     		redirect("Inicio");
-    	}*/
+    	}
     	
     }
     

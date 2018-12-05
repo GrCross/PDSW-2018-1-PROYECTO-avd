@@ -61,6 +61,30 @@
             <version>1.4.191</version>
         </dependency>
         
+        <!-- Itext, para los pdf -->
+        <dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>itextpdf</artifactId>
+		    <version>5.5.10</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.pdfbox</groupId>
+		    <artifactId>pdfbox</artifactId>
+		    <version>2.0.4</version>
+		</dependency>
+		
+		
+		
+		<!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
+		<dependency>
+		    <groupId>org.jfree</groupId>
+		    <artifactId>jfreechart</artifactId>
+		    <version>1.0.19</version>
+		</dependency>
+		
+		
+		
+        
         <!-- Faces dependencies -->
         <dependency>
             <groupId>javax.servlet</groupId>

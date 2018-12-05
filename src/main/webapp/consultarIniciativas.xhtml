@@ -40,6 +40,7 @@
             
         	 </p:submenu>
         
+        
         </p:menubar>      
         <h:form id="iniciativaForm" >
             <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
@@ -75,6 +76,11 @@
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15"
                              stickyHeader="true">
+                             
+                       
+	    			
+	                             
+                         
                     <p:column sortBy="#{Iniciativa.id}" headerText="id">
                         <h:outputText value="#{Iniciativa.id}" binding = "#{doc}"/>
                     </p:column>
@@ -88,7 +94,7 @@
                         <h:outputText value="#{Iniciativa.nombre}" />
                     </p:column>
                     <p:column sortBy="#{Iniciativa.fechaCreacion}" headerText="Fecha de Creacion">
-                        <h:outputText value="#{Iniciativa.fechaCreacion}"/>
+                        <h:outputText value="#{Iniciativa.getFechaCreacion2()}"/>
                     </p:column>
                     <p:column sortBy="#{Iniciativa.area}" headerText="area">
                         <h:outputText value="#{Iniciativa.area}" />
@@ -108,8 +114,24 @@
                         </p:commandButton>
                     </p:column> 
 
-                </p:dataTable>
+                </p:dataTable>                
+             <p:panel header="Exportar datos de la tabla">
+		            <h:commandButton image ="/src/main/webapp/resources/images/excel.jpg">
+		               
+		                <p:dataExporter type="xls" postProcessor="#{iniciativasBean.postProcessXLS}"
+		                    target="iniciativaTable" fileName="infoIniciativa" />
+		            </h:commandButton>		            
+		        </p:panel>
+	    		
+                
+              
+               
+                
+               
             </p:panel>
+            
+				
+            
         </h:form>   
     </h:body>
 </html>
