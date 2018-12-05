@@ -40,18 +40,19 @@
          <br /><br />
         <p:outputLabel id="username" value="#{estadisticasBean.red()}" />
         
+            
         <p:panel id="consultar_Tabla" header="Numero de Iniciativas por Area" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
 
         <p:chart type="bar" model="#{estadisticasBean.modeloAreas}" styleClass= "estadisticas" style="height:300px;" responsive="true" />
         </p:panel>
         <br /><br />
-
         <br />
-                <p:panel id="consultar_Tabla" header="Porcentaje de Iniciativas por Estado" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
-
+        <p:panel id="consultar_Tabla" header="Porcentaje de Iniciativas por Estado" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
+        <p:panelGrid columnClasses="left,right">
         <p:chart id="username2"        type="pie" model="#{estadisticasBean.pieModel2}" style="width:400px;height:300px" responsive="true" /> 
-        </p:panel>
+        </p:panelGrid>
 
+        </p:panel>
 
 
 

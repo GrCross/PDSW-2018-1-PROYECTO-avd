@@ -5,78 +5,90 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-     <f:metadata>        	
+        <f:metadata>        	
             <f:event type="preRenderView" listener="#{LoginBean.autorizacion()}"/>
-         </f:metadata>
+        </f:metadata>
         <title>Actualizar Estados Iniciativas</title>
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
     <h:body>
-    	 <div class="item">
+        <div class="item">
             <img src="/resources/images/cabecera.jpg" class="imagen" />
         </div>
-        
+
         <h1></h1>
         <h:form id="actualizarEstadoIniciativaForm">
-        	 <p:menubar  style="margin-top:20px" class="menuBar">
-        		<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
-        		url="/faces/perfilesUsuarios.xhtml" icon="fa fa-home" class="ui-menuitem"/>
-        	 	<p:submenu label="Usuarios" icon="fa fa-search"  styleClass="subMenu a.ui-menuitem-link" rendered ="#{LoginBean.filtroAdministrador()}">
-		        	<p:menuitem value="Actualizar Perfil Usuarios" url="/faces/busquedaUsuario.xhtml"  style=" color:#009c8c;"/>
-		           
-        		</p:submenu>
-        	 
-        	 <p:submenu label="Iniciativas" icon="fa fa-check" styleClass="subMenu a.ui-menuitem-link" >
-		        
-                <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;" />
-                <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;" rendered ="#{LoginBean.filtroAdministrador()}"/>
-                <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"  rendered ="#{LoginBean.filtroProponente()}"/>
-                <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
-            
-        	 </p:submenu>
-        
-        </p:menubar> 
-        
-        	<p:growl id="msgs" showDetail="true" /> 
+            <p:menubar  style="margin-top:20px" class="menuBar">
+                <p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+                            url="/faces/perfilesUsuarios.xhtml" icon="fa fa-home" class="ui-menuitem"/>
+                <p:submenu label="Usuarios" icon="fa fa-search"  styleClass="subMenu a.ui-menuitem-link" rendered ="#{LoginBean.filtroAdministrador()}">
+                    <p:menuitem value="Actualizar Perfil Usuarios" url="/faces/busquedaUsuario.xhtml"  style=" color:#009c8c;"/>
+
+                </p:submenu>
+
+                <p:submenu label="Iniciativas" icon="fa fa-check" styleClass="subMenu a.ui-menuitem-link" >
+
+                    <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;" />
+                    <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;" rendered ="#{LoginBean.filtroAdministrador()}"/>
+                    <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"  rendered ="#{LoginBean.filtroProponente()}"/>
+                    <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
+
+                </p:submenu>
+
+            </p:menubar> 
+
+            <p:growl id="msgs" showDetail="true" /> 
             <p:panel id="busquedaIniciativa" header="Cambiar Iniciativa" visible="true" class="ui-panel-titlebar" styleClass="my-panel ui-panel-titlebar">
                 <br></br>
+                <h:outputText value="#{LoginBean.usuario.documento}" binding = "#{usu}" rendered="false"/>
                 <p:dataTable id="IniciativaTable" var="Iniciativa" value="#{adminBean.consultarIniciativas()}" widgetVar="IniciativaTable" scrollable="true" scrollHeight="400"
                              paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="5,10,15,20">
-                	<p:column filterBy="#{Iniciativa.id}" headerText="Id">
-						<h:outputText value="#{Iniciativa.id}" binding = "#{id}"/>
-					</p:column>
-                
-               		<p:column filterBy="#{Iniciativa.estado}" headerText="Estado" >
-						<h:outputText value="#{Iniciativa.estado}"/>
-					</p:column>
-					
-					<p:column filterBy="#{Iniciativa.nombre}" headerText="Nombre" >
-						<h:outputText value="#{Iniciativa.nombre}"/>
-					</p:column>
-					
-					<p:column  headerText="Descripcion" >
-						<h:outputText value="#{Iniciativa.descripcion}"/>
-						
-					</p:column>
-					
-					<p:column filterBy="#{Iniciativa.fechaCreacion}" headerText="Fecha de Creación" >
-						<h:outputText value="#{Iniciativa.fechaCreacion}"/>
-					</p:column>
-					
-					<p:column headerText="Cambiar Estado">
-                                             <p:selectOneMenu id="roles" binding="#{estado}" >
-                                                <f:selectItem itemLabel="Select Estado" itemValue="" noSelectionOption="true" />
-                                                <f:selectItems value="#{adminBean.estados}" />
-                                            </p:selectOneMenu>
-                                            <p:commandButton id="Actualizar" update="actualizarEstadoIniciativaForm" value="Actualizar" actionListener="#{adminBean.updateEstadoIniciativa(estado.value,id.value)}" icon="ui-icon-check" ></p:commandButton>
-					</p:column>	
-					
-					
-					
+                    <p:column filterBy="#{Iniciativa.id}" headerText="Id">
+                        <h:outputText value="#{Iniciativa.id}" binding = "#{id}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{Iniciativa.estado}" headerText="Estado" >
+                        <f:facet name="filter">
+                            <p:selectOneMenu onchange="PF('IniciativaTable').filter()">
+                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                <f:selectItems value="#{adminBean.estados}" />
+                            </p:selectOneMenu>
+                        </f:facet>
+                        <h:outputText value="#{Iniciativa.estado}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{Iniciativa.nombre}" headerText="Nombre" >
+                        <h:outputText value="#{Iniciativa.nombre}"/>
+                    </p:column>
+
+                    <p:column  headerText="Descripcion" >
+                        <h:outputText value="#{Iniciativa.descripcion}"/>
+
+                    </p:column>
+
+                    <p:column filterBy="#{Iniciativa.fechaCreacion}" headerText="Fecha de Creación" >
+                        <h:outputText value="#{Iniciativa.fechaCreacion}"/>
+                    </p:column>
+                    <p:column id = "meGusta" sortBy="#{Iniciativa.area}" headerText="Me Gusta">
+                        <p:commandButton id="like"  actionListener="#{insertIniciativasBean.votar(id.value,usu.value)}" update="like"
+                                         oncomplete="" value="Likes:  #{Iniciativa.votos}" icon="#{insertIniciativasBean.like(id.value,usu.value) ? 'fa fa-thumbs-up' : '  '}" >
+                            </p:commandButton>
+                    </p:column>
+
+                    <p:column headerText="Cambiar Estado">
+                        <p:selectOneMenu id="roles" binding="#{estado}" >
+                            <f:selectItem itemLabel="Select Estado" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{adminBean.estados}" />
+                        </p:selectOneMenu>
+                        <p:commandButton id="Actualizar" update="actualizarEstadoIniciativaForm" value="Actualizar" actionListener="#{adminBean.updateEstadoIniciativa(estado.value,id.value)}" icon="ui-icon-check" ></p:commandButton>
+                    </p:column>	
+
+
+
                 </p:dataTable>
-                
+
             </p:panel>
             <br></br>            
         </h:form>   

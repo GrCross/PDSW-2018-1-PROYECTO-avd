@@ -12,28 +12,25 @@ import java.io.Serializable;
  * @author 2106913
  */
 public class Interes implements Serializable{
-    private int afinidad;
+    
     private boolean voto;
     private Iniciativa iniciativa;
 
-    public Interes(int iniciativa_documento, int afinidad, boolean voto ) {
+    public Interes(boolean voto ) {
 
-        this.afinidad =afinidad;
+        
         this.voto = voto;
     }
+    
+    public Interes(Iniciativa iniciativa,boolean voto) {
+        this.iniciativa = iniciativa;
+        this.voto = voto;
+    }
+    
 
     public Interes() { 
     	
-    }    
-
-
-    public int getAfinidad() {
-        return afinidad;
     }
-
-    public void setAfinidad(int afinidad) {
-        this.afinidad = afinidad;
-    }   
     
     
     public boolean getVoto() {
@@ -48,7 +45,7 @@ public class Interes implements Serializable{
 
     @Override
     public String toString() {
-        return "Interes{" + ", afinidad=" + afinidad + ", voto=" + voto +'}';
+        return "Interes{" + ", afinidad="  + ", voto=" + voto +'}';
     }
     
     

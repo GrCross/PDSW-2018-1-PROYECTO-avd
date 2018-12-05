@@ -66,6 +66,7 @@
             u.rol as user_rol,
             (select count(*) from intereses join iniciativas on intereses.iniciativa_documento = iniciativas.id where intereses.voto=true and i.id=iniciativas.id) as votos
         FROM iniciativas as i join usuarios as u on u.documento = i.usuarios_documento  left join intereses as inte on i.id=inte.Iniciativa_documento
+        GROUP BY i.id, u.documento;
        
     </select>
    
@@ -86,8 +87,8 @@
             u.telefono as user_telefono,
             u.correo as user_correo,
             u.rol as user_rol,
-            <!--(select count(*) from intereses join iniciativas on intereses.iniciativa_documento = iniciativas.id where intereses.voto=true and i.id=iniciativas.id) as votos-->
-            3 as votos
+            (select count(*) from intereses join iniciativas on intereses.iniciativa_documento = iniciativas.id where intereses.voto=true and i.id=iniciativas.id) as votos
+            
         FROM iniciativas as i join usuarios as u on u.documento = i.usuarios_documento  left join intereses as inte on i.id=inte.Iniciativa_documento 
         where u.documento=#{doc}
         GROUP BY i.id, u.documento;
@@ -124,8 +125,11 @@
         FROM iniciativas as i,usuarios as u WHERE u.documento = i.usuarios_documento and i.id=#{id};
     </select>
     
-    
-   
+    <select id="LikesUnaIniciativa" parameterType="map"  resultMap="IniciativaResult">
+     select count(*) as votos
+       from iniciativas join intereses on intereses.iniciativa_documento = iniciativas.id
+       where intereses.voto = true and iniciativas.id = #{id};
+    </select>
    
   </mapper>
 

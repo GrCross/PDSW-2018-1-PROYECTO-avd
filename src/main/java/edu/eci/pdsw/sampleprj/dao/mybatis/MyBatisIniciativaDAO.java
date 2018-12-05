@@ -66,6 +66,11 @@ public class MyBatisIniciativaDAO implements IniciativaDAO {
     public void cambiarNombreIniciativa(String nombre, int id) {
         iniciativaMapper.cambiarNombreIniciativa(nombre, id);
     }
+
+    @Override
+    public Iniciativa LikesUnaIniciativa(int id) throws PersistenceException {
+        return iniciativaMapper.LikesUnaIniciativa(id);
+    }
     
             
     

@@ -17,8 +17,7 @@
     </resultMap>
     
     
-    <resultMap type='Interes' id='InteresResult'>        
-        <id property='afinidad' column='Afinidades_idAfinidad'/>
+    <resultMap type='Interes' id='InteresResult'>
         <result property='voto' column='voto'/>
         <association property='iniciativa' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.IniciativaMapper.IniciativaResult'/>
     </resultMap> 
@@ -46,7 +45,7 @@
     </update>
     
     <insert parameterType="map" id="agregarInteres">
-    	INSERT INTO INTERESES (Iniciativa_documento,Usuarios_id,Afinidades_idAfinidad,voto) VALUES(#{iniciativa},#{usuario},#{inte.afinidad},#{inte.voto});
+    	INSERT INTO INTERESES (Iniciativa_documento,Usuarios_id,voto) VALUES(#{iniciativa},#{usuario},#{inte.voto});
         
     </insert>
     

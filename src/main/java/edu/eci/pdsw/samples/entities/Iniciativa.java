@@ -120,9 +120,9 @@ public class Iniciativa implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public String getFechaCreacion() {
+    public Date getFechaCreacion() {
 
-        return new SimpleDateFormat("dd-MM-yyyy").format(fechaCreacion);
+        return this.fechaCreacion;
     }
 
     public void setFechaCreacion(Date fechaCreacion) {
