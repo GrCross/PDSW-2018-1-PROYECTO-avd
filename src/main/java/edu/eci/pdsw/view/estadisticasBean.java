@@ -33,6 +33,8 @@ import javax.faces.context.FacesContext;
 import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpSession;
 import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.h2.store.fs.FileUtils;
 import org.jfree.chart.ChartFactory;
@@ -80,6 +82,9 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 	private PieChartModel pieModel2;
 	private ArrayList<Iniciativa> iniciativas = new ArrayList<Iniciativa>();
 	private String path;
+	
+
+	
 
 	@Inject
 	private ServiciosBancoIniciativas serviciosBancoIniciativa;
@@ -108,17 +113,25 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 		modeloAreas = new BarChartModel();
 		ChartSeries areas = new ChartSeries();
 		areas.setLabel("Numero de Proyectos");
-		 Hashtable<String, Integer> tablaAreas = valoresTabla1();
-
+		Hashtable<String, Integer> tablaAreas = valoresTabla1();
+		int cont=0;
 		Set<String> keys = tablaAreas.keySet();
 		for (String key : keys) {
-			areas.set(key, tablaAreas.get(key));
+			
+				areas.set(key, tablaAreas.get(key));
+			
 		}
+		
 		modeloAreas.addSeries(areas);
 		modeloAreas.setTitle("");
 		modeloAreas.setLegendPosition("e");
 		modeloAreas.setShadow(true);
+
 	}
+	
+	
+	
+	
 
 	private void createPieModel2() {
 
@@ -126,41 +139,40 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 		Hashtable<String, Integer> tablaEstados = valoresTabla2();
 
 		Set<String> keys = tablaEstados.keySet();
+		int cont =0;
 		for (String key : keys) {
+			if(cont<=10) {
 			pieModel2.set(key, tablaEstados.get(key));
+			}
 		}
 
 		pieModel2.setTitle("");
 		pieModel2.setLegendPosition("e");
 		pieModel2.setFill(false);
 		pieModel2.setShowDataLabels(true);
-		pieModel2.setDiameter(150);
+		pieModel2.setDiameter(300);
 		pieModel2.setShadow(false);
 	}
 	
 	
 	
-	
+
 	private Hashtable<String, Integer> valoresTabla1() {
 
-	Hashtable<String, Integer> tablaAreas = new Hashtable<String, Integer>();
+		Hashtable<String, Integer> tablaAreas = new Hashtable<String, Integer>();
 
-	for (Iniciativa in : iniciativas) {
-		if (!tablaAreas.containsKey(in.getArea())) {
+		for (Iniciativa in : iniciativas) {
+			if (!tablaAreas.containsKey(in.getArea())) {
 
-			tablaAreas.put(in.getArea(), 1);
-		} else {
+				tablaAreas.put(in.getArea(), 1);
+			} else {
 
-			tablaAreas.put(in.getArea(), tablaAreas.get(in.getArea()) + 1);
+				tablaAreas.put(in.getArea(), tablaAreas.get(in.getArea()) + 1);
+			}
 		}
+		return tablaAreas;
 	}
-	return tablaAreas;
-	}
-	
-	
-	
-	
-	
+
 	private Hashtable<String, Integer> valoresTabla2() {
 
 		Hashtable<String, Integer> tablaEstados = new Hashtable<String, Integer>();
@@ -199,19 +211,18 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 	public void setIniciativas(ArrayList<Iniciativa> iniciativas) {
 		this.iniciativas = iniciativas;
 	}
+	
+	
 
 	public void imagenChart2() {
-		
-		
+
 		String path1 = this.getClass().getClassLoader().getResource("").getPath();
-		String fullPath; 
+
 		try {
 			path = URLDecoder.decode(path1, "UTF-8");
-			
-			path=path.substring(0, path.length()-15); 
-			path=path.concat("src/main/webapp/resources/images/Creadas");
-			System.out.println(path);
-			
+
+			path = path.substring(0, path.length() - 15);
+			path = path.concat("src/main/webapp/resources/images/Creadas");
 
 			DefaultPieDataset chart2 = new DefaultPieDataset();
 			Hashtable<String, Integer> tablaEstados = valoresTabla2();
@@ -223,99 +234,92 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 
 			JFreeChart chartEstados = ChartFactory.createPieChart("Estados", chart2);
 			final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
-			final File file1 = new File(path+"/chartEstados.png");
-			ChartUtilities.saveChartAsPNG(file1, chartEstados, 600, 400, info);
-			
-			
+			final File file1 = new File(path + "/chartEstados.png");
+			ChartUtilities.saveChartAsPNG(file1, chartEstados, 400, 300, info);
+
 		} catch (IOException e1) {
 			System.out.println("                     Error");
 			e1.printStackTrace();
 		}
 
-		
-
 	}
-	
-	
-public void imagenChart1() {
-		
-		
+
+	public void imagenChart1() {
+
 		String path1 = this.getClass().getClassLoader().getResource("").getPath();
-	
+
 		try {
 			path = URLDecoder.decode(path1, "UTF-8");
-			
-			path=path.substring(0, path.length()-15); 
-			path=path.concat("src/main/webapp/resources/images/Creadas");
 			System.out.println(path);
-			
 
-			DefaultCategoryDataset chart1 = new DefaultCategoryDataset( );  
-			Hashtable<String, Integer> tablaEstados = valoresTabla2();
+			path = path.substring(0, path.length() - 15);
+			path = path.concat("src/main/webapp/resources/images/Creadas");
+
+			DefaultCategoryDataset chart1 = new DefaultCategoryDataset();
+			Hashtable<String, Integer> tablaEstados = valoresTabla1();
 
 			Set<String> keys = tablaEstados.keySet();
 			for (String key : keys) {
-				chart1.addValue(tablaEstados.get(key),key, "cantidad");
+
+				chart1.addValue(tablaEstados.get(key), "Cantidad de proyectos", key);
 			}
 
-			JFreeChart chartAreas = ChartFactory.createBarChart("Cantidad de iniciativas por area","area","cantidad", chart1);
+			JFreeChart chartAreas = ChartFactory.createBarChart("Cantidad de iniciativas por area", "Areas",
+					"Cantidad de proyectos", chart1);
+
 			final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
-			final File file1 = new File(path+"/chartAreas.png");
-			ChartUtilities.saveChartAsPNG(file1, chartAreas, 600, 400, info);
-			
-			
+
+			final File file1 = new File(path + "/chartAreas.png");
+
+			ChartUtilities.saveChartAsPNG(file1, chartAreas, 550, 300, info);
+
 		} catch (IOException e1) {
 			System.out.println("                     Error");
 			e1.printStackTrace();
 		}
 
-		
-
 	}
-	
-	
-	
-	
-	
+
 	public void aPDF() {
 		System.out.println("ssssssss");
 		imagenChart2();
 		imagenChart1();
 		Document document = new Document();
 		Document document2 = new Document();
-        try {
-        	JFileChooser chooser = new JFileChooser();
-        	chooser.setCurrentDirectory(new java.io.File("."));
-            chooser.setDialogTitle("Save Backup");
-            chooser.setApproveButtonText("Save");
-            //disables the all filesoptioning here
-            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 
-            chooser.setAcceptAllFileFilterUsed(false);
-            
-        			
-			PdfWriter.getInstance(document, new FileOutputStream("Estadisticas banco de iniciativas.pdf"));
-			PdfWriter.getInstance(document2, new FileOutputStream(new File(chooser.getSelectedFile(), "Esto de iniciativas.pdf")));
+		try {
+			String home = System.getProperty("user.home");
 			
+			PdfWriter.getInstance(document, new FileOutputStream(home+"/Downloads/Estadisticas banco de iniciativas.pdf"));
 			
-	        document.open();
-	        Image img = Image.getInstance(path+"/chartEstados.png");
-	        Image img2 = Image.getInstance(path+"/chartAreas.png");
-	        document.addHeader("Estadisticas banco de iniciativas","");
-	        document.add(new Paragraph("La siguiente grafica muestra la distribucion de las iniciativas en base al estado en el que se encuentran"));
-	        document.add(img);
-	        document.add(new Paragraph("La siguiente grafica muestra la distribucion de las iniciativas en base a la cantidad de iniciativas por area"));
-	        document.add(img2);
-	        document.close();
-	        System.out.println("Done");
-	        FileUtils.delete(path+"/chartEstados.png");
+			document.open();
 
-	        FileUtils.delete(path+"/chartAreas.png");
-        } catch (DocumentException |IOException e) {
+			document.addTitle("Resumen estadisticas banco de iniciativas");
+			document.leftMargin();
+
+			Image img = Image.getInstance(path + "/chartEstados.png");
+			Image img2 = Image.getInstance(path + "/chartAreas.png");
+			document.addHeader("Estadisticas banco de iniciativas", "");
+			document.add(new Paragraph(
+					"La siguiente grafica muestra la distribucion de las iniciativas en base al estado en el que se encuentran"));
+			document.add(img);
+			document.add(new Paragraph(
+					"La siguiente grafica muestra la distribucion de las iniciativas en base a la cantidad de iniciativas por area"));
+			document.add(img2);
+			document.close();
+			System.out.println("Done");
+			FileUtils.delete(path + "/chartEstados.png");
+
+			FileUtils.delete(path + "/chartAreas.png");
+			
+			  FacesMessage msg;
+              msg = new FacesMessage("El archivo pdf se ha guardado en su carpeta de descargas bajo el nombre 'Estadisticas banco de iniciativas'");
+              FacesContext.getCurrentInstance().addMessage(null, msg);
+		} catch (DocumentException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+		  
+
 	}
 
 }

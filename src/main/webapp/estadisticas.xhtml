@@ -43,16 +43,18 @@
          <br /><br />
       <h:form id = "funciona">
       <p:commandButton id="PDF1" value="Hacer PDF" actionListener="#{estadisticasBean.aPDF()}"></p:commandButton>
+      <h:messages id="anuncio" globalOnly="true" styleClass="info" errorClass="error" />
       </h:form>
+      
       
         
         
         
         
             
-        <p:panel id="consultar_Tabla2" header="Numero de Iniciativas por Area" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
+        <p:panel id="consultar_Tabla2" header="Numero de Iniciativas en las 10 primeras areas" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
 
-        <p:chart type="bar" model="#{estadisticasBean.modeloAreas}" styleClass= "estadisticas" style="height:300px;" responsive="true" />
+        <p:chart type="bar" model="#{estadisticasBean.modeloAreas}" styleClass= "estadisticas" style="height:300px;width:1100px" responsive="true" />
         </p:panel>
         <br /><br />
         <br />
@@ -66,7 +68,7 @@
 
         <p:panel id="consultar_Tabla" header="Porcentaje de Iniciativas por Estado" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
         <p:panelGrid columnClasses="left,right">
-        <p:chart id="username2"        type="pie" model="#{estadisticasBean.pieModel2}" style="width:400px;height:300px" responsive="true" /> 
+        <p:chart id="username2"        type="pie" model="#{estadisticasBean.pieModel2}" style="width:500px;height:400px" responsive="true" /> 
         </p:panelGrid>
 
 

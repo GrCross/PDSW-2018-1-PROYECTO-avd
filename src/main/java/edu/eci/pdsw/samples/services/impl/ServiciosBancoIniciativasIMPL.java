@@ -6,7 +6,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.eci.pdsw.sampleprj.dao.ComentarioDAO;
 import edu.eci.pdsw.sampleprj.dao.IniciativaDAO;
-import edu.eci.pdsw.sampleprj.dao.InteresDAO;
 
 import edu.eci.pdsw.sampleprj.dao.UsuarioDao;
 import edu.eci.pdsw.samples.entities.Comentario;
@@ -35,8 +34,7 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     @Inject
     private ComentarioDAO comentarioDAO;
     
-    @Inject
-    private InteresDAO interesDAO;
+   
 
     public ServiciosBancoIniciativasIMPL() {
 		// TODO Auto-generated constructor stub
@@ -185,25 +183,30 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
         iniciativaDAO.cambiarNombreIniciativa(nombre, id);
     }
 
-    @Override
-    public Interes consultarInteres(int documento, long usuario) throws Exception {
-        return interesDAO.consultarInteres(documento, usuario);
-    }
-
-    @Override
-    public void updateInteres(int documento, long usuario, boolean like) throws Exception {
-        interesDAO.updateInteres(documento, usuario, like);
-    }
-
-    @Override
-    public void agregarInteres(int documento, long usuario, Interes interes) throws Exception {
-        interesDAO.agregarInteres(documento, usuario, interes);
-    }
+   
 
     @Override
     public Iniciativa LikesUnaIniciativa(int id) throws Exception {
         return iniciativaDAO.LikesUnaIniciativa(id);
     }
+
+	@Override
+	public Interes consultarInteres(int documento, long usuario) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateInteres(int documento, long usuario, boolean like) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void agregarInteres(int documento, long usuario, Interes interes) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 
  
     
