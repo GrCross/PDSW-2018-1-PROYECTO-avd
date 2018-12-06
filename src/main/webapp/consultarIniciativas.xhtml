@@ -37,12 +37,12 @@
                 <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;" />
                 <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;" rendered ="#{LoginBean.filtroAdministrador()}"/>
                 <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"  rendered ="#{LoginBean.filtroProponente()}"/>
-                <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
-            
+                
         	 </p:submenu>
+        	 <p:menuitem value="Estadísticas" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+        	 url="/faces/estadisticas.xhtml" icon="fa fa-bar-chart " class="ui-menuitem"/>
         
-        
-        </p:menubar>      
+        </p:menubar>    
         <h:form id="iniciativaForm" >
             <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
                 <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">

@@ -1,5 +1,15 @@
 @charset "ISO-8859-1";
 
+*{
+	margin:0;
+	padding:0;
+}
+
+body {
+	height:100%;
+	
+}
+
 .ui-panel-titlebar{
     border:red;
     background-color:#f7fcfb;
@@ -8,7 +18,9 @@
 
 .ui-panelGrid-Datos1{
     margin: 0 auto;
-    text-align: center;
+    padding: 10px;
+    border-radius: 3%;
+    color: #6e6e6e;
 }
 
 .imagen{
@@ -42,7 +54,7 @@
 }
 
 .informacion{
-    background-color:#5DC1B9;
+     background-color:#5DC1B9;
     width: 99%;
     padding-right: 15px;
     padding-left: 15px;
@@ -54,6 +66,7 @@
     color: #FFFFFF;
     float: bottom;
 }
+
 
 
 .footerPerfil{
@@ -110,6 +123,7 @@
     background: #FFFFFF;
     color: #009C8C;
     margin-left: 30%;
+    
 
 }
 .presentIni{
@@ -140,4 +154,44 @@
 
 .right div {
     float: right;
+}
+
+#info {
+	color:#999;
+	background-color:#000;
+}
+
+.panelGridA {
+    background-color: #fff !important;
+    bottom: 0px; left: 0px; right: 0px; top: 0px; 
+    width: 600px;
+    border-radius: 10px;
+    border-left-style: solid;
+    border-color: #c4bbce;
+}
+
+
+
+
+.imagePerfil{
+	 border-radius: 20px;
+	 padding: 5px;
+  	width: 600px;
+  	height: 200px
+}
+
+.panelUsuario{
+	margin: 0 auto;
+}
+
+.modificarIni{
+	border: none;
+}
+
+.botonesUsuario{
+	width: 1000px;
+	margin: 0 auto;
+	border-color: #c4bbce;
+	border-left-style: solid;
+	 
 }

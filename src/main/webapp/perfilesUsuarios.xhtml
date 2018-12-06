@@ -23,7 +23,29 @@
         <h1></h1>        
         <h:form id="iniciativaForm">
 
-
+			<p:menubar  style="margin-top:20px" class="menuBar">
+        		<p:menuitem value="Perfil" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+        		url="/faces/perfilesUsuarios.xhtml" icon="fa fa-home" class="ui-menuitem"/>
+        	 	<p:submenu label="Usuarios" icon="fa fa-search"  styleClass="subMenu a.ui-menuitem-link" rendered ="#{LoginBean.filtroAdministrador()}">
+		        	<p:menuitem value="Actualizar Perfil Usuarios" url="/faces/busquedaUsuario.xhtml"  style=" color:#009c8c;"/>
+		           
+        		</p:submenu>
+        	 
+        	 <p:submenu label="Iniciativas" icon="fa fa-check" styleClass="subMenu a.ui-menuitem-link" >
+		        
+                <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;" />
+                <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;" rendered ="#{LoginBean.filtroAdministrador()}"/>
+                <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"  rendered ="#{LoginBean.filtroProponente()}"/>
+                
+        	 </p:submenu>
+        	 <p:menuitem value="Estadísticas" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+        	 url="/faces/estadisticas.xhtml" icon="fa fa-bar-chart " class="ui-menuitem"/>
+        	 
+        	 
+        
+        </p:menubar>
+        <h:panelGrid columns="2" styleClass=" panelUsuario">
+        
             <p:panel id="informacionUsuario" header="Usuario" visible="true" styleClass="my-panel ui-panel-titlebar infoUsuario">
                 <img src="/resources/images/1.jpg" class="logo" style="width: 70px; float: left"/> 
                 <h:panelGrid columns="3" cellpadding="5" class="ui-panelGrid-Datos1">                    
@@ -39,42 +61,49 @@
 
 
             </p:panel>
-            <br></br> 
-            <br></br> 
+            
+            <div class="item">
+            <img src="/resources/images/campus3.jpg" class="imagen imagePerfil" />
+        	</div>
+        </h:panelGrid>
+        <br></br> 
+        
+        <p:separator style="background:#009C8C; width:97%;height:2px; margin:0 auto" />
+        <br></br> 
+            
+            
             <h:outputText id = "pagConsultarIniciativas" value="consultarIniciativas" binding="#{pagina1}" style="display:none"/>  
-            <p:commandButton id="consultarIniciativas" value="Consultar iniciativas" >
+            <p:commandButton id="consultarIniciativas" value="Consultar iniciativas"  style=" margin-left: 20%;">
                 <f:actionListener binding="#{insertIniciativasBean.consultarIniciativas()}"/>
                 <f:actionListener binding="#{LoginBean.redirect(pagina1.value)}"/>
             </p:commandButton>
-
+			
             <h:outputText id = "pagActualizarEstado" value="actualizarEstadoIniciativas" binding="#{pagina2}" style="display:none"/>  
             <p:commandButton id="ActualizarEstados" value="Actualizar Estados" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina2.value)}" ></p:commandButton>
-
+			
+			
             <h:outputText id = "pagRegistrarIniciativa" value="registrarIniciativas" binding="#{pagina3}" style="display:none"/>  
             <p:commandButton id="RegistrarIniciativa" value="registrar Iniciativas" rendered ="#{LoginBean.filtroProponente()}" actionListener="#{LoginBean.redirect(pagina3.value)}" ></p:commandButton>
-
+			
             <h:outputText id = "pagActualizarPerfil" value="busquedaUsuario" binding="#{pagina4}" style="display:none"/>  
             <p:commandButton id="ActualizarPerfil" value="Cambiar Perfil Usuarios" rendered ="#{LoginBean.filtroAdministrador()}" actionListener="#{LoginBean.redirect(pagina4.value)}" ></p:commandButton>
-
+			
             <h:outputText id = "pagEstadisticas" value="estadisticas" binding="#{pagina5}" style="display:none"/>  
             <p:commandButton id="verEstadisticas" value="Ver Estadisticas"  actionListener="#{LoginBean.redirect(pagina5.value)}" ></p:commandButton>
-
-            <br></br>
-            <br></br>
+		
             <h:outputText id = "pagInicio" value="Inicio" binding="#{paginaInicio}" style="display:none"/>  
             <p:commandButton id="CerrarSesion" value="Cerrar Sesión" >
             	<f:actionListener binding="#{LoginBean.setUsuario(null)}"/>
                 <f:actionListener binding="#{LoginBean.redirect(paginaInicio.value)}"/>
                
             </p:commandButton>
-            <br></br> 
             
 
             <br></br> 
-            <br></br> 
-            <br></br> 
+            
             <h:outputText value="#{LoginBean.usuario.documento}" binding = "#{usu}" rendered="false"/>
-            <p:panel header="Mis Iniciativas" styleClass="my-panel ui-panel-titlebar infoUsuario">
+            
+            <p:panel header="Mis Iniciativas" styleClass="my-panel ui-panel-titlebar infoUsuario visitado" rendered ="#{LoginBean.filtroProponente()}" >
                 <p:dataTable id="iniciativaTable" var="Iniciativa" value="#{LoginBean.iniciativasUnUsuario()}" rows="10" widgetVar="IniciativasTable" 
                              scrollable="true"
                              stickyHeader="true" style="width: 800px">
@@ -110,6 +139,34 @@
 			<br></br> 
             <br></br> 
             <br></br> 
+            
+             <p:panel id="informacionEscuela"  visible="true" class="informacion footerPerfil">
+                <h:panelGrid columns="1" cellpadding="5" class="letraInfo">                    
+                    Escuela Colombiana de Ingeniería Julio Garavito
+                    <br></br>
+                    Ak 45 No. 205 - 59 Autopista Norte, costado occidental.
+                    <br></br>
+                    Contact Center: 57(1) 668 3600
+                    <br></br>
+                    Línea Nacional Gratuita: 018000112668
+                    <br></br>
+                    www.escuelaing.edu.co
+                    <br></br>
+                    Bogotá - Colombia
+                    <br></br>
+                    <br></br>
+
+                    Personería Jurídica 086 de enero 19 de 1973.
+                    <br></br>
+                    Acreditación institucional de alta calidad. Res. 20273 del 27 de noviembre de 2014. (Vigencia 4 años).
+                    <br></br>
+                    Vigilada Mineducación.
+
+                </h:panelGrid>
+
+
+            </p:panel>
+            
 
             
 

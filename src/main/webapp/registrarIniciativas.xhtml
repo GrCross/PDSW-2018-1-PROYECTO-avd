@@ -37,9 +37,10 @@
                 <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;" />
                 <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;" rendered ="#{LoginBean.filtroAdministrador()}"/>
                 <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"  rendered ="#{LoginBean.filtroProponente()}"/>
-                <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
-            
+                
         	 </p:submenu>
+        	 <p:menuitem value="Estadísticas" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+        	 url="/faces/estadisticas.xhtml" icon="fa fa-bar-chart " class="ui-menuitem"/>
         
         </p:menubar> 
          <p:growl id="msgs" showDetail="true" /> 
@@ -84,7 +85,9 @@
                             </p:dataTable>					
                         </h:panelGrid>
                 <br></br>
-                <p:commandButton id="registrar" update="IniciativaForm" value="Registrar" actionListener="#{insertIniciativasBean.registrarIniciativa(nombre.value,descripcion.value,area.value,autor.value)}"  icon="ui-icon-check"></p:commandButton>
+                <div id="regis" style="margin:0 auto;">
+                <p:commandButton id="registrar" update="IniciativaForm" value="Registrar" actionListener="#{insertIniciativasBean.registrarIniciativa(nombre.value,descripcion.value,area.value,autor.value)}"  icon="ui-icon-check" ></p:commandButton>
+            	</div>
             </p:panel>
             <br></br>            
         </h:form>   

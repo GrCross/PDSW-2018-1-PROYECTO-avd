@@ -11,6 +11,7 @@
         <title>Consultar Iniciativas</title>
 
         <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/comments.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     </h:head>
     
@@ -35,15 +36,17 @@
                 <p:menuitem value="Consultar Iniciativas" url="/faces/consultarIniciativas.xhtml" style=" color:#009c8c;" />
                 <p:menuitem value="Actualizar Estado Iniciativas" url="/faces/actualizarEstadoIniciativas.xhtml" style=" color:#009c8c;" rendered ="#{LoginBean.filtroAdministrador()}"/>
                 <p:menuitem value="Registrar Iniciativas" url="/faces/registrarIniciativas.xhtml" style=" color:#009c8c;"  rendered ="#{LoginBean.filtroProponente()}"/>
-                <p:menuitem value="Estadísticas Iniciativas" url="/faces/estadisticas.xhtml" style=" color:#009c8c;"/>
-            
+                
         	 </p:submenu>
+        	 <p:menuitem value="Estadísticas" style="width:95%; font-weight:bold;  color:#FFFFFF;"
+        	 url="/faces/estadisticas.xhtml" icon="fa fa-bar-chart " class="ui-menuitem"/>
         
         </p:menubar> 
             <p:panel id="consultar_Tabla" header="Consultar Iniciativas" visible="true" class="ui-panel-titlebar" styleClass="my-panel ui-panel-titlebar">
-
+				
                 <h:panelGrid columns="3" cellpadding="5" > 
-                    <h:panelGrid columns="2" cellpadding="5" style="font-size: 20px;">                    
+                	
+                    <h:panelGrid columns="2" cellpadding="5" style="font-size: 18px;" styleClass="panelGridA">                    
                         <p:outputLabel value="Nombre Iniciativa: " class="presentIni"/>
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.nombre}"/>
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.id}" rendered="false" binding="#{doc}"/>
@@ -64,7 +67,7 @@
                         <p:outputLabel  value ="#{iniciativasBean.iniciativa.palabrasClave}"/>
 
                     </h:panelGrid>
-                    
+                 
                     
 
                     <p:panel id="basic" header="Agregar comentario" style="margin-bottom:20px">
@@ -89,7 +92,7 @@
                     
                     
                     
-                    <h:panelGrid columns="3" cellpadding="5" > 
+                    <h:panelGrid columns="4" cellpadding="5" > 
                         
                         <p:commandButton id="movieBtn" value="Iniciativas similares" rendered ="#{LoginBean.filtroAdministrador()}">
                             <f:actionListener binding="#{iniciativasBean.consultarIniciativasParecidas()}"/>
@@ -119,7 +122,7 @@
                         </p:commandButton>
                         
                         <p:dialog header="Modificar Iniciativa" widgetVar="dlg2" modal="true" height="800" width="500">
-                            <p:panelGrid columns="2"  >
+                            <p:panelGrid columns="2" styleclass="modificarIni" >
                                 <p:row>
                                     <p:panel id="cambiosNombre" >
                                         <h:panelGrid columns="1" cellpadding="3"  class="ui-panelGrid-Datos1">
@@ -151,22 +154,19 @@
                                         </h:panelGrid>
                                     </p:panel>
                                 </p:row>
-                                <p:row>
-                                    <p:outputLabel value="palabras Clave: " /><br/>
-                                    <p:chips id="pClaves" value="#{iniciativasBean.palabrasClave}"/><br/>
-                                    
-                                </p:row>
+                              
                             </p:panelGrid>
                             
                         </p:dialog>
-                    
-                    </h:panelGrid>
-                    
-                     <h:outputText value="#{LoginBean.usuario.documento}" binding = "#{usu}" rendered="false"/>
+                      <h:outputText value="#{LoginBean.usuario.documento}" binding = "#{usu}" rendered="false"/>
                     <p:commandButton id="like"  actionListener="#{insertIniciativasBean.votar(doc.value,usu.value)}" update="like"
                                      value="Likes:  #{iniciativasBean.likesUnaIniciativa()}" icon="#{insertIniciativasBean.like(doc.value,usu.value) ? 'fa fa-thumbs-up' : '  '}" >
                    </p:commandButton>
                     
+                    
+                    </h:panelGrid>
+                    
+                   
                     
                 </h:panelGrid>
 

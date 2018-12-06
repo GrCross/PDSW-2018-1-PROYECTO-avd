@@ -56,13 +56,9 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     }
     
     @Override
-<<<<<<< HEAD
-    public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException{
-        
-        
-=======
+
     public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException{        
->>>>>>> b2ab993aed857106a055edca5409ab4c637092fa
+
         return iniciativaDAO.load();
     }
 
