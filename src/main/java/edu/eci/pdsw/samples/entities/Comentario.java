@@ -67,9 +67,14 @@ public class Comentario implements Serializable {
     	return fechaDePublicacion;
     }
 
+
+
+
     public String getFechaDePublicacion2() {
     	return new SimpleDateFormat("dd-MM-yyyy").format(fechaDePublicacion);
     }
+
+ 
 
     public void setFechaDePublicacion(Date fechaDePublicacion) {
         this.fechaDePublicacion = fechaDePublicacion;

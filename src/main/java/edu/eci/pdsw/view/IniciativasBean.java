@@ -67,7 +67,14 @@ public class IniciativasBean extends BasePageBean {
         }
     }
     
-
+    public int likesUnaIniciativa (){
+        try {
+            return serviciosBancoIniciativa.LikesUnaIniciativa(iniciativa.getId()).getVotos();
+        } catch (Exception ex) {
+            Logger.getLogger(IniciativasBean.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+    }
     
     
 

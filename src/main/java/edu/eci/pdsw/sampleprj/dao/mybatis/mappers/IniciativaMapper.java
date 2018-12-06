@@ -35,5 +35,7 @@ public interface IniciativaMapper {
     public void cambiarNombreIniciativa(@Param("nombre") String nombre,@Param("id") int id);
     
     public Iniciativa consultarIniciativa(@Param("id") int id);
+    
+    public Iniciativa LikesUnaIniciativa (@Param("id") int id);
    
 }
