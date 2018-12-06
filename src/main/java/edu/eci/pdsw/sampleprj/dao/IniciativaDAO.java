@@ -18,6 +18,9 @@ import org.apache.ibatis.exceptions.PersistenceException;
 public interface IniciativaDAO {
     
     public void save(Iniciativa ini) throws PersistenceException;
+    
+    public void saveTest(Iniciativa ini) throws PersistenceException;
+    
     public ArrayList<Iniciativa> load() throws PersistenceException;
     
     /**

@@ -18,9 +18,13 @@ body {
 
 .ui-panelGrid-Datos1{
     margin: 0 auto;
+<<<<<<< HEAD
     padding: 10px;
     border-radius: 3%;
     color: #6e6e6e;
+=======
+    text-align: center;
+>>>>>>> pruebas
 }
 
 .imagen{
@@ -120,7 +124,10 @@ body {
     background: #FFFFFF;
     color: #009C8C;
     margin-left: 30%;
+<<<<<<< HEAD
     
+=======
+>>>>>>> pruebas
 
 }
 .presentIni{
@@ -151,6 +158,7 @@ body {
 
 .right div {
     float: right;
+<<<<<<< HEAD
 }
 
 #info {
@@ -191,4 +199,6 @@ body {
 	border-color: #c4bbce;
 	border-left-style: solid;
 	 
+=======
+>>>>>>> pruebas
 }

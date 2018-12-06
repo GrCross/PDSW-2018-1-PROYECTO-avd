@@ -1,4 +1,4 @@
-package edu.eci.pdsw.samples.tests;
+package edu.eci.pdsw.samples.tests.generators;
 
 import edu.eci.pdsw.samples.entities.Comentario;
 import edu.eci.pdsw.samples.entities.Estado;

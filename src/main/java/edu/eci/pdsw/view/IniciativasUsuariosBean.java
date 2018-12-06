@@ -92,8 +92,6 @@ public class IniciativasUsuariosBean extends BasePageBean {
     public void votar(int iniciativa , long documento) throws Exception {
 
 
-       
-      
 
         try {
             Interes interes = serviciosBancoIniciativa.consultarInteres(iniciativa, documento);
@@ -127,6 +125,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
         ArrayList<Iniciativa> iniciativasPalClaves = new ArrayList<Iniciativa>();
         
         for(Iniciativa i: iniciativas){
+
             for(String s: palabrasClaveConsultar){
                 if(i.getPalabrasClave().contains(s) && !iniciativasPalClaves.contains(i)){                    
                     iniciativasPalClaves.add(i);

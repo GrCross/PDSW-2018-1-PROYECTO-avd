@@ -24,6 +24,8 @@ public class Interes implements Serializable{
     
     public Interes(Iniciativa iniciativa,boolean voto) {
         this.iniciativa = iniciativa;
+
+      
         this.voto = voto;
     }
     
@@ -40,7 +42,14 @@ public class Interes implements Serializable{
     public void setVoto(boolean  voto) {
         this.voto = voto;
     }
-    
+
+    public Iniciativa getIniciativa() {
+        return iniciativa;
+    }
+
+    public void setIniciativa(Iniciativa iniciativa) {
+        this.iniciativa = iniciativa;
+    }
     
 
     @Override

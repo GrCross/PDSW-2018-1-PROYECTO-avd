@@ -59,11 +59,7 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     
     @Override
 
-        
-        
-
     public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException{        
-
         return iniciativaDAO.load();
     }
 
@@ -190,12 +186,6 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
         iniciativaDAO.cambiarNombreIniciativa(nombre, id);
     }
 
-   
-
-    @Override
-    public Iniciativa LikesUnaIniciativa(int id) throws Exception {
-        return iniciativaDAO.LikesUnaIniciativa(id);
-    }
 
 	@Override 
 
@@ -225,7 +215,18 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
  
     } 
 
+    @Override
+    public void agregarIniciativaTest(Iniciativa ini) throws Exception {
+        iniciativaDAO.saveTest(ini);
+    }
+    
+    @Override
+    public Iniciativa LikesUnaIniciativa(int id) throws Exception {
+        return iniciativaDAO.LikesUnaIniciativa(id);
+    }
+
  
+
     
     
 

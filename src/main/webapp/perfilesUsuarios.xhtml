@@ -100,10 +100,12 @@
             
 
             <br></br> 
+
             
             <h:outputText value="#{LoginBean.usuario.documento}" binding = "#{usu}" rendered="false"/>
             
             <p:panel header="Mis Iniciativas" styleClass="my-panel ui-panel-titlebar infoUsuario visitado" rendered ="#{LoginBean.filtroProponente()}" >
+
                 <p:dataTable id="iniciativaTable" var="Iniciativa" value="#{LoginBean.iniciativasUnUsuario()}" rows="10" widgetVar="IniciativasTable" 
                              scrollable="true"
                              stickyHeader="true" style="width: 800px">

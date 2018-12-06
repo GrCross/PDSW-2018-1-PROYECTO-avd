@@ -57,9 +57,9 @@
     </update>
     
      <select id="consultarInteres" parameterType="Usuario" resultMap="InteresResult">
-        SELECT *
+        SELECT * 
         FROM intereses
-        WHERE Iniciativa_documento=#{doc} and Usuarios_id=#{usu};
+        WHERE Iniciativa_documento=#{doc} and Usuarios_id = #{usu};
     </select> 
     
     <insert parameterType="map" id="agregarUsuario">
