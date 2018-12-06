@@ -135,7 +135,7 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
 
     @Override
     public void InsertarComentario(Comentario com, int idIni) throws Exception {
-        System.out.println(com);
+       
         comentarioDAO.save(com, idIni);
     }
     

@@ -100,13 +100,13 @@
                     <p:column sortBy="#{Iniciativa.area}" headerText="area">
                         <h:outputText value="#{Iniciativa.area}" />
                     </p:column>
-                    <p:column id = "meGusta" headerText="Me Gusta">
+                    <p:column id = "meGusta" headerText="Me Gusta" exportable="false">
                         <p:commandButton id="like"  actionListener="#{insertIniciativasBean.votar(doc.value,usu.value)}" update="like iniciativaTable"
                                          value="Likes:  #{Iniciativa.votos}" icon="#{insertIniciativasBean.like(doc.value,usu.value) ? 'fa fa-thumbs-up' : '  '}" >
                             
                         </p:commandButton>
                     </p:column>
-                    <p:column headerText="Detalles">
+                    <p:column headerText="Detalles" exportable="false">
                         <h:outputText id = "Iniciativa" value="Iniciativa" binding="#{pagina1}" style="display:none"/>
                         <p:commandButton id="Ver" update="iniciativaTable" oncomplete="IniciativasTable.getPaginator().setPage(1)" value="ver" >
 
@@ -117,7 +117,7 @@
 
                 </p:dataTable>                
              <p:panel header="Exportar datos de la tabla">
-		            <h:commandButton image ="/src/main/webapp/resources/images/excel.jpg">
+		            <h:commandButton value="Exportar datos tabla Iniciativas">
 		               
 		                <p:dataExporter type="xls" postProcessor="#{iniciativasBean.postProcessXLS}"
 		                    target="iniciativaTable" fileName="infoIniciativa" />

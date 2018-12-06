@@ -277,9 +277,6 @@ public class IniciativasBean extends BasePageBean {
         for (Row row : sheet) {        	
             for (Cell cell : row) {
             	
-            	if(cell.getRowIndex()==6) {
-            		System.out.println(cell.getCellFormula());
-            	}
             	
                 cell.setCellValue(cell.getStringCellValue().toUpperCase());
                 cell.setCellStyle(style);

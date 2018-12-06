@@ -91,6 +91,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 	private PieChartModel pieModel2;
 	private ArrayList<Iniciativa> iniciativas = new ArrayList<Iniciativa>();
 	private String path;
+    private BarChartModel modeloMasLikes;
 	
 
 	
@@ -114,6 +115,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 		consultarIniciativas();
 		createModeloAreas();
 		createPieModel2();
+		createModeloMasLikes();
 		return " ";
 
 	}
@@ -232,6 +234,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 
 			path = path.substring(0, path.length() - 15);
 			path = path.concat("src/main/webapp/resources/images/Creadas");
+			//path = path.concat("src/main/webapp/resources/images");
 
 			DefaultPieDataset chart2 = new DefaultPieDataset();
 			Hashtable<String, Integer> tablaEstados = valoresTabla2();
@@ -259,10 +262,11 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 
 		try {
 			path = URLDecoder.decode(path1, "UTF-8");
-			System.out.println(path);
+			
 
 			path = path.substring(0, path.length() - 15);
 			path = path.concat("src/main/webapp/resources/images/Creadas");
+			//path = path.concat("src/main/webapp/resources/images");
 
 			DefaultCategoryDataset chart1 = new DefaultCategoryDataset();
 			Hashtable<String, Integer> tablaEstados = valoresTabla1();
@@ -290,7 +294,6 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 	}
 
 	public void aPDF() {
-		System.out.println("ssssssss");
 		imagenChart2();
 		imagenChart1();
 		Document document = new Document();
@@ -315,7 +318,6 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 					"La siguiente grafica muestra la distribucion de las iniciativas en base a la cantidad de iniciativas por area"));
 			document.add(img2);
 			document.close();
-			System.out.println("Done");
 			FileUtils.delete(path + "/chartEstados.png");
 
 
@@ -324,6 +326,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 			  FacesMessage msg;
               msg = new FacesMessage("El archivo pdf se ha guardado en su carpeta de descargas bajo el nombre 'Estadisticas banco de iniciativas'");
               FacesContext.getCurrentInstance().addMessage(null, msg);
+              
 		} catch (DocumentException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -331,62 +334,16 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 		  
 
 	}
-/*=======
-    private BarChartModel modeloAreas;
-    private PieChartModel pieModel2;
-    private BarChartModel modeloMasLikes;
-    private ArrayList<Iniciativa> iniciativas = new ArrayList<Iniciativa>();
+
+  
+
     
-    @Inject
-    private ServiciosBancoIniciativas serviciosBancoIniciativa;
+  
 
-    public void consultarIniciativas() {
-        iniciativas = serviciosBancoIniciativa.consultarIniciativas();
+    
 
-    }
 
-    public void itemSelect(ItemSelectEvent event) {
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
-                "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());
-
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
-    public String red() {
-        consultarIniciativas();
-        createModeloAreas();
-        createPieModel2();
-        createModeloMasLikes();
-        return " ";
-
-    }
-
-    private void createModeloAreas() {
-        modeloAreas = new BarChartModel();
-        ChartSeries areas = new ChartSeries();
-        areas.setLabel("Numero de Proyectos");
-        Hashtable<String, Integer> tablaAreas = new Hashtable<String, Integer>();
-
-        for (Iniciativa in : iniciativas) {
-            if (!tablaAreas.containsKey(in.getArea())) {
-
-                tablaAreas.put(in.getArea(), 1);
-            } else {
-
-                tablaAreas.put(in.getArea(), tablaAreas.get(in.getArea()) + 1);
-            }
-        }
-        
-
-        Set<String> keys = tablaAreas.keySet();
-        for (String key : keys) {
-            areas.set(key, tablaAreas.get(key));
-        }
-        modeloAreas.addSeries(areas);
-        modeloAreas.setTitle("");
-        modeloAreas.setLegendPosition("e");
-        modeloAreas.setShadow(true);
-    }
+    
     
     private void createModeloMasLikes() {
         modeloMasLikes = new BarChartModel();
@@ -423,56 +380,8 @@ public class estadisticasBean extends BasePageBean implements Serializable {
         //System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }
 
-    private void createPieModel2() {
 
-        pieModel2 = new PieChartModel();
-        Hashtable<String, Integer> tablaEstados = new Hashtable<String, Integer>();
 
-        for (Iniciativa in : iniciativas) {
-            if (!tablaEstados.containsKey(in.getEstado().toString())) {
-
-                tablaEstados.put(in.getEstado().toString(), 1);
-            } else {
-
-                tablaEstados.put(in.getEstado().toString(), tablaEstados.get(in.getEstado().toString()) + 1);
-            }
-        }
-        
-    
-    
-
-        Set<String> keys = tablaEstados.keySet();
-        for (String key : keys) {
-            pieModel2.set(key, tablaEstados.get(key));
-        }
-
-        pieModel2.setTitle("");
-        pieModel2.setLegendPosition("e");
-        pieModel2.setFill(false);
-        pieModel2.setShowDataLabels(true);
-        pieModel2.setDiameter(150);
-        pieModel2.setShadow(false);
-    }
-
-    public BarChartModel getModeloAreas() {
-        return modeloAreas;
-    }
-
-    public void setModeloAreas(BarChartModel modeloAreas) {
-        this.modeloAreas = modeloAreas;
-    }
-
-    public PieChartModel getPieModel2() {
-        return pieModel2;
-    }
-
-    public void setPieModel2(PieChartModel pieModel2) {
-        this.pieModel2 = pieModel2;
-    }
-
-    public ArrayList<Iniciativa> getIniciativas() {
-        return iniciativas;
-    }
 
     public BarChartModel getModeloMasLikes() {
         return modeloMasLikes;
@@ -482,9 +391,6 @@ public class estadisticasBean extends BasePageBean implements Serializable {
         this.modeloMasLikes = modeloMasLikes;
     }
 
-    public void setIniciativas(ArrayList<Iniciativa> iniciativas) {
-        this.iniciativas = iniciativas;
-    }
->>>>>>> pruebas*/
+   
 
 }
