@@ -2,12 +2,6 @@
 -- Last modification date: 2018-11-20 21:07:43.597
 
 -- tables
--- Table: Afinidades
-CREATE TABLE Afinidades (
-    idAfinidad int  NOT NULL,
-    tipoAfinidad varchar(20)  NOT NULL,
-    CONSTRAINT Afinidades_pk PRIMARY KEY (idAfinidad)
-);
 
 -- Table: Comentarios
 CREATE TABLE Comentarios (
@@ -35,7 +29,6 @@ CREATE TABLE Iniciativas (
 CREATE TABLE Intereses (
     Iniciativa_documento int  NOT NULL,
     Usuarios_id int  NOT NULL,
-    Afinidades_idAfinidad int  NOT NULL,
     voto boolean  NOT NULL,
     CONSTRAINT Intereses_pk PRIMARY KEY (Iniciativa_documento,Usuarios_id)
 );
@@ -71,22 +64,17 @@ ALTER TABLE Iniciativas ADD CONSTRAINT Iniciativas_Usuarios
     REFERENCES Usuarios (documento)
 ;
 
--- Reference: Interes_Afinidades (table: Intereses)
-ALTER TABLE Intereses ADD CONSTRAINT Interes_Afinidades
-    FOREIGN KEY (Afinidades_idAfinidad)
-    REFERENCES Afinidades (idAfinidad)
-;
 
--- Reference: Interes_Iniciativa (table: Intereses)
+ --Reference: Interes_Iniciativa (table: Intereses)
 ALTER TABLE Intereses ADD CONSTRAINT Interes_Iniciativa
     FOREIGN KEY (Iniciativa_documento)
-    REFERENCES Usuarios (documento)  
+    REFERENCES Iniciativas(id)  
 ;
 
 -- Reference: Interes_Usuarios (table: Intereses)
 ALTER TABLE Intereses ADD CONSTRAINT Interes_Usuarios
     FOREIGN KEY (Usuarios_id)
-    REFERENCES Iniciativas (id)  
+    REFERENCES Usuarios(documento)  
 ;
 
 -- End of file.
