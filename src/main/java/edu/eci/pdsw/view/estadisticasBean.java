@@ -12,11 +12,17 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.IntStream;
 import javax.annotation.PostConstruct;
 
 import javax.faces.application.FacesMessage;
@@ -48,14 +54,14 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 
     private BarChartModel modeloAreas;
     private PieChartModel pieModel2;
+    private BarChartModel modeloMasLikes;
     private ArrayList<Iniciativa> iniciativas = new ArrayList<Iniciativa>();
-
+    
     @Inject
     private ServiciosBancoIniciativas serviciosBancoIniciativa;
 
     public void consultarIniciativas() {
         iniciativas = serviciosBancoIniciativa.consultarIniciativas();
-        
 
     }
 
@@ -70,6 +76,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
         consultarIniciativas();
         createModeloAreas();
         createPieModel2();
+        createModeloMasLikes();
         return " ";
 
     }
@@ -100,6 +107,41 @@ public class estadisticasBean extends BasePageBean implements Serializable {
         modeloAreas.setLegendPosition("e");
         modeloAreas.setShadow(true);
     }
+    
+    private void createModeloMasLikes() {
+        modeloMasLikes = new BarChartModel();
+        ChartSeries masLiked = new ChartSeries();
+        masLiked.setLabel("Numero de Likes");
+        Map<String, Integer> tablaLikes = new LinkedHashMap<>();
+        Map<String, Integer> tablaLikesOrd = new LinkedHashMap<>();
+        //System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        for (Iniciativa in : iniciativas) {
+            tablaLikes.put(in.getNombre(),in.getVotos());
+        }
+        
+        //se esta ordenando de mayor a menor los votos de cada uno
+        tablaLikes.entrySet()
+        .stream()
+        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+        .forEachOrdered(x -> tablaLikesOrd.put(x.getKey(), x.getValue()));
+
+//        Set<String> keys = tablalikes.keySet();
+//        for (String key : keys) {
+//            areas.set(key, tablalikes.get(key));
+//        }
+        Set<String> keys = tablaLikesOrd.keySet();
+        int cont = 0;
+        for (String key : keys){
+            masLiked.set(key, tablaLikesOrd.get(key));
+            cont+=1;
+            if (cont==7){break;} 
+        }
+        modeloMasLikes.addSeries(masLiked);
+        modeloMasLikes.setTitle("");
+        modeloMasLikes.setLegendPosition("e");
+        modeloMasLikes.setShadow(true);
+        //System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    }
 
     private void createPieModel2() {
 
@@ -115,6 +157,8 @@ public class estadisticasBean extends BasePageBean implements Serializable {
                 tablaEstados.put(in.getEstado().toString(), tablaEstados.get(in.getEstado().toString()) + 1);
             }
         }
+        
+    
     
 
         Set<String> keys = tablaEstados.keySet();
@@ -148,6 +192,14 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 
     public ArrayList<Iniciativa> getIniciativas() {
         return iniciativas;
+    }
+
+    public BarChartModel getModeloMasLikes() {
+        return modeloMasLikes;
+    }
+
+    public void setModeloMasLikes(BarChartModel modeloMasLikes) {
+        this.modeloMasLikes = modeloMasLikes;
     }
 
     public void setIniciativas(ArrayList<Iniciativa> iniciativas) {

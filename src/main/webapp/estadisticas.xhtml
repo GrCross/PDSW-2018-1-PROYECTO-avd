@@ -41,9 +41,13 @@
         <p:outputLabel id="username" value="#{estadisticasBean.red()}" />
         
             
-        <p:panel id="consultar_Tabla" header="Numero de Iniciativas por Area" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
+        <p:panel style="width: 40%" id="consultar_Tabla" header="Numero de Iniciativas por Area" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
 
-        <p:chart type="bar" model="#{estadisticasBean.modeloAreas}" styleClass= "estadisticas" style="height:300px;" responsive="true" />
+        <p:chart type="bar" model="#{estadisticasBean.modeloAreas}" styleClass= "estadisticas" style="height:300px; width: 100%" responsive="true" />
+        </p:panel>
+        <p:panel style="width: 60%" id="consultar_Tabla" header="Iniciativas con mas Likes" visible="true" class="ui-panel-titlebar"  styleClass="my-panel ui-panel-titlebar" >
+
+            <p:chart type="bar" model="#{estadisticasBean.modeloMasLikes}" styleClass= "estadisticas" style="height:300px; width: 100%" responsive="true" /> 
         </p:panel>
         <br /><br />
         <br />
