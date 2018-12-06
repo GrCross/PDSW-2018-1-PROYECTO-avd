@@ -54,17 +54,14 @@ body {
 }
 
 .informacion{
-     background-color:#5DC1B9;
-    width: 99%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    padding-bottom: 10px;
+     width: 100%;
+
     position: absolute;
-    top: 57%;
-    color: #FFFFFF;
-    float: bottom;
+    background-color:#5DC1B9;
+    color: white;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    top:80%;
 }
 
 

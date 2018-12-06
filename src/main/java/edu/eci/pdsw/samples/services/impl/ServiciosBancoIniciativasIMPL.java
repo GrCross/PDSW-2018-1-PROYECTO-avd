@@ -5,6 +5,7 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.eci.pdsw.sampleprj.dao.ComentarioDAO;
+import edu.eci.pdsw.sampleprj.dao.InteresDAO; 
 import edu.eci.pdsw.sampleprj.dao.IniciativaDAO;
 
 import edu.eci.pdsw.sampleprj.dao.UsuarioDao;
@@ -34,6 +35,9 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     @Inject
     private ComentarioDAO comentarioDAO;
     
+    @Inject 
+
+    private InteresDAO interesDAO; 
    
 
     public ServiciosBancoIniciativasIMPL() {
@@ -54,6 +58,9 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
     }
     
     @Override
+
+        
+        
 
     public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException{        
 
@@ -190,23 +197,33 @@ public class ServiciosBancoIniciativasIMPL implements ServiciosBancoIniciativas 
         return iniciativaDAO.LikesUnaIniciativa(id);
     }
 
-	@Override
-	public Interes consultarInteres(int documento, long usuario) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	@Override 
 
-	@Override
-	public void updateInteres(int documento, long usuario, boolean like) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void agregarInteres(int documento, long usuario, Interes interes) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
+    public Interes consultarInteres(int documento, long usuario) throws Exception { 
+
+        return interesDAO.consultarInteres(documento, usuario); 
+
+    } 
+
+
+    @Override 
+
+    public void updateInteres(int documento, long usuario, boolean like) throws Exception { 
+
+        interesDAO.updateInteres(documento, usuario, like); 
+
+    } 
+
+
+    @Override 
+
+
+    public void agregarInteres(int documento, long usuario, Interes interes) throws Exception { 
+ 
+        interesDAO.agregarInteres(documento, usuario, interes); 
+ 
+    } 
 
  
     
