@@ -6,6 +6,7 @@
 ##### Scrum Master :
 * Daniel Alberto Rosales Castro
 ##### Team:
+* Daniel Alberto Rosales Castro
 * Valentina Siabatto Rojas
 * Andres Camilo Villamil Bustillo
 * Fabian Camilo Bohorquez Heredia
@@ -17,7 +18,7 @@ El Banco de Iniciativas es una aplicacion y herramienta en donde los integrantes
 #### inicio de sesion
 ![](recursos/inicio.PNG)
 #### perfil del usuario
-![](recursos/perfil.PNG)
+![](recursos/perfil.png)
 #### Consultar iniciativas
 #### Actualizar estados Iniciativas
 #### Registrar iniciativas
@@ -29,11 +30,11 @@ El Banco de Iniciativas es una aplicacion y herramienta en donde los integrantes
 #### Modelo E-R
 ![](recursos/DiagramaBD.PNG)
 ####  Diagrama de clases
-![](recursos/Entidades.PNG)
+![](recursos/Entidades.png)
 #### Capa presentacion
-![](recursos/capaPresentacion.PNG)
+![](recursos/capaPresentacion.png)
 #### Capa Logica
-![](recursos/capaLogica.PNG)
+![](recursos/capaLogica.png)
 
 
 
