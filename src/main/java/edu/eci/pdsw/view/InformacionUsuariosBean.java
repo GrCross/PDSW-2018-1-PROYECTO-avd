@@ -34,10 +34,6 @@ public class InformacionUsuariosBean extends BasePageBean {
     private long documentoUsuario = 88888;
     private Usuario usuario;
     
-    
-    
-    
-    
     public void consultarUsuario() throws Exception{
         
         this.usuario=serviciosBancoIniciativa.consultarUsuario(documentoUsuario);

@@ -11,6 +11,7 @@ import edu.eci.pdsw.samples.entities.Estado;
 import edu.eci.pdsw.samples.entities.Iniciativa;
 import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
+import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,30 +33,20 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 
-/**
- *
- * @author estudiante
- */
+
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "iniciativasBean")
 @SessionScoped
 public class IniciativasBean extends BasePageBean {
     @Inject
-    private ServiciosBancoIniciativas serviciosBancoIniciativa;
-    
+    private ServiciosBancoIniciativas serviciosBancoIniciativa;    
     private Iniciativa iniciativa;
     private ArrayList<Comentario> comentarios;
     private ArrayList<Iniciativa> iniciativasParecidas;
     private Usuario autor;
     private ArrayList<String> palabrasClave;
 
-    public ArrayList<String> getPalabrasClave() {
-        return palabrasClave;
-    }
-
-    public void setPalabrasClave(ArrayList<String> palabrasClave) {
-        this.palabrasClave = palabrasClave;
-    }
+    
 
     public void procesarPalabrasClave(){
         String[] tempClaves = iniciativa.getPalabrasClave().split(",|\\{|\\}");
@@ -70,13 +61,11 @@ public class IniciativasBean extends BasePageBean {
     public int likesUnaIniciativa (){
         try {
             return serviciosBancoIniciativa.LikesUnaIniciativa(iniciativa.getId()).getVotos();
-        } catch (Exception ex) {
+        } catch (ExcepcionBancoIniciativas ex) {
             Logger.getLogger(IniciativasBean.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
     }
-    
-    
 
     public void redirect(String pagina){
         try {
@@ -91,38 +80,30 @@ public class IniciativasBean extends BasePageBean {
         long id=0;          
         try {
             id = serviciosBancoIniciativa.consultarMax();
-        } catch (Exception ex) {
-            Logger.getLogger(IniciativasBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-             
-        Comentario comentario = new Comentario(usuario, fechaDeCreacion, contenido, id);
-        
-        
-        try {
+            Comentario comentario = new Comentario(usuario, fechaDeCreacion, contenido, id);
             serviciosBancoIniciativa.InsertarComentario(comentario,idIniciativa);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Has añadido un comentario."));
-        } catch (Exception ex) {
+        } catch (ExcepcionBancoIniciativas ex) {
             Logger.getLogger(IniciativasBean.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
     
-    public void consultarIniciativasParecidas(){
+    public void consultarIniciativasParecidas() throws ExcepcionBancoIniciativas{
         iniciativasParecidas = new ArrayList<>();
         ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
         String[] palClavesAComparar = iniciativa.getPalabrasClave().split("\\W+");
         for(Iniciativa ini: iniciativas){
-            
             String[] palClavesOtras = ini.getPalabrasClave().split("\\W+");
             List<String> pal1 = Arrays.asList(palClavesAComparar);
             List<String> pal2 = Arrays.asList(palClavesOtras);
-            
             
             boolean seguir=true;
             for (int i = 1; i < pal1.size() && seguir; i++) {
                 
                 for (int j = 1; j < pal2.size(); j++) {
                     
-                    if(levenshteinDistance(pal1.get(i), pal2.get(j)) < 3 && !(ini.getId()==iniciativa.getId())){
+                    if(levenshteinDistance(pal1.get(i), pal2.get(j)) < 3 && 
+                            !(ini.getId()==iniciativa.getId())){
                         
                         iniciativasParecidas.add(ini);
                         
@@ -140,26 +121,15 @@ public class IniciativasBean extends BasePageBean {
         int[][] dp = new int[x.length() + 1][y.length() + 1];
         for (int i = 0; i <= x.length(); i++) {
             for (int j = 0; j <= y.length(); j++) {
-                if (i == 0) {
-                    dp[i][j] = j;
-                    
-                } else if (j == 0) {
-                    dp[i][j] = i;
-                    
-                } else {
+                if (i == 0)  dp[i][j] = j;
+                else if (j == 0) dp[i][j] = i;
+                else {
                     int e = dp[i - 1][j - 1] + costOfSubstitution(x.charAt(i - 1), y.charAt(j - 1));
                     int temp = Math.min(e, dp[i - 1][j] + 1);
                     int temp2 = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1);
                     dp[i][j] = Math.min(temp, temp2);
-                    
                 }
             }
-        }
-         for (int i = 0; i <= x.length(); i++) {
-            for (int j = 0; j <= y.length(); j++) {
-                
-            }
-            
         }
         return dp[x.length()][y.length()];
     }
@@ -206,14 +176,13 @@ public class IniciativasBean extends BasePageBean {
     
     public void modificarDescripcion(String descripcion) {
     	
-    	if(descripcion==null) {
-    		descripcion=iniciativa.getDescripcion();
-    	}
+    	if(descripcion==null) descripcion=iniciativa.getDescripcion();
+    	
     	
     	try {
                 serviciosBancoIniciativa.cambiarDescripcionIniciativa(descripcion,iniciativa.getId());
     		setIniciativa(serviciosBancoIniciativa.consultarIniciativa(iniciativa.getId()));
-        } catch (Exception e) {
+        } catch (ExcepcionBancoIniciativas e) {
             e.printStackTrace();
         }
     }
@@ -221,26 +190,22 @@ public class IniciativasBean extends BasePageBean {
     
     
     public void modificarNombre(String nombre) {
-    	if(nombre==null) {
-    		nombre=iniciativa.getNombre();
-    	}
+    	if(nombre==null) nombre=iniciativa.getNombre();
     	try {
-                serviciosBancoIniciativa.cambiarNombreIniciativa(nombre,iniciativa.getId());
-    		setIniciativa(serviciosBancoIniciativa.consultarIniciativa(iniciativa.getId()));
-    		
-        } catch (Exception e) {
+            serviciosBancoIniciativa.cambiarNombreIniciativa(nombre,iniciativa.getId());
+            setIniciativa(serviciosBancoIniciativa.consultarIniciativa(iniciativa.getId()));	
+        } catch (ExcepcionBancoIniciativas e) {
             e.printStackTrace();
         }
-    	
     }
 
-	public Usuario getAutor() {
-		return autor;
-	}
+    public Usuario getAutor() {
+            return autor;
+    }
 
-	public void setAutor(Usuario autor) {
-		this.autor = autor;
-	}
+    public void setAutor(Usuario autor) {
+            this.autor = autor;
+    }
 
     
     public Iniciativa getIniciativa() {
@@ -266,6 +231,14 @@ public class IniciativasBean extends BasePageBean {
 
     public void setIniciativasParecidas(ArrayList<Iniciativa> iniciativasParecidas) {
         this.iniciativasParecidas = iniciativasParecidas;
+    }
+    
+    public ArrayList<String> getPalabrasClave() {
+        return palabrasClave;
+    }
+
+    public void setPalabrasClave(ArrayList<String> palabrasClave) {
+        this.palabrasClave = palabrasClave;
     }
     
     public void postProcessXLS(Object document) {

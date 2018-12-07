@@ -3,47 +3,33 @@ package edu.eci.pdsw.view;
 
 import com.google.inject.Inject;
 import edu.eci.pdsw.samples.entities.Iniciativa;
-import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
 import edu.eci.pdsw.view.BasePageBean;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
+
 import java.util.Hashtable;
 
-import java.util.Properties;
+
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import java.util.Set;
-import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.IntStream;
-import javax.annotation.PostConstruct;
+
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
+
 import javax.faces.context.FacesContext;
-import javax.persistence.PersistenceException;
-import javax.servlet.http.HttpSession;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 import org.h2.store.fs.FileUtils;
 import org.jfree.chart.ChartFactory;
@@ -59,7 +45,7 @@ import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
+
 import java.net.URLDecoder;
 
 import com.itextpdf.text.Document;
@@ -68,17 +54,9 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import java.awt.image.BufferedImage;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author rosal
- */
+
+
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "estadisticasBean")
 @SessionScoped
@@ -91,7 +69,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 	private PieChartModel pieModel2;
 	private ArrayList<Iniciativa> iniciativas = new ArrayList<Iniciativa>();
 	private String path;
-    private BarChartModel modeloMasLikes;
+        private BarChartModel modeloMasLikes;
 	
 
 	
@@ -99,7 +77,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 	@Inject
 	private ServiciosBancoIniciativas serviciosBancoIniciativa;
 
-	public void consultarIniciativas() {
+	public void consultarIniciativas() throws ExcepcionBancoIniciativas {
 		iniciativas = serviciosBancoIniciativa.consultarIniciativas();
 
 	}
@@ -111,13 +89,12 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
-	public String red() {
+	public String red() throws ExcepcionBancoIniciativas {
 		consultarIniciativas();
 		createModeloAreas();
 		createPieModel2();
 		createModeloMasLikes();
 		return " ";
-
 	}
 
 	private void createModeloAreas() {
@@ -127,21 +104,13 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 		Hashtable<String, Integer> tablaAreas = valoresTabla1();
 		int cont=0;
 		Set<String> keys = tablaAreas.keySet();
-		for (String key : keys) {
+		for (String key : keys) areas.set(key, tablaAreas.get(key));
 			
-				areas.set(key, tablaAreas.get(key));
-			
-		}
-		
 		modeloAreas.addSeries(areas);
 		modeloAreas.setTitle("");
 		modeloAreas.setLegendPosition("e");
 		modeloAreas.setShadow(true);
-
 	}
-	
-	
-	
 	
 
 	private void createPieModel2() {
@@ -152,11 +121,8 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 		Set<String> keys = tablaEstados.keySet();
 		int cont =0;
 		for (String key : keys) {
-			if(cont<=10) {
-			pieModel2.set(key, tablaEstados.get(key));
-			}
+                    if(cont<=10) pieModel2.set(key, tablaEstados.get(key));
 		}
-
 		pieModel2.setTitle("");
 		pieModel2.setLegendPosition("e");
 		pieModel2.setFill(false);
@@ -170,59 +136,33 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 
 	private Hashtable<String, Integer> valoresTabla1() {
 
-		Hashtable<String, Integer> tablaAreas = new Hashtable<String, Integer>();
+            Hashtable<String, Integer> tablaAreas = new Hashtable<String, Integer>();
 
-		for (Iniciativa in : iniciativas) {
-			if (!tablaAreas.containsKey(in.getArea())) {
-
-				tablaAreas.put(in.getArea(), 1);
-			} else {
-
-				tablaAreas.put(in.getArea(), tablaAreas.get(in.getArea()) + 1);
-			}
-		}
-		return tablaAreas;
-	}
+            for (Iniciativa in : iniciativas) {
+                if (!tablaAreas.containsKey(in.getArea())) {
+                    tablaAreas.put(in.getArea(), 1);
+                } else {
+                    tablaAreas.put(in.getArea(), tablaAreas.get(in.getArea()) + 1);
+                }
+            }
+            return tablaAreas;
+        }
 
 	private Hashtable<String, Integer> valoresTabla2() {
 
 		Hashtable<String, Integer> tablaEstados = new Hashtable<String, Integer>();
 		for (Iniciativa in : iniciativas) {
-			if (!tablaEstados.containsKey(in.getEstado().toString())) {
+                    String estado = in.getEstado().toString();
+                    if (!tablaEstados.containsKey(estado)) {
 
-				tablaEstados.put(in.getEstado().toString(), 1);
-			} else {
-
-				tablaEstados.put(in.getEstado().toString(), tablaEstados.get(in.getEstado().toString()) + 1);
-			}
+                            tablaEstados.put(estado, 1);
+                    } else {
+                            tablaEstados.put(estado, tablaEstados.get(estado) + 1);
+                    }
 		}
 		return tablaEstados;
 	}
 
-	public BarChartModel getModeloAreas() {
-		return modeloAreas;
-	}
-
-	public void setModeloAreas(BarChartModel modeloAreas) {
-		this.modeloAreas = modeloAreas;
-	}
-
-	public PieChartModel getPieModel2() {
-		return pieModel2;
-	}
-
-	public void setPieModel2(PieChartModel pieModel2) {
-		this.pieModel2 = pieModel2;
-	}
-
-	public ArrayList<Iniciativa> getIniciativas() {
-		return iniciativas;
-	}
-
-	public void setIniciativas(ArrayList<Iniciativa> iniciativas) {
-		this.iniciativas = iniciativas;
-	}
-	
 	
 
 	public void imagenChart2() {
@@ -250,7 +190,7 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 			ChartUtilities.saveChartAsPNG(file1, chartEstados, 400, 300, info);
 
 		} catch (IOException e1) {
-			System.out.println("                     Error");
+			
 			e1.printStackTrace();
 		}
 
@@ -287,7 +227,6 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 			ChartUtilities.saveChartAsPNG(file1, chartAreas, 550, 300, info);
 
 		} catch (IOException e1) {
-			System.out.println("                     Error");
 			e1.printStackTrace();
 		}
 
@@ -335,15 +274,6 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 
 	}
 
-  
-
-    
-  
-
-    
-
-
-    
     
     private void createModeloMasLikes() {
         modeloMasLikes = new BarChartModel();
@@ -377,20 +307,45 @@ public class estadisticasBean extends BasePageBean implements Serializable {
         modeloMasLikes.setTitle("");
         modeloMasLikes.setLegendPosition("e");
         modeloMasLikes.setShadow(true);
-        //System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        
     }
 
 
 
 
-    public BarChartModel getModeloMasLikes() {
-        return modeloMasLikes;
-    }
+        public BarChartModel getModeloMasLikes() {
+            return modeloMasLikes;
+        }
 
-    public void setModeloMasLikes(BarChartModel modeloMasLikes) {
-        this.modeloMasLikes = modeloMasLikes;
-    }
+        public void setModeloMasLikes(BarChartModel modeloMasLikes) {
+            this.modeloMasLikes = modeloMasLikes;
+        }
 
+        public BarChartModel getModeloAreas() {
+                    return modeloAreas;
+        }
+
+	public void setModeloAreas(BarChartModel modeloAreas) {
+		this.modeloAreas = modeloAreas;
+	}
+
+	public PieChartModel getPieModel2() {
+		return pieModel2;
+	}
+
+	public void setPieModel2(PieChartModel pieModel2) {
+		this.pieModel2 = pieModel2;
+	}
+
+	public ArrayList<Iniciativa> getIniciativas() {
+		return iniciativas;
+	}
+
+	public void setIniciativas(ArrayList<Iniciativa> iniciativas) {
+		this.iniciativas = iniciativas;
+	}
+	
+	
    
 
 }

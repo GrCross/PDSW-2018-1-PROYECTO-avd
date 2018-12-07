@@ -18,7 +18,6 @@ public class Interes implements Serializable{
 
     public Interes(boolean voto ) {
 
-        
         this.voto = voto;
     }
     

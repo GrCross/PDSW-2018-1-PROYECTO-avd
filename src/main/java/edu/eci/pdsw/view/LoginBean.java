@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import com.google.inject.Inject;
 import edu.eci.pdsw.samples.entities.Iniciativa;
@@ -14,7 +13,6 @@ import edu.eci.pdsw.samples.entities.Rol;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
-import edu.eci.pdsw.samples.services.impl.ServiciosBancoIniciativasIMPL;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,37 +42,25 @@ public class LoginBean extends BasePageBean implements Serializable {
     }
     
     public void doLogin() {
-    	boolean login;
-		try {
-			login = serviciosImpl.autorizacionLogin(username,password);
-			if(login) {
-				usuario = serviciosImpl.obtenerUsuario(username);
-				FacesContext.getCurrentInstance().getExternalContext().redirect("perfilesUsuarios.xhtml");
-                                
+        boolean login;
+        try {
+            login = serviciosImpl.autorizacionLogin(username, password);
+            if (login) {
+                usuario = serviciosImpl.obtenerUsuario(username);
+                FacesContext.getCurrentInstance().getExternalContext().redirect("perfilesUsuarios.xhtml");
 
-			}
-		} catch (ExcepcionBancoIniciativas e) {			
-			System.out.println("rrrrrrrrrrrrrrrrrr77777777777777");
-		} catch (IOException e) {
-			System.out.println("bbbbbbbbbbbbbbbb77777777777777");
-		}
-    	
-    	
-    	
+            }
+        } catch (ExcepcionBancoIniciativas e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     } 
     
     public void doLogOut() {
     	usuario=null;
     	redirect("Inicio");
     	
-    }
-    
-    public List<Iniciativa> iniciativasUnUsuario () throws Exception {
-        return serviciosImpl.iniciativasUnUsuario(usuario.getDocumento());
-    }
-    
-    public List<Iniciativa> iniciativasUnVisitado() throws Exception {
-        return serviciosImpl.iniciativasUnUsuario(visitado.getDocumento());
     }
     
     public void redirect(String pagina){
@@ -86,41 +72,89 @@ public class LoginBean extends BasePageBean implements Serializable {
     }
     
     public boolean filtroAdministrador(){
-        
         if (compararPermisos(Rol.ADMINISTRADOR)){
             return true;
         }
-        else {return false;}
+        else return false; 
     }
     
     public boolean filtroProponente(){
-        
-        if (compararPermisos(Rol.ADMINISTRADOR) || compararPermisos(Rol.PROPONENTE)){
+        if (compararPermisos(Rol.ADMINISTRADOR) ||
+                compararPermisos(Rol.PROPONENTE)){
             return true;
         }
-        else {return false;}
+        else return false;
     }
     
     public boolean filtroPMO(){
-        
-        if (compararPermisos(Rol.ADMINISTRADOR) || compararPermisos(Rol.PMO_ODI)){
+
+        if (compararPermisos(Rol.ADMINISTRADOR) || 
+                compararPermisos(Rol.PMO_ODI)){
             return true;
         }
-        else {return false;}
+        else return false;
        
     }
     
     private boolean compararPermisos(Rol rolComparar){
     	if(!(usuario==null)) {
 	        Rol rol=usuario.getRol();
-        	if (rol.equals(rolComparar)){
-        		return true;
-        	}
-        	else {return false;}
+        	if (rol.equals(rolComparar))return true;
+        	else return false;
     	}
-    	
     	else return false;
         
+    }
+    
+    public void autorizacion(){ 
+    	
+    	String auth2 =FacesContext.getCurrentInstance().getViewRoot().getViewId();
+    	String auth = auth2.substring(1, auth2.length()-6);
+    	if(auth.equals("Inicio")){
+            if(!(usuario==null)) redirect("Inicio");
+            else redirect("perfilesUsuarios");
+    	}
+        else if (!(usuario == null)) {
+            Rol usuarioRol = usuario.getRol();
+            if (!(auth.equals("visitante") && visitado == null)) {
+                redireccion(usuarioRol, auth);
+            } else redirect("perfilesUsuarios");            
+        } else redirect("Inicio");
+    }
+    
+    private boolean level(int nivel,String auth) {
+        switch (nivel) {
+            case 1:
+                if((auth.equals("registrarIniciativas") || 
+                        auth.equals("actualizarEstadoIniciativas") || 
+                            auth.equals("busquedaUsuario") )) {
+                    return true;
+                }
+                break;
+            case 2:
+                if( auth.equals("actualizarEstadoIniciativas") || 
+                        auth.equals("busquedaUsuario")) {
+                    return true;
+                }
+                break;
+            case 3:
+                if(auth.equals("registrarIniciativas")) {
+                    return true;
+                }
+                break;
+            default:
+                break;
+        }
+    	return false;
+    		
+    	}
+    
+    public List<Iniciativa> iniciativasUnUsuario () throws Exception {
+        return serviciosImpl.iniciativasUnUsuario(usuario.getDocumento());
+    }
+    
+    public List<Iniciativa> iniciativasUnVisitado() throws Exception {
+        return serviciosImpl.iniciativasUnUsuario(visitado.getDocumento());
     }
     
     public Usuario getUsuario() {
@@ -130,7 +164,7 @@ public class LoginBean extends BasePageBean implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+     
     /**
      * 
      * @return El usuario de ingreso
@@ -173,81 +207,25 @@ public class LoginBean extends BasePageBean implements Serializable {
     
     
     public String getPagina() {
-		return pagina;
-	}
-
-	public void setPagina(String pagina) {
-		this.pagina = pagina;
-	}
-
-    
-    public void autorizacion(){ 
-    	
-    	String auth2 =FacesContext.getCurrentInstance().getViewRoot().getViewId();
-    	String auth = auth2.substring(1, auth2.length()-6);
-    	if(auth.equals("Inicio")){
-    		if(!(usuario==null)) {
-    			redirect("Inicio");
-			}
-    		else {
-    			redirect("perfilesUsuarios");
-    		}
-    		
-    	}
-    	else if(!(usuario==null)) {   
-    	
-    		if(!(auth.equals("visitante") && visitado==null)) {
-    			
-		        if(!(usuario.getRol().equals(Rol.ADMINISTRADOR))){
-		        	
-		            if(usuario.getRol().equals(Rol.USUARIO_DE_CONSULTA) && level(1,auth)) {
-		            	redirect("consultarIniciativas");
-		            }
-		            
-		            else if(usuario.getRol().equals(Rol.PROPONENTE) && level(2,auth)){
-		            	redirect("perfilesUsuarios");
-		            	
-		            }
-		            else if(usuario.getRol().equals(Rol.PMO_ODI) && level(3,auth)) {
-		            	redirect("perfilesUsuarios");
-		            }
-		        }
-    		}
-    		else {
-    			redirect("perfilesUsuarios");
-    		}
-    	}
-    	else {
-    		redirect("Inicio");
-    	}
-    	
+        return pagina;
     }
-    
-    private boolean level(int lvl,String auth) {
-    	if(lvl==1){
-    		if((auth.equals("registrarIniciativas") || auth.equals("actualizarEstadoIniciativas") || auth.equals("busquedaUsuario") )) {
-    			return true;
-    		}
-    	}
-    		
-    	else if(lvl==2) {
-    		if( auth.equals("actualizarEstadoIniciativas") || auth.equals("busquedaUsuario")) {
-    			return true;
-    		}    		    		
-    	}
-    	else if(lvl==3) {
-    		if(auth.equals("registrarIniciativas")) {
-    			return true;
-    		}
-    		
-    	}
-    	return false;
-    		
-    	}
-    
-    
 
-  
+    public void setPagina(String pagina) {
+        this.pagina = pagina;
+    }
+        
+    
+    private void redireccion(Rol usuarioRol,String auth){
+        if (!(usuarioRol.equals(Rol.ADMINISTRADOR))) {
 
+            if (usuarioRol.equals(Rol.USUARIO_DE_CONSULTA) && level(1, auth)) {
+                redirect("consultarIniciativas");
+            } else if (usuarioRol.equals(Rol.PROPONENTE) && level(2, auth)) {
+                redirect("perfilesUsuarios");
+            } else if (usuarioRol.equals(Rol.PMO_ODI) && level(3, auth)) {
+                redirect("perfilesUsuarios");
+            }
+        }
+    }
 
 }
