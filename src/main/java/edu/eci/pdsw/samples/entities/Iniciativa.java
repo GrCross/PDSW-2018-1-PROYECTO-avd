@@ -6,7 +6,9 @@
 package edu.eci.pdsw.samples.entities;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -43,31 +45,31 @@ public class Iniciativa implements Serializable{
     public Iniciativa() {
     }
     
-    public Iniciativa(int id, String estado, String nombre, String descripcion, Date fechaCreacion,
-			String palabrasClave, Usuario usuario,String area) {
-    	this.id = id;
-        this.estado = Estado.valueOf(estado);
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.palabrasClave = palabrasClave;
+    public Iniciativa(int id2, String estado2, String nombre2, String descripcion2, Date now,
+			String palabrasClave2, Usuario usuario,String area) {
+    	this.id = id2;
+        this.estado = Estado.valueOf(estado2);
+        this.nombre = nombre2;
+        this.descripcion = descripcion2;
+        this.fechaCreacion = now;
+        this.palabrasClave = palabrasClave2;
         this.autor = usuario;
         this.area = area;
-        Date date1 = fechaCreacion;
+        Date date1 = now;
         
         
     }
     
   
     
-    public Iniciativa(int id, Estado estado, String nombre, String descripcion, Date fechaCreacion,
-			String palabrasClave, Usuario usuario,String area) {
-    	this.id = id;
-        this.estado = estado;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.palabrasClave = palabrasClave;
+    public Iniciativa(int id2, Estado estado2, String nombre2, String descripcion2, Date now,
+			String palabrasClave2, Usuario usuario,String area) {
+    	this.id = id2;
+        this.estado = estado2;
+        this.nombre = nombre2;
+        this.descripcion = descripcion2;
+        this.fechaCreacion = now;
+        this.palabrasClave = palabrasClave2;
         this.autor = usuario;
         this.area = area;
 

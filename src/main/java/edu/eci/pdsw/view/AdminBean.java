@@ -31,32 +31,36 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class AdminBean extends BasePageBean {
 
-    private Rol rolCambio;
     private final Rol[] roles = Rol.values();
-    private Estado[] estados = Estado.values();
-    private List<Usuario> usuarios = null;
     private ArrayList<String> rolesString = Rol.arreglo();
+    private Rol rolCambio;
+    private Estado[] estados = Estado.values();
+
+
+    private List<Usuario> Busuario = null;
 
     @Inject
     private ServiciosBancoIniciativas serviciosBancoIniciativa;
 
-    
     public List<Usuario> consultarUsuarios() {
+
         try {
-            usuarios = serviciosBancoIniciativa.consultarUsuarios();
-        } catch (ExcepcionBancoIniciativas ex) {
+            Busuario = serviciosBancoIniciativa.consultarUsuarios();
+        } catch (Exception ex) {
             Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return usuarios;
+        return Busuario;
     }
 
     public void updateUsuario(long documento, Rol nuevoRol) {
+        
         try {
+            
             serviciosBancoIniciativa.updateUsuario(documento,nuevoRol.toString() );
             FacesMessage msg;
             msg = new FacesMessage("Actualizado");
             FacesContext.getCurrentInstance().addMessage(null, msg); 
-        } catch (ExcepcionBancoIniciativas ex) {
+        } catch (Exception ex) {
             Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -65,31 +69,32 @@ public class AdminBean extends BasePageBean {
     	List<Iniciativa> BeanIniciativas = null;
     	 try {
     		 BeanIniciativas= serviciosBancoIniciativa.consultarIniciativas();
-    	 } catch (ExcepcionBancoIniciativas ex) {
+    		
+    	 } catch (Exception ex) {
              Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
          }
     	 return BeanIniciativas;
     }
     
-    
     public void updateEstadoIniciativa (Estado estado, int id) {
+    	
     	try {
             serviciosBancoIniciativa.updateEstadoIniciativa(estado.toString(),id );
             FacesMessage msg;
             msg = new FacesMessage("Actualizado el estado");
             FacesContext.getCurrentInstance().addMessage(null, msg); 
-        } catch (ExcepcionBancoIniciativas ex) {
+        } catch (Exception ex) {
             Logger.getLogger(AdminBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     	
     }
 
     public List<Usuario> getBusuario() {
-        return usuarios;
+        return Busuario;
     }
 
     public void setBusuario(List<Usuario> Busuario) {
-        this.usuarios = Busuario;
+        this.Busuario = Busuario;
     }
 
     public Rol[] getRoles() {

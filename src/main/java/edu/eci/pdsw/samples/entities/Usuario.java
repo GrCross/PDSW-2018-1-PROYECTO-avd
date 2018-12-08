@@ -7,8 +7,11 @@ package edu.eci.pdsw.samples.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
-
+/**
+ *
+ */
 public class Usuario implements Serializable{
     
     
@@ -97,7 +100,7 @@ public class Usuario implements Serializable{
     }
 
     public void setRol(String rol) {
-        this.rol = Rol.valueOf(rol);
+        this.rol = Rol.valueOf(rol);;
     }
 
     public String getCorreo() {

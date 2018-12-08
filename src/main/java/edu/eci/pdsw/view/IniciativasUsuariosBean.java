@@ -5,17 +5,27 @@ import edu.eci.pdsw.samples.entities.Interes;
 import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionBancoIniciativas;
 import edu.eci.pdsw.samples.services.ServiciosBancoIniciativas;
+import edu.eci.pdsw.view.BasePageBean;
 import java.io.IOException;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
+import javax.persistence.PersistenceException;
+import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,6 +43,7 @@ import javax.faces.context.FacesContext;
 public class IniciativasUsuariosBean extends BasePageBean {
     //<h:graphicImage library="images" name="cabecera.jpg" style =" text-align : center;"> </h:graphicImage> 
 	// no borrar lo de arriba puede ser util en el xhtml
+    private int documento;
     private ArrayList<String> palabrasClave = new ArrayList<String>();
     private ArrayList<String> palabrasClaveConsultar = new ArrayList<String>();
     private ArrayList<Iniciativa> iniciativasClave = new ArrayList<Iniciativa>();
@@ -44,6 +55,7 @@ public class IniciativasUsuariosBean extends BasePageBean {
     private ServiciosBancoIniciativas serviciosBancoIniciativa; 
     
     public void limpiar(){
+
         //Antes de  hacer  render se llama a este metodo
         //Limpiara los objetos o propiedades
     	palabrasClave.clear();
@@ -53,9 +65,11 @@ public class IniciativasUsuariosBean extends BasePageBean {
     
     public void registrarIniciativa (String nombre, String descripcion,String area,long documento) throws Exception {
          
+        
     	Date date = java.util.Calendar.getInstance().getTime();
         Usuario usuario = new Usuario(documento);
         String pClaves = "";
+        
         for(String s:palabrasClave){     
         
             if(palabrasClave.indexOf(s)== palabrasClave.size()-1){
@@ -64,20 +78,32 @@ public class IniciativasUsuariosBean extends BasePageBean {
         }
         int id = this.calcularID();
         Iniciativa  iniciativa = new Iniciativa(id,"En_Espera",nombre,descripcion,date,pClaves,usuario,area); 
-        serviciosBancoIniciativa.InsertarIniciativa(iniciativa);
-        mensaje("Insertada una iniciativa Exitosamente");        
+        
+        
+		serviciosBancoIniciativa.InsertarIniciativa(iniciativa);
+		FacesMessage msg;
+        msg = new FacesMessage("Insertada una iniciativa Exitosamente");
+        FacesContext.getCurrentInstance().addMessage(null, msg); 
+	
         palabrasClave.clear();
 		
     }
     
     public void votar(int iniciativa , long documento) throws Exception {
+
+
+
         try {
             Interes interes = serviciosBancoIniciativa.consultarInteres(iniciativa, documento);
 
-            if (interes.getVoto()==false) serviciosBancoIniciativa.updateInteres(iniciativa, documento, true);
-            else serviciosBancoIniciativa.updateInteres(iniciativa, documento, false);
+            if (interes.getVoto()==false){
+                serviciosBancoIniciativa.updateInteres(iniciativa, documento, true);
+            } else {
+                serviciosBancoIniciativa.updateInteres(iniciativa, documento, false);
+            }
             
-        } catch (ExcepcionBancoIniciativas ex) {
+        } catch (Exception ex) {
+            
             Interes interes = new Interes (true);
             serviciosBancoIniciativa.agregarInteres(iniciativa, documento, interes);
         }  
@@ -85,41 +111,44 @@ public class IniciativasUsuariosBean extends BasePageBean {
     }
     
     public boolean like (int iniciativa , long documento) {
-        System.out.println(documento);
-        System.out.println(iniciativa);
         try {
             Interes interes = serviciosBancoIniciativa.consultarInteres(iniciativa, documento);
             return interes.getVoto();
-        } catch (ExcepcionBancoIniciativas ex) {
+        } catch (Exception ex) {
             return false;
         }
     }
     
     
-    public void consultarIniciativas() throws ExcepcionBancoIniciativas{
+    public void consultarIniciativas(){
         ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();
         ArrayList<Iniciativa> iniciativasPalClaves = new ArrayList<Iniciativa>();
         
         for(Iniciativa i: iniciativas){
 
             for(String s: palabrasClaveConsultar){
-                if(i.getPalabrasClave().contains(s) 
-                        && !iniciativasPalClaves.contains(i))                    
+                if(i.getPalabrasClave().contains(s) && !iniciativasPalClaves.contains(i)){                    
                     iniciativasPalClaves.add(i);
+                    
+                }
             }
-        }
-        if(iniciativasPalClaves.isEmpty())iniciativasClave = iniciativas;
-        else{
+        }if(iniciativasPalClaves.isEmpty()){
+            iniciativasClave = iniciativas;
+        }else{
            palabrasClaveConsultar.clear();
             iniciativasClave = iniciativasPalClaves;
+           // System.out.println();
         }        
     }
     
-    public void consultarPalabrasClave() throws ExcepcionBancoIniciativas{
+    public void consultarPalabrasClave(){
         ArrayList<Iniciativa> iniciativas = serviciosBancoIniciativa.consultarIniciativas();        
         for(Iniciativa i: iniciativas){
+            
             String[] temp = i.getPalabrasClave().split("\\W+");
-            for (int j = 0; j <temp.length ; j++) palabrasClaveAll.add(temp[j]);
+            for (int j = 0; j <temp.length ; j++) {
+                palabrasClaveAll.add(temp[j]);
+            }
         }
     }
     
@@ -130,11 +159,14 @@ public class IniciativasUsuariosBean extends BasePageBean {
             int maxId = 0;
             if (!iniciativas.isEmpty()) {
                 for (Iniciativa ini : iniciativas) {
-                    if (ini.getId() > maxId) maxId = ini.getId();
+                    if (ini.getId() > maxId) {
+                        maxId = ini.getId();
+                    }
                 }
+
             }
             return maxId + 1;
-        } catch (ExcepcionBancoIniciativas ex) {
+        } catch (Exception ex) {
             return 1;
         }
     }
@@ -187,12 +219,6 @@ public class IniciativasUsuariosBean extends BasePageBean {
 
     public void setPalabrasClaveAll(ArrayList<String> palabrasClaveAll) {
         this.palabrasClaveAll = palabrasClaveAll;
-    }
-    
-    private void mensaje(String mensaje){
-        FacesMessage msg;
-        msg = new FacesMessage(mensaje);
-        FacesContext.getCurrentInstance().addMessage(null, msg); 
     }
     
 }

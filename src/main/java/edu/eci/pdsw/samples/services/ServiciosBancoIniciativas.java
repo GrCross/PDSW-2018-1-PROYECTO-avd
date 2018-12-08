@@ -13,20 +13,20 @@ public interface ServiciosBancoIniciativas {
 
 	public abstract void InsertarUsuario(Usuario usuario) throws ExcepcionBancoIniciativas;
 
-        public abstract void InsertarIniciativa(Iniciativa iniciativa) throws ExcepcionBancoIniciativas;
+        public abstract void InsertarIniciativa(Iniciativa iniciativa) throws Exception;
         
         public abstract Usuario consultarUsuario (long documento) throws ExcepcionBancoIniciativas;
         
-        public abstract void updateUsuario(long documento,String rol) throws ExcepcionBancoIniciativas;
+        public abstract void updateUsuario(long documento,String rol) throws Exception;
         
-        public abstract List<Usuario> consultarUsuarios() throws ExcepcionBancoIniciativas;
+        public abstract List<Usuario> consultarUsuarios() throws Exception;
         
         /**
          * Lista de todas las iniciativas
          * @return
          * @throws Exception
          */
-        public abstract List<Iniciativa> consultarIniciativasEst() throws ExcepcionBancoIniciativas;
+        public abstract List<Iniciativa> consultarIniciativasEst() throws Exception;
         
         /**
          * Actualiza el estado de una iniciativa
@@ -34,40 +34,42 @@ public interface ServiciosBancoIniciativas {
          * @param id
          * @throws Exception
          */
-        public abstract void updateEstadoIniciativa(String estado, int id)  throws ExcepcionBancoIniciativas;
+        public abstract void updateEstadoIniciativa(String estado, int id)  throws Exception;
         
-        public abstract ArrayList<Iniciativa> consultarIniciativas() throws ExcepcionBancoIniciativas;
+        public ArrayList<Iniciativa> consultarIniciativas() throws PersistenceException;
         
         public abstract boolean autorizacionLogin(String user, String psw) throws ExcepcionBancoIniciativas;
         
-        public abstract Usuario obtenerUsuario(String user)throws ExcepcionBancoIniciativas;
+        public abstract Rol getRolUsuario(String correo) throws ExcepcionBancoIniciativas;
         
-        public abstract void InsertarComentario (Comentario com, int idIni) throws ExcepcionBancoIniciativas;
+        public abstract Usuario obtenerUsuario(String user);
         
-        public abstract ArrayList<Comentario> consultarComentarios(int id) throws ExcepcionBancoIniciativas;
+        public abstract void InsertarComentario (Comentario com, int idIni) throws Exception;
         
-        public abstract long consultarMax() throws ExcepcionBancoIniciativas;
+        public abstract ArrayList<Comentario> consultarComentarios(int id) throws Exception;
         
-        public abstract List<Iniciativa> iniciativasUnUsuario (long documento) throws ExcepcionBancoIniciativas;
+        public abstract long consultarMax() throws Exception;
+        
+        public abstract List<Iniciativa> iniciativasUnUsuario (long documento) throws Exception;
         
         //public abstract void cambiarInformacionIniciativa(String descripcion, String palabrasclave, int id) throws Exception;
-        public abstract void cambiarDescripcionIniciativa(String descripcion, int id) throws ExcepcionBancoIniciativas;
+        public abstract void cambiarDescripcionIniciativa(String descripcion, int id) throws Exception;
         
-        public abstract void cambiarNombreIniciativa(String nombre, int id)throws ExcepcionBancoIniciativas;
+        public void cambiarNombreIniciativa(String nombre, int id)throws Exception;
 
-        public abstract Iniciativa consultarIniciativa(int id) throws ExcepcionBancoIniciativas;
+        public abstract Iniciativa consultarIniciativa(int id) throws Exception;
         
-        public abstract Interes consultarInteres( int documento,long usuario ) throws ExcepcionBancoIniciativas;
+        public abstract Interes consultarInteres( int documento,long usuario ) throws Exception;
         
-        public abstract void updateInteres (int documento,long usuario, boolean like  )throws ExcepcionBancoIniciativas;
+        public abstract void updateInteres (int documento,long usuario, boolean like  )throws Exception;
         
-        public abstract void agregarInteres (int documento,long usuario,Interes interes) throws ExcepcionBancoIniciativas;
+        public abstract void agregarInteres (int documento,long usuario,Interes interes) throws Exception;
         
 
-        public abstract Iniciativa LikesUnaIniciativa (int id) throws ExcepcionBancoIniciativas;
+        public abstract Iniciativa LikesUnaIniciativa (int id) throws Exception;
 
 
-        public abstract void agregarIniciativaTest(Iniciativa ini)throws ExcepcionBancoIniciativas;
+        public abstract void agregarIniciativaTest(Iniciativa ini)throws Exception;
 
        
 
