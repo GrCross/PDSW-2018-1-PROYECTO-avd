@@ -42,7 +42,7 @@
          <br /><br />
       
       <p:growl id="msgs" showDetail="true" />
-      <p:commandButton id="PDF1" update="msgs" value="Hacer PDF" actionListener="#{estadisticasBean.aPDF()}"></p:commandButton>
+      <p:commandButton id="PDF1" update="msgs" value="Hacer PDF" actionListener="#{estadisticasBean.aPDF()}" ajax="false"></p:commandButton>
       <h:messages id="anuncio" globalOnly="true" styleClass="info" errorClass="error" />
       
       

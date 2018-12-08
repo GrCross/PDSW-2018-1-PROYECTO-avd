@@ -53,6 +53,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.entity.StandardEntityCollection;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.omnifaces.util.Faces;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
@@ -323,9 +324,11 @@ public class estadisticasBean extends BasePageBean implements Serializable {
 
 			FileUtils.delete(path + "/chartAreas.png");
 			
-			  FacesMessage msg;
-              msg = new FacesMessage("El archivo pdf se ha guardado en su carpeta de descargas bajo el nombre 'Estadisticas banco de iniciativas'");
-              FacesContext.getCurrentInstance().addMessage(null, msg);
+			File file1 = new File(path+"/Estadisticas banco de iniciativas.pdf");
+			
+		    Faces.sendFile(file1, true);
+			
+			
               
 		} catch (DocumentException | IOException e) {
 			// TODO Auto-generated catch block

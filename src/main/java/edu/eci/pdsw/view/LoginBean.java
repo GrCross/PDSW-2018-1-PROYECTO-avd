@@ -194,7 +194,8 @@ public class LoginBean extends BasePageBean implements Serializable {
     		}
     		
     	}
-    	else if(!(usuario==null)) {   
+    	else if(!(usuario==null)) { 
+    		
     	
     		if(!(auth.equals("visitante") && visitado==null)) {
     			
@@ -244,6 +245,11 @@ public class LoginBean extends BasePageBean implements Serializable {
     	return false;
     		
     	}
+    public void logeado() {
+    	if(!(usuario==null)) {
+    		redirect("perfilesUsuarios");
+    	}
+    }
     
     
 

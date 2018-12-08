@@ -61,6 +61,14 @@
             <version>1.4.191</version>
         </dependency>
         
+        				
+		<!-- https://mvnrepository.com/artifact/org.omnifaces/omnifaces -->
+		<dependency>
+		    <groupId>org.omnifaces</groupId>
+		    <artifactId>omnifaces</artifactId>
+		    <version>1.14</version>
+		</dependency>
+        
         <!-- Itext, para los pdf -->
         <dependency>
 		    <groupId>com.itextpdf</groupId>
