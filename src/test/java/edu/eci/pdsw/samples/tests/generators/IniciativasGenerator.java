@@ -58,9 +58,7 @@ public class IniciativasGenerator {
         return strings().basicLatinAlphabet().ofLengthBetween(10, 145);
     }
 
-    public static Gen<List<Comentario>> comentarios() {
-        return lists().of(ComentariosGenerator.comentarios()).ofSizeBetween(0,100);
-      }
+   
     
     private static Gen<String> area(){
         return strings().basicLatinAlphabet().ofLengthBetween(10, 145);

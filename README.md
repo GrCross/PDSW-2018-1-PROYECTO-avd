@@ -1,4 +1,5 @@
 
+
 # BANCO DE INICIATIVAS-ECI AVDF 2018-1
 
 
@@ -14,8 +15,11 @@
 * Andres Camilo Villamil Bustillo
 * Fabian Camilo Bohorquez Heredia
 
+[link de gitHub](https://github.com/GrCross/PDSW-2018-1-PROYECTO-avdf)
+
 ## Descripcion del producto
 El Banco de Iniciativas es una aplicacion y herramienta en donde los integrantes de la Escuela Colombiana De Ingenieria Julio Garavito seran capaces de registrar las iniciativas e ideas que posean para poder mejorar la institucion. La plataforma permitira registrar iniciativas, tambien generar seguimiento de las iniciativas propias.
+
 
 ## funcionalidades
 #### inicio de sesion
@@ -44,7 +48,7 @@ El Banco de Iniciativas es una aplicacion y herramienta en donde los integrantes
 ![](recursos/capaPresentacion.png)
 #### Capa Logica
 
-![](recursos/capaLogica.PNG)
+![](recursos/capaLogica.png)
 ## tecnologias
 Para el desarrollo de la aplicacion se utilizaron las siguientes tecnologias
 * **maven**:  herramienta open-source para facilitar el proceso de construccion apartir del codigo fuente
@@ -60,6 +64,15 @@ Para el desarrollo de la aplicacion se utilizaron las siguientes tecnologias
 
 Para la realizacion de este proyecto se utilizo el desarrollo por medio de SCRUM, con una duracion de 3 sprints cada uno de 2 semanas.
 Como metodologias adicionales se aplico el pair programing e intentar seguir los principos del modelo SOLID
+
+En los commits sus descripciones inidican quienes participaron en el commit is no poseen esa descripccion solo la persona que hizo el commit participo
+	
+**usuarios contribuyentes**:
+
+	Valentina Siabatto (Siabell)
+	Andres Villamil (NigDra)
+	Fabian Bohorquez(Heredikon)		
+	Daniel Rosales(GrCross)
 
 ## Backlog
 [Link trello backlog](https://trello.com/b/tEOAgJjN/2018-2-proypdsw-vsrb)
@@ -121,7 +134,24 @@ Aqui se muestran las estadisticas que aparencen el el repositiorio de GitHub, Es
 
 ![](recursos/codeFrequency.PNG)
 
-## Reporte de pruebas\
+## Reporte de pruebas
+
+Usuarios para login
+
+**Administrador**:
+	usuario: admin
+	contraseña:1111111
+**proponente**:
+	usuario: valentina.siabatto@mail.escuelaing.edu.co
+	contraseña:2126082
+**pmo_odi**: usuario:amalia.alfonso@mail.escuelaing.edu.co
+	contraseña:2125674
+**usuario de consulta**:
+	usuario: fabian.bohorquez@mail.escuelaing.edu.co
+	contraseña:2125684
+	
+	
+![](recursos/pruebas.PNG)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/43de1453ded34e71b04e9f577fca1bb8)](https://app.codacy.com/app/Siabell/PDSW-2018-1-PROYECTO-avdf?utm_source=github.com&utm_medium=referral&utm_content=GrCross/PDSW-2018-1-PROYECTO-avdf&utm_campaign=Badge_Grade_Dashboard)
 

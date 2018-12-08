@@ -15,9 +15,9 @@ import java.util.Date;
 
 public class ComentariosGenerator {
     
-    public static Gen<Comentario> comentarios(){
-        return commentId().zip(contenido(),fechaDePublicacion(),usuario(),
-            (commentId,contenido,fechaDeCreacion,usuario) -> new Comentario(usuario, fechaDeCreacion, contenido, commentId));
+    public static Gen<Comentario> comentarios(Usuario u){
+        return commentId().zip(contenido(),fechaDePublicacion(),
+            (commentId,contenido,fechaDeCreacion) -> new Comentario(u, fechaDeCreacion, contenido, commentId));
     }
     
     private static Gen<Long> commentId(){

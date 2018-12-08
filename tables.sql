@@ -9,6 +9,7 @@ CREATE TABLE Comentarios (
     fechaCreacion date  NOT NULL,
     Usuarios_documento int  NOT NULL,
     Iniciativas_id int  NOT NULL,
+    commentId int NOT NULL,
     CONSTRAINT Comentarios_pk PRIMARY KEY (contenido,Usuarios_documento,Iniciativas_id)
 );
 
