@@ -1,9 +1,6 @@
 
 # BANCO DE INICIATIVAS-ECI AVDF 2018-1
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/43de1453ded34e71b04e9f577fca1bb8)](https://app.codacy.com/app/Siabell/PDSW-2018-1-PROYECTO-avdf?utm_source=github.com&utm_medium=referral&utm_content=GrCross/PDSW-2018-1-PROYECTO-avdf&utm_campaign=Badge_Grade_Dashboard)
-
-[![CircleCI](https://circleci.com/gh/Siabell/MyBatis-Guice-PrimeFaces.svg?style=svg)](https://circleci.com/gh/Siabell/MyBatis-Guice-PrimeFaces)
 
 ### Proceso de Desarrollo de software
 ## Integrantes
@@ -77,7 +74,8 @@ Durante este Sprint se mantuvo un trabajo constante en el desarrollo del product
 ![](recursos/sprint1Back.png)
 
 **Sprint-burndown Chart**
-*faltan imagenes*
+
+![](recursos/sprint_burndown1.png)
 
 ### *Sprint 2*
 **Descripcion**: Durante el segundo Sprint se mantuvo el pair programing constante como en el primer sprint. como ya se tenia la estructura inicial del proyecto que se realizo durante el primer sprint fue mucho mas facil desarrollar las historias de usuario propuestas para este.
@@ -90,7 +88,7 @@ Se aprovecho bastante el tiempo dando como resultados el buen desarrollo del spr
 
 **Sprint-burndown Chart**
 
-*faltan imagenes*
+![](recursos/sprint_burndown2.png)
 
 
 ### *Sprint 3*
@@ -102,6 +100,7 @@ Se aprovecho bastante el tiempo dando como resultados el buen desarrollo del spr
 
 **Sprint-burndown Chart**
 
+![](recursos/sprint_burndown3.png)
 
 ### *estadisticas GitHub*
 Aqui se muestran las estadisticas que aparencen el el repositiorio de GitHub, Estas abarcan lo que fue del todo el proceso de desarrollo del producto
