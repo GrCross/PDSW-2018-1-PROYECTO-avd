@@ -93,7 +93,7 @@ Se aprovecho bastante el tiempo dando como resultados el buen desarrollo del spr
 
 **Sprint backlog**
 
-![](recursos/sprint3Back.png)<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzccccccccccccccccccccccccccccccccf
+![](recursos/sprint3Back.png)
 
 **Sprint-burndown Chart**
 
@@ -118,8 +118,10 @@ Aqui se muestran las estadisticas que aparencen el el repositiorio de GitHub, Es
 ![](recursos/codeFrequency.PNG)
 
 ## Reporte de pruebas\
-*falta codacy*
-*imagen de las pruebas cuando ya se hagan xD*
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/43de1453ded34e71b04e9f577fca1bb8)](https://app.codacy.com/app/Siabell/PDSW-2018-1-PROYECTO-avdf?utm_source=github.com&utm_medium=referral&utm_content=GrCross/PDSW-2018-1-PROYECTO-avdf&utm_campaign=Badge_Grade_Dashboard)
+
+[![CircleCI](https://circleci.com/gh/Siabell/MyBatis-Guice-PrimeFaces.svg?style=svg)](https://circleci.com/gh/Siabell/MyBatis-Guice-PrimeFaces)
 
 
 [CircleCi link](https://circleci.com/gh/GrCross/PDSW-2018-1-PROYECTO-avdf/tree/master)
