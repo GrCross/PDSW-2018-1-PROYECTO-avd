@@ -1,5 +1,8 @@
 
 # BANCO DE INICIATIVAS-ECI AVDF 2018-1
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/43de1453ded34e71b04e9f577fca1bb8)](https://app.codacy.com/app/Siabell/PDSW-2018-1-PROYECTO-avdf?utm_source=github.com&utm_medium=referral&utm_content=GrCross/PDSW-2018-1-PROYECTO-avdf&utm_campaign=Badge_Grade_Dashboard)
+
 ### Proceso de Desarrollo de software
 ## Integrantes
 ##### Due;o del producto:
